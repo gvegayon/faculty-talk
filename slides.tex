@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169, 9pt]{beamer}
+\documentclass[aspectratio=169, 9pt,handout]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
@@ -44,7 +44,7 @@
 	Essays on Bioinformatics and Social Network Analysis\linebreak %
 	{\small Statistical and Computational Methods for Complex Systems}%
 }
-\author[GGVY -- slides on \url{https://github.com/gvegayon/defense}]{George G Vega Yon}
+\author[GGVY -- slides on \url{https://github.com/gvegayon/faculty-talk}]{George G Vega Yon}
 \institute[USC-PREVMED]{University of Southern California, Department of Preventive Medicine}
 \date{June 22, 2020}
 
@@ -78,14 +78,14 @@
 \begin{frame}%[noframenumbering]
 \maketitle
 \vspace{-.5cm}
-\begin{center}
-	\begin{minipage}[m]{.5\linewidth}
-		\color{uscgold}\centering
-		\textbf{Committee} \\
-		Paul~Marjoram (chair), Kayla~de~la~Haye, Paul~D~Thomas, Duncan~C~Thomas, Emilio~Ferrara
-	\end{minipage}
-
-\end{center}
+%\begin{center}
+%	\begin{minipage}[m]{.5\linewidth}
+%		\color{uscgold}\centering
+%		\textbf{Committee} \\
+%		Paul~Marjoram (chair), Kayla~de~la~Haye, Paul~D~Thomas, Duncan~C~Thomas, Emilio~Ferrara
+%	\end{minipage}
+%
+%\end{center}
 \end{frame}
 
 %% ------------------------------------------------------------------------------
@@ -114,7 +114,7 @@
 \frame{\frametitle{Contents}
 	\tableofcontents
 	\vfill
-	You can download the slides from\large{} {\color{usccardinal}\url{https://github.com/gvegayon/defense}}\normalsize
+	You can download the slides from\large{} {\color{usccardinal}\url{https://github.com/gvegayon/faculty-talk}}\normalsize
 }
 
 % ------------------------------------------------------------------------------
@@ -319,29 +319,47 @@
 	\end{minipage}
 \end{frame}
 
+\newcommand{\byside}[3]{\begin{minipage}[t]{#1\linewidth}%
+		\centering%
+		\shadowbox{\Large #2}\hfill\\%
+		#3%
+\end{minipage}}
+
+\begin{frame}
+	\frametitle{Performance}
+\begin{minipage}[m]{.45\linewidth}
+	\begin{figure}
+		\includegraphics[width=1\linewidth]{roc-auc-aphylo-sifter.eps}
+	\end{figure}
+\end{minipage}\hfill
+\begin{minipage}[m]{.45\linewidth}
+	Comparing aphylo vs SIFTER (the current state-of-the-art phylo-based evolutionary model) on 147 proteins:
+\begin{itemize}
+	\item[] \shadowbox{Fast} SIFTER took about 110 minutes to calculate the posterior probabilities, aphylo took 1 second.
+	\item[] \shadowbox{Accurate} aphylo reported higher accuracy levels in LOO cross-validation (0.72 vs 0.60 AUC).
+\end{itemize}
+\end{minipage}
+
+\end{frame}
 
 %--------------------------------------------------------------------------------
-\newcommand{\byside}[2]{\begin{minipage}[t]{.24\linewidth}%
-		\centering%
-		\shadowbox{\Large #1}\hfill\\%
-		#2%
-	\end{minipage}}
-\begin{frame}[c,label=phylo-old-results]
-	\frametitle{Results from the first version}
-	\centering\pause
-	\byside{Scalable}{%
-		Pooled-data model including hundreds of trees (thousands of genes) fitted within minutes.%
-	}\hfill\pause
-	\byside{Robust}{%
-		Accuracy and estimates are consistent regardless of the used prior.%
-	}\hfill\pause
-	\byside{Intuitive}{%
-		Gains and losses are more likely to happen at \alert{duplication} events.%
-	}\hfill\pause
-	\byside{Competitive}{Matches state-of-the-art phylo-based prediction models with $\sim$ 0.75 AUC.}
-	\vfill
-	\uncover<6>{...all this assuming that all functions had the same gain/loss rate.}
-\end{frame}
+
+%\begin{frame}[c,label=phylo-old-results]
+%	\frametitle{Results from the first version}
+%	\centering\pause
+%	\byside{.24}{Scalable}{%
+%		Pooled-data model including hundreds of trees (thousands of genes) fitted within minutes.%
+%	}\hfill\pause
+%	\byside{.24}{Robust}{%
+%		Accuracy and estimates are consistent regardless of the used prior.%
+%	}\hfill\pause
+%	\byside{.24}{Intuitive}{%
+%		Gains and losses are more likely to happen at \alert{duplication} events.%
+%	}\hfill\pause
+%	\byside{.24}{Competitive}{Matches state-of-the-art phylo-based prediction models with $\sim$ 0.75 AUC.}
+%	\vfill
+%	\uncover<6>{...all this assuming that all functions had the same gain/loss rate.}
+%\end{frame}
 
 
 
