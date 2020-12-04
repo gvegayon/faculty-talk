@@ -15,6 +15,25 @@
 \usepackage{amsmath, amssymb}
 \input{notation-thesis.tex}
 
+% New notation ------------------------------------------------------------------
+\newcommand{\expo}{E}
+\newcommand{\Expo}{\mathbf{\expo{}}}
+\newcommand{\expod}[1]{\expo_{#1}^D}
+\newcommand{\expoc}[1]{\expo_{#1}^C}
+\newcommand{\expoi}[1]{\expo_{#1}^I}
+
+\newcommand{\covar}{\mathbf{x}}
+\newcommand{\Covar}{\mathbf{X}}
+\newcommand{\latent}{\mathbf{z}}
+\newcommand{\Latent}{\mathbf{z}}
+
+\newcommand{\Event}{\mbox{P}}
+\newcommand{\pset}[1]{\mathcal{P}\left(#1\right)}
+\newcommand{\size}[1]{\left|#1\right|}
+
+\newcommand{\logit}[1]{\mbox{logit}^{-1}\left(#1\right)}
+% -------------------------------------------------------------------------------
+
 \usepackage[style=authoryear-comp]{biblatex}
 \addbibresource{bibliography-aphylo.bib}
 \addbibresource{bibliography-ergmito.bib}
@@ -727,133 +746,65 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 
 
 %-------------------------------------------------------------------------------
-\begin{frame}[c]
-	\frametitle{Goodness-of-fit: Conditional Distributions}
+
+\begin{frame}
+\frametitle{a}
 	
+\begin{minipage}[t]{.49\linewidth}
 	\begin{center}
-	\begin{minipage}[m]{.6\linewidth}
-		\centering\Large
-		``Does the model edges+transitivity capture the observed path-length distribution?''
-	\end{minipage}	
-	\end{center}\pause
-	
-	\begin{itemize}
-		\item The current Goodness-of-fit (GOF) for ERGMs does not fit ERGMitos.\pause
-		\item A closely related idea: Conditional Distributions. \\
-		\begin{center}
-			\large \alert{How much does \textit{Term B} can tell us about \textit{Term A}?}
-		\end{center}		
-		\pause
-%		\item Idea: Knowing how one structure predicts the other helps select the right benchmark.\pause
-		\item Brief study: Analyze the prediction capability that \textbf{Mutuals}, \textbf{Transitive Triads}, \textbf{Homophily}, and \textbf{Receiver Effect} terms have on each other.\pause
-	\end{itemize}
-	
-\begin{figure}
-	
+		\shadowbox{Ground truth}
+	\end{center}
+\begin{figure}[p]
 	\centering
-	\def\svgwidth{.6\linewidth}
-	\input{fig/max-out-stats.pdf_tex}
-	\label{fig:maxout-gof-chapter}
+	\includegraphics[width=.9\linewidth]{time-diagram-actual.png}
+%	\caption{Sequence of actions in an event. Several factors influence officers' actions: Who takes action first, what suspects do, and how their peers react.}
+%	\label{fig:my_label}
 \end{figure}
-\end{frame}
-
-\begin{frame}[c]
-	
-	\begin{minipage}[t]{.48\linewidth}
-	\large\alert{How much does \textit{Term B} can tell us about \textit{Term A}?}\normalsize\pause
-	
-	\begin{itemize}
-		\item<2-> High predictive power (Term A $|$ Term B):
-		\begin{itemize}
-			\item<3-> Stepped slope.
-			\item<3-> Narrow Confidence Interval (CI).
-		\end{itemize}
-		\item<4-> Low predictive power (Term A $|$ Term C):
-		\begin{itemize}
-			\item<5-> Positive slope (both increase b/c density increases).
-			\item<5-> Large CI.
-		\end{itemize}
-	\end{itemize}
-	\end{minipage}
-\hfill
-	\begin{minipage}[t]{.48\linewidth}
-	\begin{figure}
-	\mode<beamer>{
-		\only<-2>{\phantom{\includegraphics[width=.75\linewidth]{conditional-example-0.pdf}}}
-		\only<3-4>{\includegraphics[width=.75\linewidth]{conditional-example-0.pdf}}%
-		\only<5->{\includegraphics[width=.75\linewidth]{conditional-example.pdf}}
-	}
-	\mode<handout>{
-		\includegraphics[width=.75\linewidth]{conditional-example.pdf}
-	}
-	\end{figure}
-	\end{minipage}
-
-\only<1->{\footnotesize(All this is based on Chapters 3 and 6)\normalsize}
-
-\end{frame}
-
-
-
-%--------------------------------------------------------------------------------
-\begin{frame}[t,label=conditional-transitivity]
-	\frametitle{Conditional Distribution: Transitive Triads}
-
-\begin{minipage}[t]{.75\linewidth}
-\begin{figure}
-	\centering
-	\hspace{-1.1cm}
-	\def\svgwidth{1.05\linewidth}
-	\mode<beamer>{%
-		\only<1>{\phantom{\input{fig/conditional-prob-ttriad-0a.pdf_tex}}}%
-		\only<2>{\input{fig/conditional-prob-ttriad-0a.pdf_tex}}%
-		\only<3>{\input{fig/conditional-prob-ttriad-0b.pdf_tex}}%
-		\only<4>{\input{fig/conditional-prob-ttriad-0c.pdf_tex}}%
-		\only<5>{\input{fig/conditional-prob-ttriad-0d.pdf_tex}}%
-		\only<6->{\input{fig/conditional-prob-ttriad.pdf_tex}}}
-	\mode<handout>{\input{fig/conditional-prob-ttriad.pdf_tex}}
-\end{figure}
+\begin{itemize}
+	\item Sequence of actions
+	\item Subjects' Behavior
+	\item Peer influence
+	\item Other situational factors
+\end{itemize}
 \end{minipage}\hfill
-\begin{minipage}[t]{.23\linewidth}
-	\small
-	\begin{figure}
-		\includegraphics[width=.3\linewidth]{ttriad.pdf}
-	\end{figure}
-	\begin{itemize}
-		\item<7-> Edge count and mutuality are good predictors of transitivity.
-		\item<8-> Prevalence ($\theta_{\mbox{triads}}$) narrows the confidence intervals.
-	\end{itemize}
+\begin{minipage}[t]{.49\linewidth}
+	\begin{center}
+		\shadowbox{Observed}
+	\end{center}
+\begin{figure}
+	\centering
+	\includegraphics[width=.9\linewidth]{time-diagram-observed.png}
+%	\caption{Observed data. Of the many parts that give origin to individuals' actions, we only observe a handful. Furthermore, we do not know the order in which things occurred, how the subjects reacted, and whether other external factors played out.}
+%	\label{fig:my_label}
+\end{figure}
+\begin{itemize}
+	\item We only observe draw/no draw
+	\item We are unaware of subjects' behavior
+	\item Don't know if there's contagion/anti-contagion
+	\item Other factors are unobserved as well
+\end{itemize}
 \end{minipage}
-
-\vfill\hfill
-\hyperlink{conditional-mutual}{\beamergotobutton{more examples}}
 \end{frame}
 
-
-%-------------------------------------------------------------------------------
-\begin{frame}[c]
-\frametitle{GOF for Small Networks}
-
-
-\begin{enumerate}[<+->]
-	\item Markov structures (involve two or more ties) are better predictors of each other.
-	\item \textit{Miopic} terms: fast saturation implies poor information, e.g. homophily and receiver effect saturate at 8/20 ties:
-	\begin{figure}
-	\centering
-	{\footnotesize\def\svgwidth{.5\linewidth}
-	\input{fig/max-out-stats.pdf_tex}
-	}
-	\end{figure}
-	\vspace{.5cm}
-	\item Not only GOF:
+\begin{frame}
+	
 	\begin{itemize}
-		\item \textbf{Co-linearity} How correlated are A and B?
-		\item \textbf{Parsimony} Improve prediction while keeping the number of terms small.
-		\item \textbf{The right permutation} Evaluate how stringent a permutation test would be.
+		\item Assuming no peer effect/influence/contagion
+		\begin{equation*}\label{eq:baseline}
+			\Prcond{Y_{it} = 1}{\Covar_{it},\Latent_{t}} = \logit{\covar_{it}\beta + \latent_t}
+		\end{equation*}
+		Yet, $\latent_t$ (subjects' behavior, etc.) is unobserved.
+		\item Conditioning on $\sum_iy_{it}$, we can instead estimate the following
+		\begin{equation*}\label{eq:clogit}
+			\Prcond{\mathbf{Y}_t = \mathbf{y}_t}{\sum_{i}Y_{it} = k,\Covar_{it}} = \frac{%
+				\exp{\sum_{i}y_{it}\covar_{it}\beta}
+			}{%
+				\sum_{\mathbf{y}' \in \pset{k}}\exp{\sum_{i}y_{it}'\covar_{it}\beta}
+			}
+		\end{equation*}
+		A conditional Logit model.
 	\end{itemize}
-\end{enumerate}
-
-
+	
 
 \end{frame}
 
