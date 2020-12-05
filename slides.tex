@@ -72,7 +72,7 @@
 \newcommand{\ergmpkg}[0]{\texttt{ergm}}
 \newcommand{\ergmitopkg}[0]{\texttt{ergmito}}
 \newcommand{\aphylopkg}[0]{\texttt{aphylo}}
-\graphicspath{{.}{fig/}}
+\graphicspath{{.}{fig/}{fig-whoami/}}
 
 \usepackage{media9}
 
@@ -90,6 +90,12 @@
 \newcommand{\hlc}[2]{{\only<#1>{\cellcolor{gray!50}#2}}}
 \newcommand{\nhlc}[2]{{\only<#1>{#2}}}
 \newcommand{\hlcAlt}[2]{\alt<#1>{\cellcolor{gray!50}#2}{#2}}
+
+\newcommand{\byside}[3]{\begin{minipage}[t]{#1\linewidth}%
+		\centering%
+		\shadowbox{\Large #2}\hfill\\%
+		#3%
+\end{minipage}}
 
 \begin{document}
 
@@ -135,6 +141,18 @@
 	\vfill
 	You can download the slides from\large{} {\color{usccardinal}\url{https://github.com/gvegayon/faculty-talk}}\normalsize
 }
+
+\begin{frame}
+%	\frametitle{George G. Vega Yon}
+	
+	\large My work sits on the intersection between...\bigskip\normalsize
+	
+
+\byside{.32}{Statistics}{\bigskip\includegraphics[width=.8\linewidth]{mcmc.png}}
+\byside{.32}{Computer Science}{\bigskip\includegraphics[width=.8\linewidth]{time.png}}
+\byside{.32}{Complex Systems}{\bigskip\includegraphics[width=.8\linewidth]{complex.png}}
+
+\end{frame}
 
 % ------------------------------------------------------------------------------
 \section{On the Prediction of Gene Functions Using Phylogenetic Trees (Ch. 2 \& 4)}
@@ -338,11 +356,7 @@
 	\end{minipage}
 \end{frame}
 
-\newcommand{\byside}[3]{\begin{minipage}[t]{#1\linewidth}%
-		\centering%
-		\shadowbox{\Large #2}\hfill\\%
-		#3%
-\end{minipage}}
+
 
 \begin{frame}
 	\frametitle{Performance}
@@ -942,6 +956,22 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 	
 \end{frame}
 
+
+\section{Scientific Software Development}
+
+%-------------------------------------------------------------------------------
+\begin{frame}[t]
+	\usebeamertemplate{section intro}{}{}
+	\textcolor{uscgold}{
+		\Large {\bf Scientific Software Development} 
+	}
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\includegraphics[width=.7\linewidth]{fig-packages/hexlogos.png}
+	\end{figure}
+\end{frame}
 
 \section{Next Steps (Ch. 7)}
 
