@@ -92,6 +92,7 @@
 \newcommand{\hlcAlt}[2]{\alt<#1>{\cellcolor{gray!50}#2}{#2}}
 
 \newcommand{\byside}[3]{\begin{minipage}[t]{#1\linewidth}%
+		\bigskip
 		\centering%
 		\shadowbox{\Large #2}\hfill\\%
 		#3%
@@ -156,12 +157,12 @@
 \end{frame}
 
 % ------------------------------------------------------------------------------
-\section{On the Prediction of Gene Functions Using Phylogenetic Trees (Ch. 2 \& 4)}
+\section{Part 1: On the Prediction of Gene Functions Using Phylogenetic Trees}
 
 \begin{frame}[t]
 \usebeamertemplate{section intro}{}{}
 \textcolor{uscgold}{
-\Large {\bf On the Prediction of Gene Functions Using Phylogenetic Trees} \vskip0.25em
+\Large {\bf Part 1: On the Prediction of Gene Functions Using Phylogenetic Trees} \vskip0.25em
 \large \textit{Joint with}: Paul D Thomas, Paul Marjoram, Huaiyu Mi, Duncan Thomas, and John Morrison
 }
 \end{frame}
@@ -464,16 +465,35 @@ data from PantherDB with GO annotations and fit a large pooled model.
 \end{minipage}
 \end{frame}
 
+% ------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Predicting Gene Functions}
+	
+	\begin{center}
+		\includegraphics[width=3cm]{aphylo-logo.png}
+	\end{center}\vspace{-1.5cm}
+	
+	\Large I built a model that is\normalsize
+	
+	\uncover<2->{\byside{.32}{Scalable}{Prediction on thousands of genes within seconds}\hfill}
+	\uncover<3->{\byside{.32}{Biologically accurate}{Inference on pooled-data is plausible and results match intuition}\hfill}
+	\uncover<4->{\byside{.32}{Competitive}{Beats state-of-the-art phylo-based models}}
+	
+	\bigskip
+	
+	\raggedleft \Large \uncover<5->{... a contribution to biomedical research.}\normalsize
+	
+\end{frame}
 
 
 % ------------------------------------------------------------------------------
-\section{Exponential Random Graph Models for Small Networks (Ch. 5)}
+\section{Part 2: Exponential Random Graph Models for Small Networks}
 % \frame{\frametitle{Contents}\tableofcontents}
 
 \begin{frame}[t]
 \usebeamertemplate{section intro}{}{}
 \textcolor{uscgold}{
-\Large {\bf Exponential Random Graph Models for Small Networks} \vskip0.25em
+\Large {\bf Part 2: Exponential Random Graph Models for Small Networks} \vskip0.25em
 \large \textit{Joint with}: Andrew Slaughter and Kayla de la Haye 
 }
 \end{frame}
@@ -702,89 +722,13 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 % ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
-\section{Goodness-of-fit for Small Networks (Ch. 3 \& 6)}
-
-\begin{frame}[t]
-\usebeamertemplate{section intro}{}{}
-\textcolor{uscgold}{
-\Large {\bf Goodness-of-fit for Small Networks}\\(\small Chapters 3 and 6\Large)
-}
-\end{frame}
-
-
-%-------------------------------------------------------------------------------
-
-\begin{frame}
-\frametitle{a}
-	
-\begin{minipage}[t]{.49\linewidth}
-	\begin{center}
-		\shadowbox{Ground truth}
-	\end{center}
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=.9\linewidth]{time-diagram-actual.png}
-%	\caption{Sequence of actions in an event. Several factors influence officers' actions: Who takes action first, what suspects do, and how their peers react.}
-%	\label{fig:my_label}
-\end{figure}
-\begin{itemize}
-	\item Sequence of actions
-	\item Subjects' Behavior
-	\item Peer influence
-	\item Other situational factors
-\end{itemize}
-\end{minipage}\hfill
-\begin{minipage}[t]{.49\linewidth}
-	\begin{center}
-		\shadowbox{Observed}
-	\end{center}
-\begin{figure}
-	\centering
-	\includegraphics[width=.9\linewidth]{time-diagram-observed.png}
-%	\caption{Observed data. Of the many parts that give origin to individuals' actions, we only observe a handful. Furthermore, we do not know the order in which things occurred, how the subjects reacted, and whether other external factors played out.}
-%	\label{fig:my_label}
-\end{figure}
-\begin{itemize}
-	\item We only observe draw/no draw
-	\item We are unaware of subjects' behavior
-	\item Don't know if there's contagion/anti-contagion
-	\item Other factors are unobserved as well
-\end{itemize}
-\end{minipage}
-\end{frame}
-
-\begin{frame}
-	
-	\begin{itemize}
-		\item Assuming no peer effect/influence/contagion
-		\begin{equation*}\label{eq:baseline}
-			\Prcond{Y_{it} = 1}{\Covar_{it},\Latent_{t}} = \logit{\covar_{it}\beta + \latent_t}
-		\end{equation*}
-		Yet, $\latent_t$ (subjects' behavior, etc.) is unobserved.
-		\item Conditioning on $\sum_iy_{it}$, we can instead estimate the following
-		\begin{equation*}\label{eq:clogit}
-			\Prcond{\mathbf{Y}_t = \mathbf{y}_t}{\sum_{i}Y_{it} = k,\Covar_{it}} = \frac{%
-				\exp{\sum_{i}y_{it}\covar_{it}\beta}
-			}{%
-				\sum_{\mathbf{y}' \in \pset{k}}\exp{\sum_{i}y_{it}'\covar_{it}\beta}
-			}
-		\end{equation*}
-		A conditional Logit model.
-	\end{itemize}
-	
-
-\end{frame}
-
-
-
-\section{Connecting the Dots: Phylogenetic Modeling with ERGMs (Ch. 4)}
+\section{Part 3: Current Research}
 
 %-------------------------------------------------------------------------------
 \begin{frame}[t]
 	\usebeamertemplate{section intro}{}{}
 	\textcolor{uscgold}{
-		\Large {\bf Connecting the Dots: Phylogenetic Modeling with ERGMs} \\
-		(\small Chapter 4\Large)
+		\Large {\bf Part 3: Current Research}
 	}
 \end{frame}
 
@@ -909,14 +853,17 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 	
 \end{frame}
 
-
-\section{Scientific Software Development}
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+\section{Part 4: Future Research}
 
 %-------------------------------------------------------------------------------
 \begin{frame}[t]
 	\usebeamertemplate{section intro}{}{}
 	\textcolor{uscgold}{
-		\Large {\bf Scientific Software Development} 
+		\Large {\bf Part 4: Future Research} 
 	}
 \end{frame}
 
@@ -924,17 +871,6 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 	\begin{figure}
 		\includegraphics[width=.7\linewidth]{fig-packages/hexlogos.png}
 	\end{figure}
-\end{frame}
-
-\section{Next Steps (Ch. 7)}
-
-%-------------------------------------------------------------------------------
-\begin{frame}[t]
-	\usebeamertemplate{section intro}{}{}
-	\textcolor{uscgold}{
-		\Large {\bf Next Steps} \\
-		(\small Chapter 7\Large)
-	}
 \end{frame}
 
 %-------------------------------------------------------------------------------
@@ -978,68 +914,68 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 \end{frame}
 
 % ------------------------------------------------------------------------------
-\newcommand{\ultima}[3]{\begin{minipage}[t]{#1\linewidth}%
-		\begin{center}\shadowbox{#2}\end{center}\vspace{-.55cm}\hfill%	
-
-		\small#3\normalsize\end{minipage}%
-	}
-\begin{frame}[t]
-\frametitle{Concluding Remarks}
-\small
-\pause
-\color<4->{gray}
-\ultima{.3}{Before my dissertation}{%
-	\textbf{Predicting gene functions}
-	\begin{itemize}
-		\item ``Small scale''.
-		\item Detached from theory.
-	\end{itemize}\pause
-	
-	\textbf{ERGMs}
-	\begin{itemize}
-		\item Only approximations.
-		\item Small networks overlooked.
-		\item Limited alternatives for small nets.
-	\end{itemize}\pause
-}\color<4->{black}\hfill
-\ultima{.3}{After my dissertation}{%
-	\textbf{Predicting gene functions}
-	\begin{itemize}
-		\item Scale-up the problem.
-		\item More biology (via ERGMs).
-		\item New ways to look at phylo data.
-	\end{itemize}\pause
-
-	\textbf{ERGMs}
-	\begin{itemize}
-		\item Revisited exact methods.
-		\item New light on small networks.
-		\item Many opportunities for methodological innovations.
-	\end{itemize}\pause
-
-	\vfill
-	
-
-}\hfill
-\ultima{.39}{Products}{
-\textbf{Publications}
-
-6 journal publications (\tiny Journal of Open Source Software, Stata Journal, Journal of health and social behavior, Translational behavioral medicine, Social Science \& Medicine\small)\pause\textbf{+2 submitted} (\tiny PLOS Comp. Bio, Social Networks\small)\pause
-
-\textbf{Published software}
-\begin{itemize}
-\item ergmito \includegraphics[width=.3\linewidth]{cran-downloads-ergmito.pdf}
-\item slurmR \includegraphics[width=.3\linewidth]{cran-downloads-slurmr.pdf}
-\item fmcmc \includegraphics[width=.3\linewidth]{cran-downloads-fmcmc.pdf}
-\item netdiffuseR \includegraphics[width=.3\linewidth]{cran-downloads-netdiffuser.pdf}
-\end{itemize}\pause
-
-\textbf{Other tools}\\
-similR, gnet, aphylo, polygons, pruner, netplot, rphyloxml, jsPhyloSVG,\pause{} and {\large\color{usccardinal}\textbf{Barry}}
-
-}
-
-\end{frame}
+%\newcommand{\ultima}[3]{\begin{minipage}[t]{#1\linewidth}%
+%		\begin{center}\shadowbox{#2}\end{center}\vspace{-.55cm}\hfill%	
+%
+%		\small#3\normalsize\end{minipage}%
+%	}
+%\begin{frame}[t]
+%\frametitle{Concluding Remarks}
+%\small
+%\pause
+%\color<4->{gray}
+%\ultima{.3}{Before my dissertation}{%
+%	\textbf{Predicting gene functions}
+%	\begin{itemize}
+%		\item ``Small scale''.
+%		\item Detached from theory.
+%	\end{itemize}\pause
+%	
+%	\textbf{ERGMs}
+%	\begin{itemize}
+%		\item Only approximations.
+%		\item Small networks overlooked.
+%		\item Limited alternatives for small nets.
+%	\end{itemize}\pause
+%}\color<4->{black}\hfill
+%\ultima{.3}{After my dissertation}{%
+%	\textbf{Predicting gene functions}
+%	\begin{itemize}
+%		\item Scale-up the problem.
+%		\item More biology (via ERGMs).
+%		\item New ways to look at phylo data.
+%	\end{itemize}\pause
+%
+%	\textbf{ERGMs}
+%	\begin{itemize}
+%		\item Revisited exact methods.
+%		\item New light on small networks.
+%		\item Many opportunities for methodological innovations.
+%	\end{itemize}\pause
+%
+%	\vfill
+%	
+%
+%}\hfill
+%\ultima{.39}{Products}{
+%\textbf{Publications}
+%
+%6 journal publications (\tiny Journal of Open Source Software, Stata Journal, Journal of health and social behavior, Translational behavioral medicine, Social Science \& Medicine\small)\pause\textbf{+2 submitted} (\tiny PLOS Comp. Bio, Social Networks\small)\pause
+%
+%\textbf{Published software}
+%\begin{itemize}
+%\item ergmito \includegraphics[width=.3\linewidth]{cran-downloads-ergmito.pdf}
+%\item slurmR \includegraphics[width=.3\linewidth]{cran-downloads-slurmr.pdf}
+%\item fmcmc \includegraphics[width=.3\linewidth]{cran-downloads-fmcmc.pdf}
+%\item netdiffuseR \includegraphics[width=.3\linewidth]{cran-downloads-netdiffuser.pdf}
+%\end{itemize}\pause
+%
+%\textbf{Other tools}\\
+%similR, gnet, aphylo, polygons, pruner, netplot, rphyloxml, jsPhyloSVG,\pause{} and {\large\color{usccardinal}\textbf{Barry}}
+%
+%}
+%
+%\end{frame}
 
 % ------------------------------------------------------------------------------
 \begin{frame}[c]
