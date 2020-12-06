@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169, 9pt,handout]{beamer}
+\documentclass[aspectratio=169, 9pt]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
@@ -142,15 +142,16 @@
 	You can download the slides from\large{} {\color{usccardinal}\url{https://github.com/gvegayon/faculty-talk}}\normalsize
 }
 
-\begin{frame}
+\begin{frame}[c]
 %	\frametitle{George G. Vega Yon}
 	
 	\large My work sits on the intersection between...\bigskip\normalsize
 	
 
-\byside{.32}{Statistics}{\bigskip\includegraphics[width=.8\linewidth]{mcmc.png}}
-\byside{.32}{Computer Science}{\bigskip\includegraphics[width=.8\linewidth]{time.png}}
-\byside{.32}{Complex Systems}{\bigskip\includegraphics[width=.8\linewidth]{complex.png}}
+\uncover<2->{\byside{.32}{Statistics}{\bigskip\includegraphics[width=.8\linewidth]{mcmc.png}}}
+\uncover<3->{\byside{.32}{Computer Science}{\bigskip\includegraphics[width=.8\linewidth]{time.png}}}
+\uncover<4->{\byside{.32}{Complex Systems}{\bigskip\includegraphics[width=.8\linewidth]{complex.png}}}
+
 
 \end{frame}
 
@@ -161,11 +162,19 @@
 \usebeamertemplate{section intro}{}{}
 \textcolor{uscgold}{
 \Large {\bf On the Prediction of Gene Functions Using Phylogenetic Trees} \vskip0.25em
-\large \textit{Joint with}: Paul D Thomas, Paul Marjoram, Huaiyu Mi, Duncan Thomas, and John Morrison \\
-(\small Chapters 2 and 4\large)
+\large \textit{Joint with}: Paul D Thomas, Paul Marjoram, Huaiyu Mi, Duncan Thomas, and John Morrison
 }
 \end{frame}
 
+
+% ------------------------------------------------------------------------------
+
+\begin{frame}
+	\frametitle{About gene functions and family trees}
+	\begin{figure}
+		\includegraphics[width=1\linewidth]{aphylo-data.pdf}
+	\end{figure}
+\end{frame}
 
 % ------------------------------------------------------------------------------
 \begin{frame}[label=geneontology]
@@ -188,6 +197,7 @@
 \hfill \small \textbf{source}: Statistics from \url{http://pantherdb.org} and \url{http://geneontology.org}\normalsize
 
 \end{frame}
+
 
 
 % ------------------------------------------------------------------------------
@@ -357,19 +367,30 @@
 \end{frame}
 
 
+\begin{frame}
+	\frametitle{Results: Implementation and Large scale study}
+	\pause
+	\begin{itemize}
+		\item Simulation, estimation, and prediction implemented in the \textbf{aphylo} R package.	\pause
+		\item Large simulation study using all known trees (about 15,000).\pause
+		\item Prediction quality assessment on $\sim$ 1,300 genes involving $\sim$ 130 families...	\pause
+		estimation of parameters using a pooled-data model.	\pause
+		\item 2nd round of review at \textit{PLOS Computational Biology}\\(\small plus two other papers published in the \textit{Journal of Open Source Software}, \textbf{slurmR} and \textbf{fmcmc}).
+	\end{itemize}
+\end{frame}
 
 \begin{frame}
-	\frametitle{Performance}
-\begin{minipage}[m]{.45\linewidth}
-	\begin{figure}
+	\frametitle{Results: Performance and Scalability}
+	aphylo vs SIFTER (state-of-the-art phylo-based model) on 147 genes.
+\begin{minipage}[m]{.50\linewidth}
+	\uncover<3->{\begin{figure}
 		\includegraphics[width=1\linewidth]{roc-auc-aphylo-sifter.eps}
-	\end{figure}
+	\end{figure}}
 \end{minipage}\hfill
 \begin{minipage}[m]{.45\linewidth}
-	Comparing aphylo vs SIFTER (the current state-of-the-art phylo-based evolutionary model) on 147 proteins:
 \begin{itemize}
-	\item[] \shadowbox{Fast} SIFTER took about 110 minutes to calculate the posterior probabilities, aphylo took 1 second.
-	\item[] \shadowbox{Accurate} aphylo reported higher accuracy levels in LOO cross-validation (0.72 vs 0.60 AUC).
+	\item<2->[] \shadowbox{Fast} 110 minutes (SIFTER) to calculate the posterior probabilities, aphylo took 1 second.
+	\item<3->[] \shadowbox{Accurate} aphylo reported higher accuracy levels in LOO cross-validation (0.72 vs 0.60 AUC).
 \end{itemize}
 \end{minipage}
 
@@ -416,7 +437,7 @@ data from PantherDB with GO annotations and fit a large pooled model.
 
 
 % ------------------------------------------------------------------------------
-\begin{frame}[c]
+\begin{frame}[c, label=phylo-model-levels]
 	\frametitle{Phylogenetics Modeling: Pooling data}
 
 \begin{minipage}[m]{.5\linewidth}
