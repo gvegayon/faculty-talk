@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169, 9pt]{beamer}
+\documentclass[aspectratio=169, 9pt, handout]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
@@ -327,7 +327,7 @@
 %--------------------------------------------------------------------------------
 %\newcommand{\oinclude}[2]{\only<#1>{\includegraphics[width=\tmpwdth,clip,trim={0 0 0 2cm}]{#2}}}
 
-\begin{frame}[t, label=phylo-good]
+\begin{frame}[t, label=aphylo-good]
 	\frametitle{Example of Data + Predictions}
 	
 	\begin{minipage}[m]{.3\linewidth}
@@ -367,27 +367,30 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[label=aphylo-results-overview]
 	\frametitle{Results: Implementation and Large scale study}
 	\pause
 	\begin{itemize}
 		\item Simulation, estimation, and prediction implemented in the \textbf{aphylo} R package.	\pause
 		\item Large simulation study using all known trees (about 15,000).\pause
 		\item Prediction quality assessment on $\sim$ 1,300 genes involving $\sim$ 130 families...	\pause
-		estimation of parameters using a pooled-data model.	\pause
+		estimation of parameters using a pooled-data model. \hyperlink{aphylo-model-levels}{\beamerreturnbutton{modeling}} \hyperlink{aphylo-table}{\beamerreturnbutton{estimates}}\pause
 		\item 2nd round of review at \textit{PLOS Computational Biology}\\(\small plus two other papers published in the \textit{Journal of Open Source Software}, \textbf{slurmR} and \textbf{fmcmc}).
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[c]
 	\frametitle{Results: Performance and Scalability}
 	aphylo vs SIFTER (state-of-the-art phylo-based model) on 147 genes.
+	
 \begin{minipage}[m]{.50\linewidth}
+	\bigskip
 	\uncover<3->{\begin{figure}
-		\includegraphics[width=1\linewidth]{roc-auc-aphylo-sifter.eps}
+		\includegraphics[width=1\linewidth]{auc.pdf}
 	\end{figure}}
 \end{minipage}\hfill
 \begin{minipage}[m]{.45\linewidth}
+	\bigskip
 \begin{itemize}
 	\item<2->[] \shadowbox{Fast} 110 minutes (SIFTER) to calculate the posterior probabilities, aphylo took 1 second.
 	\item<3->[] \shadowbox{Accurate} aphylo reported higher accuracy levels in LOO cross-validation (0.72 vs 0.60 AUC).
@@ -436,123 +439,30 @@ data from PantherDB with GO annotations and fit a large pooled model.
 
 
 
-% ------------------------------------------------------------------------------
-\begin{frame}[c, label=phylo-model-levels]
-	\frametitle{Phylogenetics Modeling: Pooling data}
 
-\begin{minipage}[m]{.5\linewidth}
-\begin{figure}
-	\mode<beamer>{
-	\includegraphics<1-2>[width=.8\linewidth]{phylo-bayes-a.pdf}%
-	\includegraphics<3>[width=.8\linewidth]{phylo-bayes-b.pdf}%
-	\includegraphics<4>[width=.8\linewidth]{phylo-bayes-c.pdf}%
-	\includegraphics<5->[width=.8\linewidth]{phylo-bayes.pdf}
-	}%
-\mode<handout>{\includegraphics<5>[width=.8\linewidth]{phylo-bayes.pdf}}
-\end{figure}
-\end{minipage}
-\begin{minipage}[m]{.48\linewidth}
-\begin{enumerate}
-	\item[(a)]<2-> Featured in the first version of the model.
-	\item[(b)]<3-> ``Full glory'' Hierarchical Bayes (1,001 parameters for the 141 functions).
-	\item[(c)]<4-> Distilled version (a), improves accuracy.
-	\item[(d)]<5-> Model estimated for Molecular Function (using Empirical Bayes) without significant improvements.
-\end{enumerate}
-\end{minipage}
-\vfill
-\uncover<6->{All methods are now available in the \texttt{aphylo} package: \texttt{aphylo\_mle}, \texttt{aphylo\_mcmc}, and \texttt{aphylo\_hier}.}
-
-\end{frame}
-
-
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-
-
-\begin{frame}[c,label=phylo-table]
-	\frametitle{Overview of Prediction Results}
-	
+\begin{frame}
+	\frametitle{Computational Complexity}
 	\begin{minipage}[m]{.55\linewidth}
-		\begin{table}
-		\centering
-		\scalebox{.64}{
-			\begin{tabular}{%
-					m{.24\linewidth}<\raggedright %
-					>{\color<1>{usccardinal}}m{.24\linewidth}<\centering%
-					>{\color<2>{usccardinal}}m{.24\linewidth}<\centering%
-					>{\color<3>{usccardinal}}m{.24\linewidth}<\centering%
-					>{\color<4>{usccardinal}}m{.24\linewidth}<\centering}
-				\toprule
-				& & \multicolumn{3}{c}{Type of Annotation} \\
-				\cmidrule(r){3-5} %
-					\phantom{\LARGE Cellular Component}& %
-					\alt<1>{\LARGE Pooled}{Pooled} & %
-					\alt<2>{\LARGE Molecular Function}{Molecular Function} & %
-					\alt<3>{\LARGE Biological Process}{Biological Process} & %
-					\alt<4>{\LARGE Cellular Comp.}{Cellular Component} \\ 
-				\midrule
-				\multicolumn{3}{l}{\hspace{-10pt}Mislabeling} \\
-				$\psi_{01}$ & 0.23 & 0.18 & 0.09 & \multirow{11}{*}{\uncover<4->{\Huge ?}}\\ %0.66 \\ 
-				$\psi_{10}$ & 0.01 & 0.01 & 0.01 & \\ %0.33 \\ 
-				\multicolumn{3}{l}{\hspace{-10pt}Duplication Events} \\
-				$\mu_{d01}$ & 0.97 & 0.97 & \hlcAlt{3}{0.10} & \\ %0.55 \\ 
-				$\mu_{d10}$ & 0.52 & 0.51 & \hlcAlt{3}{0.03} & \\ %0.56 \\ 
-				\multicolumn{3}{l}{\hspace{-10pt}Speciation Events} \\
-				$\mu_{s01}$ & 0.05 & 0.05 & 0.05 & \\ % 0.37 \\ 
-				$\mu_{s10}$ & 0.01 & 0.01 & 0.02 & \\ % 0.37 \\ 
-				\multicolumn{3}{l}{\hspace{-10pt}Root node} \\
-				$\pi$ & 0.79 & 0.71 & 0.88 & \\ %0.52 \\ \midrule
-				Trees & 141 & 74 & 45 & 22 \\ 
-				\multicolumn{3}{l}{\hspace{-10pt}Accuracy under the by-aspect model} \\
-				AUC & - & \hlcAlt{2}{0.77} & \hlcAlt{3}{0.83} & \\ % 0.53 \\ 
-				MAE & - & \hlcAlt{2}{0.34} & \hlcAlt{3}{0.26} & \\ % 0.50 \\ 
-				\multicolumn{3}{l}{\hspace{-10pt}Accuracy under the pooled-data model} \\
-				AUC & - & \hlcAlt{2}{0.77} & 0.75 & \\ % 0.75 \\ 
-				MAE & - & \hlcAlt{2}{0.35} & 0.34 & \\ %0.37 \\ 
-				\bottomrule
-		\end{tabular}}
-		%\caption[Parameter estimates comparing pooled-data vs by-type]{MCMC estimates for experimentally annotated trees. The first column shows the estimates under the pooled-data model in \ref{tab:pooled-experimentally-annotated}, while the following three columns report the estimates obtained when fitting the model using a pooled-data approach, but doing so by type of annotation. Readers should be aware that the estimation process of the fourth column, \textit{cellular component}, did not fully converge, likely due to sparsity of annotations within that category.}
-		\label{tab:by-aspect-estimates}
-	\end{table}
-	\end{minipage}
-\hfill
-\begin{minipage}[m]{.44\linewidth}
-	Previously, joint estimates out-performed one-at-a-time\pause
+		\small
+	\shadowbox{Baseline features}\pause
 	\begin{itemize}
-		\item \textbf{Molecular Function} No change.\pause
-		\item \textbf{Biological Process} Significantly better.\pause
-		\item \textbf{Cellular Component} Does not converge.\pause
+		\item Parsimony: Independence across functions/siblings.\pause
+		\item Post-order Tree traversal: Linear complexity $O(|\mbox{tree}|)$.
 	\end{itemize}
-
-
-
-\small
-\begin{table}
-\begin{tabular}{%
-		m{.22\linewidth}<\centering m{.03\linewidth}<\centering%
-		m{.22\linewidth}<\centering m{.03\linewidth}<\centering%
-		m{.25\linewidth}<\centering%
-	}
-Molecular Function & $\neq$ & Biological Process &  ? & Cellular Component
-\end{tabular}
-\end{table}
-\normalsize
-
-	\only<1->{\vfill\hfill\hyperlink{phylo-data}{\beamergotobutton{data}}}
-
+\pause
+	\shadowbox{Additional features}\pause
+	\begin{itemize}
+		\item Reduced pruning sequence: Induced sub-tree of nodes connected to annotated leafs\\ $\implies$ Complexity $O(\left|\mbox{Induced sub-tree}\right|)\leq O(|\mbox{tree}|)$\pause
+		\item Implemented in C++ (\textbf{pruner} library):\\\pause
+		$\implies$ Fast \\\pause
+		$\implies$ Efficient use of memory (data structures)
+	\end{itemize}
+	\end{minipage}\hfill
+\begin{minipage}[m]{.44\linewidth}
+	\centering
+	\uncover<5->{\includegraphics[width=1\linewidth]{reduced-sequence.pdf}}
 \end{minipage}
-	
-
-
 \end{frame}
-
-
-
-
-
-
 
 
 
@@ -564,8 +474,7 @@ Molecular Function & $\neq$ & Biological Process &  ? & Cellular Component
 \usebeamertemplate{section intro}{}{}
 \textcolor{uscgold}{
 \Large {\bf Exponential Random Graph Models for Small Networks} \vskip0.25em
-\large \textit{Joint with}: Andrew Slaughter and Kayla de la Haye \\
-(\small Chapter 2\large)
+\large \textit{Joint with}: Andrew Slaughter and Kayla de la Haye 
 }
 \end{frame}
 
@@ -628,11 +537,34 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 	\end{itemize}
 	
 	\vfill\hfill\hyperlink{discrete-exponential-theory}{\beamergotobutton{more theory}} %
-	\hyperlink{ergm-terms}{\beamergotobutton{more terms}}
+	%\hyperlink{ergm-terms}{\beamergotobutton{more terms}}
 	
 \end{frame}
 
-
+% ------------------------------------------------------------------------------
+\begin{frame}[label=ergm-terms]
+	
+	{\bf\color{suffstat} Sufficient statistics} have various forms
+	\def\fig1width{.4\linewidth}
+	\begin{figure}[!htbp]
+		\small
+		\centering
+		\begin{tabular}{m{.2\linewidth}<\centering m{.4\linewidth}<\raggedright}
+			\toprule Representation & Description  \\ \midrule
+			\includegraphics[width=\fig1width]{mutual.pdf} & Mutual Ties (Reciprocity)\linebreak[4]$\sum_{i\neq j}y_{ij}y_{ji}$  \\
+			\includegraphics[width=\fig1width]{ttriad.pdf} & Transitive Triad (Balance)\linebreak[4]$\sum_{i\neq j\neq k}y_{ij}y_{jk}y_{ik}$  \\
+			\includegraphics[width=\fig1width]{homophily.pdf} & Homophily\linebreak[4]$\sum_{i\neq j}y_{ij}\mathbf{1}\left(x_i=x_j\right)$ \\
+			\includegraphics[width=\fig1width]{nodeicov2.pdf} & Attribute-receiver effect \linebreak[4]$\sum_{i\neq j}y_{ij}x_j$ \\
+			\includegraphics[width=\fig1width]{fourcycle.pdf} & Four Cycle\linebreak[4]$\sum_{i\neq j \neq k \neq l}y_{ij}y_{jk}y_{kl}y_{li}$  \\
+			\bottomrule
+		\end{tabular}
+		\caption[Example of Graph Sufficient Statistics]{Besides the common edge count statistic (number of ties in a graph), ERGMs allow measuring other more complex structures that can be captured as sufficient statistics. }
+		\label{fig:ergm-structs}
+		\normalsize
+	\end{figure}
+	
+	%\vfill\hfill \hyperlink{discrete-exponential}{\beamerreturnbutton{go back}}
+\end{frame}
 
 % % ------------------------------------------------------------------------------
 % \begin{frame}
@@ -1224,7 +1156,7 @@ these are part of the same evolutionary tree!}
 
 \end{frame}
 
-\begin{frame}[t,label=phylo-bad]
+\begin{frame}[t,label=aphylo-bad]
 	\frametitle{Example 2: Bad quality prediction}
 	
 	\begin{minipage}[m]{.3\linewidth}
@@ -1236,7 +1168,7 @@ these are part of the same evolutionary tree!}
 		\textbf{Name:} mannosyl-oligosaccharide 1,2-alpha-mannosidase activity\\
 		\textbf{Desc:}  \href{http://amigo.geneontology.org/amigo/term/GO:0004571}{\alert{GO:0004571}} involved in synthesis of glycoproteins (\href{https://en.wikipedia.org/wiki/Mannosyl-oligosaccharide_1,2-alpha-mannosidase}{\alert{wiki}} and \href{https://en.wikipedia.org/wiki/Glycoprotein}{\alert{examples}}).
 		
-		\hyperlink{phylo-good}{\beamerreturnbutton{go back}}
+		\hyperlink{aphylo-good}{\beamerreturnbutton{go back}}
 	\end{minipage}
 	\begin{minipage}[m]{.65\linewidth}
 		\def\tmpwdth{.9\linewidth}
@@ -1406,7 +1338,7 @@ these are part of the same evolutionary tree!}
 \end{frame}
 
 % ------------------------------------------------------------------------------
-\begin{frame}[label=phylo-data]
+\begin{frame}[label=aphylo-data]
 	\frametitle{Data: Phylogenetic trees}
 	
 	Sample of annotations (first 10 in a single tree, Phosphoserine Phosphatase [PTHR10000])
@@ -1481,6 +1413,121 @@ these are part of the same evolutionary tree!}
 	\vfill\hfill\hyperlink{phylo-table}{\beamerreturnbutton{go back}}
 \end{frame}
 
+% ------------------------------------------------------------------------------
+\begin{frame}[c, label=aphylo-model-levels]
+	\frametitle{Phylogenetics Modeling: Pooling data}
+	
+	\begin{minipage}[m]{.5\linewidth}
+		\begin{figure}
+			\mode<beamer>{
+				\includegraphics<1-2>[width=.8\linewidth]{phylo-bayes-a.pdf}%
+				\includegraphics<3>[width=.8\linewidth]{phylo-bayes-b.pdf}%
+				\includegraphics<4>[width=.8\linewidth]{phylo-bayes-c.pdf}%
+				\includegraphics<5->[width=.8\linewidth]{phylo-bayes.pdf}
+			}%
+			\mode<handout>{\includegraphics<5>[width=.8\linewidth]{phylo-bayes.pdf}}
+		\end{figure}
+	\end{minipage}
+	\begin{minipage}[m]{.48\linewidth}
+		\begin{enumerate}
+			\item[(a)]<2-> Featured in the first version of the model.
+			\item[(b)]<3-> ``Full glory'' Hierarchical Bayes (1,001 parameters for the 141 functions).
+			\item[(c)]<4-> Distilled version (a), improves accuracy.
+			\item[(d)]<5-> Model estimated for Molecular Function (using Empirical Bayes) without significant improvements.
+		\end{enumerate}
+	\end{minipage}
+	\vfill
+	\uncover<6->{All methods are now available in the \texttt{aphylo} package: \texttt{aphylo\_mle}, \texttt{aphylo\_mcmc}, and \texttt{aphylo\_hier}.}
+	
+	\hyperlink{aphylo-results-overview}{\beamerreturnbutton{go back}}
+	
+\end{frame}
+
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
+
+\begin{frame}[c,label=aphylo-table]
+	\frametitle{Overview of Prediction Results}
+	
+	\begin{minipage}[m]{.55\linewidth}
+		\begin{table}
+			\centering
+			\scalebox{.64}{
+				\begin{tabular}{%
+						m{.24\linewidth}<\raggedright %
+						>{\color<1>{usccardinal}}m{.24\linewidth}<\centering%
+						>{\color<2>{usccardinal}}m{.24\linewidth}<\centering%
+						>{\color<3>{usccardinal}}m{.24\linewidth}<\centering%
+						>{\color<4>{usccardinal}}m{.24\linewidth}<\centering}
+					\toprule
+					& & \multicolumn{3}{c}{Type of Annotation} \\
+					\cmidrule(r){3-5} %
+					\phantom{\LARGE Cellular Component}& %
+					\alt<1>{\LARGE Pooled}{Pooled} & %
+					\alt<2>{\LARGE Molecular Function}{Molecular Function} & %
+					\alt<3>{\LARGE Biological Process}{Biological Process} & %
+					\alt<4>{\LARGE Cellular Comp.}{Cellular Component} \\ 
+					\midrule
+					\multicolumn{3}{l}{\hspace{-10pt}Mislabeling} \\
+					$\psi_{01}$ & 0.23 & 0.18 & 0.09 & \multirow{11}{*}{\uncover<4->{\Huge ?}}\\ %0.66 \\ 
+					$\psi_{10}$ & 0.01 & 0.01 & 0.01 & \\ %0.33 \\ 
+					\multicolumn{3}{l}{\hspace{-10pt}Duplication Events} \\
+					$\mu_{d01}$ & 0.97 & 0.97 & \hlcAlt{3}{0.10} & \\ %0.55 \\ 
+					$\mu_{d10}$ & 0.52 & 0.51 & \hlcAlt{3}{0.03} & \\ %0.56 \\ 
+					\multicolumn{3}{l}{\hspace{-10pt}Speciation Events} \\
+					$\mu_{s01}$ & 0.05 & 0.05 & 0.05 & \\ % 0.37 \\ 
+					$\mu_{s10}$ & 0.01 & 0.01 & 0.02 & \\ % 0.37 \\ 
+					\multicolumn{3}{l}{\hspace{-10pt}Root node} \\
+					$\pi$ & 0.79 & 0.71 & 0.88 & \\ %0.52 \\ \midrule
+					Trees & 141 & 74 & 45 & 22 \\ 
+					\multicolumn{3}{l}{\hspace{-10pt}Accuracy under the by-aspect model} \\
+					AUC & - & \hlcAlt{2}{0.77} & \hlcAlt{3}{0.83} & \\ % 0.53 \\ 
+					MAE & - & \hlcAlt{2}{0.34} & \hlcAlt{3}{0.26} & \\ % 0.50 \\ 
+					\multicolumn{3}{l}{\hspace{-10pt}Accuracy under the pooled-data model} \\
+					AUC & - & \hlcAlt{2}{0.77} & 0.75 & \\ % 0.75 \\ 
+					MAE & - & \hlcAlt{2}{0.35} & 0.34 & \\ %0.37 \\ 
+					\bottomrule
+			\end{tabular}}
+			%\caption[Parameter estimates comparing pooled-data vs by-type]{MCMC estimates for experimentally annotated trees. The first column shows the estimates under the pooled-data model in \ref{tab:pooled-experimentally-annotated}, while the following three columns report the estimates obtained when fitting the model using a pooled-data approach, but doing so by type of annotation. Readers should be aware that the estimation process of the fourth column, \textit{cellular component}, did not fully converge, likely due to sparsity of annotations within that category.}
+			\label{tab:by-aspect-estimates}
+		\end{table}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[m]{.44\linewidth}
+		Previously, joint estimates out-performed one-at-a-time\pause
+		\begin{itemize}
+			\item \textbf{Molecular Function} No change.\pause
+			\item \textbf{Biological Process} Significantly better.\pause
+			\item \textbf{Cellular Component} Does not converge.\pause
+		\end{itemize}
+		
+		
+		
+		\small
+		\begin{table}
+			\begin{tabular}{%
+					m{.22\linewidth}<\centering m{.03\linewidth}<\centering%
+					m{.22\linewidth}<\centering m{.03\linewidth}<\centering%
+					m{.25\linewidth}<\centering%
+				}
+				Molecular Function & $\neq$ & Biological Process &  ? & Cellular Component
+			\end{tabular}
+		\end{table}
+		\normalsize
+		
+		\only<1->{\vfill\hfill\hyperlink{phylo-data}{\beamergotobutton{data}}}
+		\only<1->{\vfill\hfill\hyperlink{aphylo-results-overview}{\beamergotobutton{go back}}}
+		
+	\end{minipage}
+	
+	
+	
+\end{frame}
+
 %-------------------------------------------------------------------------------
 \begin{frame}[label=discrete-exponential-theory]
 	\frametitle{Asymptotic Behavior of ERGMs}
@@ -1524,9 +1571,9 @@ these are part of the same evolutionary tree!}
 			\exp{\transpose{\theta}_{-l}\sufstats{\graph}_{-l}}
 		}{%
 			\sum_{\graph': \sufstats{\graph'}_l = \sufstats{\graph}_l}\exp{\transpose{\theta}_{-l}\sufstats{\graph'}_{-l}}
-		}\tag{Eq in 3.5 thesis}
+		}%\tag{Eq in 3.5 thesis}
 		\end{equation*}
-		\pause In this equation, the marginal distribution of $\s{\graph}_k$ is orthogonal (independent) from $\theta_l$.
+		\pause In this equation $\theta_l$ becomes a nuisance parameter.
 		
 		
 	\end{itemize}
@@ -1535,30 +1582,7 @@ these are part of the same evolutionary tree!}
 	
 \end{frame}
 
-% ------------------------------------------------------------------------------
-\begin{frame}[label=ergm-terms]
-	
-	{\bf\color{suffstat} Sufficient statistics} have various forms
-	\def\fig1width{.4\linewidth}
-	\begin{figure}[!htbp]
-		\small
-		\centering
-		\begin{tabular}{m{.2\linewidth}<\centering m{.4\linewidth}<\raggedright}
-			\toprule Representation & Description  \\ \midrule
-			\includegraphics[width=\fig1width]{mutual.pdf} & Mutual Ties (Reciprocity)\linebreak[4]$\sum_{i\neq j}y_{ij}y_{ji}$  \\
-			\includegraphics[width=\fig1width]{ttriad.pdf} & Transitive Triad (Balance)\linebreak[4]$\sum_{i\neq j\neq k}y_{ij}y_{jk}y_{ik}$  \\
-			\includegraphics[width=\fig1width]{homophily.pdf} & Homophily\linebreak[4]$\sum_{i\neq j}y_{ij}\mathbf{1}\left(x_i=x_j\right)$ \\
-			\includegraphics[width=\fig1width]{nodeicov2.pdf} & Attribute-receiver effect \linebreak[4]$\sum_{i\neq j}y_{ij}x_j$ \\
-			\includegraphics[width=\fig1width]{fourcycle.pdf} & Four Cycle\linebreak[4]$\sum_{i\neq j \neq k \neq l}y_{ij}y_{jk}y_{kl}y_{li}$  \\
-			\bottomrule
-		\end{tabular}
-		\caption[Example of Graph Sufficient Statistics]{Besides the common edge count statistic (number of ties in a graph), ERGMs allow measuring other more complex structures that can be captured as sufficient statistics. }
-		\label{fig:ergm-structs}
-		\normalsize
-	\end{figure}
-	
-	\vfill\hfill \hyperlink{discrete-exponential}{\beamerreturnbutton{go back}}
-\end{frame}
+
 
 % Simulation study -------------------------------------------------------------
 
