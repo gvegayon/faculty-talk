@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169, 9pt, handout]{beamer}
+\documentclass[aspectratio=169, 9pt]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
@@ -183,11 +183,23 @@
 
 % ------------------------------------------------------------------------------
 
-\begin{frame}
-	\frametitle{About gene functions and family trees}
-	\begin{figure}
-		\includegraphics[width=1\linewidth]{aphylo-data.pdf}
-	\end{figure}
+\begin{frame}[c]
+	\frametitle{Uncovering the role of genes}
+	
+	\Large Does Gene XYZ regulates antibody production?\normalsize\bigskip
+	
+	\begin{minipage}[m]{.33\linewidth}
+		\includegraphics[width=1\linewidth]{aphylo-data-0.png}
+	\end{minipage}\hfill
+	\uncover<2->{\begin{minipage}[m]{.33\linewidth}
+		\includegraphics[width=1\linewidth]{aphylo-data-1.png}
+	\end{minipage}}\hfill
+	\uncover<3->{\begin{minipage}[m]{.33\linewidth}
+		\includegraphics[width=1\linewidth]{aphylo-data-2.png}
+	\end{minipage}}\hfill
+	
+\bigskip\uncover<4>{\raggedleft\Large ... Phylogenetic trees can help us answer this question. \normalsize}
+
 \end{frame}
 
 % ------------------------------------------------------------------------------
@@ -200,42 +212,17 @@
 \pause
 \begin{itemize}
 % \item Three domains: Cellular component, molecular function, biological process.
-\item The GO project has $\sim$ 44,400 validated terms \pause \hyperlink{aphylo-goexample}{\beamergotobutton{more}}, $\sim$ 7.9M annotations\pause on $\sim$ 4,600 species.\pause
+\item The GO project has $\sim$ 44,400 validated terms \pause \hyperlink{go-functions-types}{\beamergotobutton{more}}, $\sim$ 7.9M annotations\pause on $\sim$ 4,600 species.\pause
 \item About $\sim$ 550,000 are on human genes.\pause
 %\item Roughly half of human genes ($\sim$ 10,000 / 20,000) have some form of annotation.
-\item Yet, less than 10\% of those annotations are based on experimental evidence. % 40610
+\item Yet, less than 10\% of those annotations are based on experimental evidence.\pause % 40610
+\item The PANTHER data base (part of GO) organizes genes in $\sim$ 15,000 trees.
 %\item An important effort of the GO has to do with phylogenetics...
 \end{itemize}
 
 \vfill
 \hfill \small \textbf{source}: Statistics from \url{http://pantherdb.org} and \url{http://geneontology.org}\normalsize
 
-\end{frame}
-
-
-
-% ------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Genes and their Functions}
-	
-	Gene functions can be classified in three types:
-	
-	\def\tmpwidth{.9\linewidth}
-	
-	\begin{table}
-		\begin{tabular}{*{3}{m{.31\linewidth}<{\centering}}}
-			\onslide<2->\bf Molecular function & %
-			\onslide<3->\bf Cellular component & %
-			\onslide<4->\bf Biological process \\
-			\onslide<2->\href{http://amigo.geneontology.org/amigo/term/GO:0005215}{Active transport GO:0005215}& %
-			\onslide<3->\href{http://amigo.geneontology.org/amigo/term/GO:0004016}{Mitochondria GO:0004016} & %
-			\onslide<4->\href{http://amigo.geneontology.org/amigo/term/GO:0060047}{Heart contraction GO:0060047} \\
-			\onslide<2->\includegraphics[width=\tmpwidth]{Sodium-potassium_pump_and_diffusion.png} & %
-			\onslide<3->\includegraphics[width=\tmpwidth]{640px-Animal_Cell-svg.png} & % 
-			\onslide<4->\includegraphics[width=\tmpwidth]{Systolevs_Diastole.png}
-		\end{tabular}
-	\end{table}
-	
 \end{frame}
 
 
@@ -276,7 +263,7 @@
 		
 		\mode<handout>{
 			\centering
-			\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-1.pdf}
+			\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-parts-1.pdf}
 		}
 		
 	\end{minipage}
@@ -383,19 +370,23 @@
 
 \begin{frame}[label=aphylo-results-overview]
 	\frametitle{Results: Implementation and Large scale study}
-	\pause
-	\begin{itemize}
-		\item Simulation, estimation, and prediction: \textbf{aphylo} R package.\pause
-		\item Large simulation study (all known trees, about 15,000) on USC's HPC cluster.\pause
-		\item Prediction quality assessment on $\sim$ 1,300 genes involving $\sim$ 130 families...	\pause
-		estimation of parameters using a pooled-data model ($<$ 5 min). \hyperlink{aphylo-model-levels}{\beamerreturnbutton{modeling}} \hyperlink{aphylo-table}{\beamerreturnbutton{estimates}}
-	\end{itemize}
-\end{frame}
+	
+	\begin{minipage}[m]{.69\linewidth}
+		\begin{itemize}
+			\item<1-> Simulation, estimation, and prediction: \textbf{aphylo} R package.
+			\item<2-> Large simulation study (all known trees, about 15,000) on USC's HPC cluster.
+			\item<3-> Prediction quality assessment on $\sim$ 1,300 genes involving $\sim$ 130 families...
+			estimation of parameters using a pooled-data model ($<$ 5 min). \hyperlink{aphylo-model-levels}{\beamerreturnbutton{modeling}} \hyperlink{aphylo-table}{\beamerreturnbutton{estimates}}
+			\item<4-> In a subset of $\sim 200$ predictions we found 46 novel annotations 
+			\hyperlink{aphylo-200funs}{\beamergotobutton{more}}
+		\end{itemize}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.3\linewidth}
+	\begin{center}
+		\includegraphics[width=.9\linewidth]{aphylo-logo.png}
+	\end{center}
+	\end{minipage}
 
-\begin{frame}[c]
-	\begin{figure}
-		\includegraphics[width=.6\linewidth]{aphylo-results.pdf}
-	\end{figure}
 \end{frame}
 
 \begin{frame}[c]
@@ -482,25 +473,25 @@ data from PantherDB with GO annotations and fit a large pooled model.
 \end{minipage}
 \end{frame}
 
-% ------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Predicting Gene Functions}
-	
-	\begin{center}
-		\includegraphics[width=3cm]{aphylo-logo.png}
-	\end{center}\vspace{-1.5cm}
-	
-	\Large I built a model that is\normalsize
-	
-	\uncover<2->{\byside{.32}{Scalable}{Prediction on thousands of genes within seconds}\hfill}
-	\uncover<3->{\byside{.32}{Biologically accurate}{Inference on pooled-data is plausible and results match intuition}\hfill}
-	\uncover<4->{\byside{.32}{Competitive}{Beats state-of-the-art phylo-based models}}
-	
-	\bigskip
-	
-	\raggedleft \Large \uncover<5->{... a contribution to biomedical research.}\normalsize
-	
-\end{frame}
+%% ------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{Predicting Gene Functions}
+%	
+%	\begin{center}
+%		\includegraphics[width=3cm]{aphylo-logo.png}
+%	\end{center}\vspace{-1.5cm}
+%	
+%	\Large I built a model that is\normalsize
+%	
+%	\uncover<2->{\byside{.32}{Scalable}{Prediction on thousands of genes within seconds}\hfill}
+%	\uncover<3->{\byside{.32}{Biologically accurate}{Inference on pooled-data is plausible and results match intuition}\hfill}
+%	\uncover<4->{\byside{.32}{Competitive}{Beats state-of-the-art phylo-based models}}
+%	
+%	\bigskip
+%	
+%	\raggedleft \Large \uncover<5->{... a contribution to biomedical research.}\normalsize
+%	
+%\end{frame}
 
 
 % ------------------------------------------------------------------------------
@@ -511,7 +502,8 @@ data from PantherDB with GO annotations and fit a large pooled model.
 \usebeamertemplate{section intro}{}{}
 \textcolor{uscgold}{
 \Large {\bf Part 2: Exponential Random Graph Models for Small Networks} \vskip0.25em
-\large \textit{Joint with}: Andrew Slaughter and Kayla de la Haye 
+\large \textit{Joint with}: Andrew Slaughter and Kayla de la Haye \\
+({\small published in the journal \textit{Social Networks}})
 }
 \end{frame}
 
@@ -547,7 +539,7 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 
 \begin{itemize}
 \item Statistical models of (social) networks.\pause
-\item Not about individual ties, but about local structures.\pause
+\item Not about individual ties, but about local structures (sufficient statistics).\pause
 \begin{figure}
 \includegraphics[width=.6\linewidth]{friendly-terms.pdf}
 \end{figure}
@@ -570,37 +562,12 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 		%\item<2-> Focused on sufficient statistics $\s{\graph,x}$ \uncover<3->{\textbf{e.g.}\\Two Bernoulli, a.k.a. Erd\H{o}s-R\'enyi, random graphs}.
 		\item For any 0/1 matrix of size $(n\times m)$, there are $2^{(n\times m)}$ possible realizations.\pause
 		\item A directed graph of size 5 has 1,048,576 possible configurations!\pause
-		\item Most (all) applications use \textbf{approximations}...\pause{} yet, for sufficiently small graphs we ``can be exact''.
+		\item Most (all) applications use \textbf{approximations}...\pause{} yet, for sufficiently small graphs we ``can be exact.''
 	\end{itemize}
 	
 	\vfill\hfill\hyperlink{discrete-exponential-theory}{\beamergotobutton{more theory}} %
-	%\hyperlink{ergm-terms}{\beamergotobutton{more terms}}
+	\hyperlink{ergm-terms}{\beamergotobutton{more terms}}
 	
-\end{frame}
-
-% ------------------------------------------------------------------------------
-\begin{frame}[label=ergm-terms]
-	
-	{\bf\color{suffstat} Sufficient statistics} have various forms
-	\def\fig1width{.4\linewidth}
-	\begin{figure}[!htbp]
-		\small
-		\centering
-		\begin{tabular}{m{.2\linewidth}<\centering m{.4\linewidth}<\raggedright}
-			\toprule Representation & Description  \\ \midrule
-			\includegraphics[width=\fig1width]{mutual.pdf} & Mutual Ties (Reciprocity)\linebreak[4]$\sum_{i\neq j}y_{ij}y_{ji}$  \\
-			\includegraphics[width=\fig1width]{ttriad.pdf} & Transitive Triad (Balance)\linebreak[4]$\sum_{i\neq j\neq k}y_{ij}y_{jk}y_{ik}$  \\
-			\includegraphics[width=\fig1width]{homophily.pdf} & Homophily\linebreak[4]$\sum_{i\neq j}y_{ij}\mathbf{1}\left(x_i=x_j\right)$ \\
-			\includegraphics[width=\fig1width]{nodeicov2.pdf} & Attribute-receiver effect \linebreak[4]$\sum_{i\neq j}y_{ij}x_j$ \\
-			\includegraphics[width=\fig1width]{fourcycle.pdf} & Four Cycle\linebreak[4]$\sum_{i\neq j \neq k \neq l}y_{ij}y_{jk}y_{kl}y_{li}$  \\
-			\bottomrule
-		\end{tabular}
-		\caption[Example of Graph Sufficient Statistics]{Besides the common edge count statistic (number of ties in a graph), ERGMs allow measuring other more complex structures that can be captured as sufficient statistics. }
-		\label{fig:ergm-structs}
-		\normalsize
-	\end{figure}
-	
-	%\vfill\hfill \hyperlink{discrete-exponential}{\beamerreturnbutton{go back}}
 \end{frame}
 
 % % ------------------------------------------------------------------------------
@@ -624,24 +591,24 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 	
 	\small Using \textbf{exact statistics} means:\normalsize
 	
-	\fbox{\uncover<2->{{\large $\checkmark$}}} Higher convergence rate.\\
-	\fbox{\uncover<3->{{\large $\checkmark$}}} Lower type-I error rate.\\
-	\fbox{\uncover<4->{{\large $\checkmark$}}} Smaller bias.\\
-	\fbox{\uncover<5->{{\large $\checkmark$}}} More power.\\
-	\fbox{\uncover<6->{{\large $\checkmark$}}} Faster.\\
-	\fbox{\uncover<7->{{\large $\checkmark$}}} More flexible.
+	\fbox{\uncover<1->{{\large $\checkmark$}}} Higher convergence rate.\\
+	\fbox{\uncover<1->{{\large $\checkmark$}}} Lower type-I error rate.\\
+	\fbox{\uncover<1->{{\large $\checkmark$}}} Smaller bias.\\
+	\fbox{\uncover<1->{{\large $\checkmark$}}} More power.\\
+	\fbox{\uncover<1->{{\large $\checkmark$}}} Faster.\\
+	\fbox{\uncover<1->{{\large $\checkmark$}}} More flexible.
 	
-	\uncover<8->{\includegraphics[width=.7\linewidth]{cran-downloads-ergmito.pdf}}
+	\uncover<3->{\includegraphics[width=.7\linewidth]{cran-downloads-ergmito.pdf}}
 \end{minipage}
 \hfill
 \begin{minipage}[m]{.34\linewidth}
 	\centering
-	\includegraphics[width=.99\linewidth]{ergmito-page-cran.png}
+	\uncover<2->{\includegraphics[width=.99\linewidth]{ergmito-page-cran.png}}
 \end{minipage}
 \hfill
 \begin{minipage}[m]{.34\linewidth}
 	\centering
-	\includegraphics[width=.99\linewidth]{ergmito-page-github.png}
+	\uncover<2->{\includegraphics[width=.99\linewidth]{ergmito-page-github.png}}
 \end{minipage}
 
 \vfill\hfill\hyperlink{ergmito-simulations}{\beamergotobutton{more}}
@@ -1073,6 +1040,33 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 
 % ------------------------------------------------------------------------------
 \changemode{handout}
+
+% ------------------------------------------------------------------------------
+\begin{frame}[label=go-functions-types]
+	\frametitle{Genes and their Functions}
+	
+	Gene functions can be classified in three types:
+	
+	\def\tmpwidth{.9\linewidth}
+	
+	\begin{table}
+		\begin{tabular}{*{3}{m{.31\linewidth}<{\centering}}}
+			\onslide<2->\bf Molecular function & %
+			\onslide<3->\bf Cellular component & %
+			\onslide<4->\bf Biological process \\
+			\onslide<2->\href{http://amigo.geneontology.org/amigo/term/GO:0005215}{Active transport GO:0005215}& %
+			\onslide<3->\href{http://amigo.geneontology.org/amigo/term/GO:0004016}{Mitochondria GO:0004016} & %
+			\onslide<4->\href{http://amigo.geneontology.org/amigo/term/GO:0060047}{Heart contraction GO:0060047} \\
+			\onslide<2->\includegraphics[width=\tmpwidth]{Sodium-potassium_pump_and_diffusion.png} & %
+			\onslide<3->\includegraphics[width=\tmpwidth]{640px-Animal_Cell-svg.png} & % 
+			\onslide<4->\includegraphics[width=\tmpwidth]{Systolevs_Diastole.png}
+		\end{tabular}
+	\end{table}
+	
+	\vfill \hfill \hyperlink{geneontology}{\beamerreturnbutton{go back}}
+	
+\end{frame}
+
 
 \begin{frame}[label=aphylo-goexample]
 \frametitle{The Gene Ontology Project}
@@ -1508,6 +1502,14 @@ these are part of the same evolutionary tree!}
 	
 \end{frame}
 
+\begin{frame}[c,label=aphylo-200funs]
+	\begin{figure}
+		\includegraphics[width=.6\linewidth]{aphylo-results.pdf}
+		\caption{Distribution of predictions}
+	\end{figure}
+	\vfill\hfill\hyperlink{aphylo-results-overview}{\beamerreturnbutton{go back}}
+\end{frame}
+
 %-------------------------------------------------------------------------------
 \begin{frame}[label=discrete-exponential-theory]
 	\frametitle{Asymptotic Behavior of ERGMs}
@@ -1562,7 +1564,30 @@ these are part of the same evolutionary tree!}
 	
 \end{frame}
 
-
+% ------------------------------------------------------------------------------
+\begin{frame}[label=ergm-terms]
+	
+	{\bf\color{suffstat} Sufficient statistics} have various forms
+	\def\fig1width{.4\linewidth}
+	\begin{figure}[!htbp]
+		\small
+		\centering
+		\begin{tabular}{m{.2\linewidth}<\centering m{.4\linewidth}<\raggedright}
+			\toprule Representation & Description  \\ \midrule
+			\includegraphics[width=\fig1width]{mutual.pdf} & Mutual Ties (Reciprocity)\linebreak[4]$\sum_{i\neq j}y_{ij}y_{ji}$  \\
+			\includegraphics[width=\fig1width]{ttriad.pdf} & Transitive Triad (Balance)\linebreak[4]$\sum_{i\neq j\neq k}y_{ij}y_{jk}y_{ik}$  \\
+			\includegraphics[width=\fig1width]{homophily.pdf} & Homophily\linebreak[4]$\sum_{i\neq j}y_{ij}\mathbf{1}\left(x_i=x_j\right)$ \\
+			\includegraphics[width=\fig1width]{nodeicov2.pdf} & Attribute-receiver effect \linebreak[4]$\sum_{i\neq j}y_{ij}x_j$ \\
+			\includegraphics[width=\fig1width]{fourcycle.pdf} & Four Cycle\linebreak[4]$\sum_{i\neq j \neq k \neq l}y_{ij}y_{jk}y_{kl}y_{li}$  \\
+			\bottomrule
+		\end{tabular}
+		\caption[Example of Graph Sufficient Statistics]{Besides the common edge count statistic (number of ties in a graph), ERGMs allow measuring other more complex structures that can be captured as sufficient statistics. }
+		\label{fig:ergm-structs}
+		\normalsize
+	\end{figure}
+	
+	\vfill\hfill \hyperlink{discrete-exponential}{\beamerreturnbutton{go back}}
+\end{frame}
 
 % Simulation study -------------------------------------------------------------
 
