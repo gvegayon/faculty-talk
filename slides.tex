@@ -60,12 +60,11 @@
 \usetheme{usckeck}
 
 \title[Stat. Comp. for Complex Systems]{%
-	Essays on Bioinformatics and Social Network Analysis\linebreak %
-	{\small Statistical and Computational Methods for Complex Systems}%
+	Statistical and Computational Methods for Complex Systems
 }
 \author[GGVY -- slides on \url{https://github.com/gvegayon/faculty-talk}]{George G Vega Yon}
 \institute[USC-PREVMED]{University of Southern California, Department of Preventive Medicine}
-\date{June 22, 2020}
+\date{Job Talk at Universidad Adolfo Ibáñez\\December 10, 2020}
 
 % Some definitions
 \def\cursection{\frame{\frametitle{Contents}\tableofcontents[current]}}
@@ -94,7 +93,7 @@
 \newcommand{\byside}[3]{\begin{minipage}[t]{#1\linewidth}%
 		\bigskip
 		\centering%
-		\shadowbox{\Large #2}\hfill\\%
+		\shadowbox{\Large #2}\hfill\\\bigskip%
 		#3%
 \end{minipage}}
 
@@ -143,15 +142,28 @@
 	You can download the slides from\large{} {\color{usccardinal}\url{https://github.com/gvegayon/faculty-talk}}\normalsize
 }
 
+\begin{frame}
+		\Large Career path\bigskip\normalsize
+	\begin{center}
+		\begin{tabular}{*{3}{m{.25\linewidth}<\centering}}
+			Master Economics and Public Policy & %
+			Master in Social Science \linebreak  Economics &
+			PhD in Biostatistics \linebreak Statistical Computing 
+			\\
+			(UAI)  & (Caltech) & (USC)
+		\end{tabular}
+	\end{center}\bigskip
+\end{frame}
+
 \begin{frame}[c]
 %	\frametitle{George G. Vega Yon}
 	
-	\large My work sits on the intersection between...\bigskip\normalsize
+	\Large My work sits on the intersection between...\normalsize
 	
 
-\uncover<2->{\byside{.32}{Statistics}{\bigskip\includegraphics[width=.8\linewidth]{mcmc.png}}}
-\uncover<3->{\byside{.32}{Computer Science}{\bigskip\includegraphics[width=.8\linewidth]{time.png}}}
-\uncover<4->{\byside{.32}{Complex Systems}{\bigskip\includegraphics[width=.8\linewidth]{complex.png}}}
+\uncover<2->{\byside{.32}{Statistics}{\includegraphics[width=.8\linewidth]{mcmc.png}}}
+\uncover<3->{\byside{.32}{Computer Science}{\includegraphics[width=.8\linewidth]{time.png}}}
+\uncover<4->{\byside{.32}{Complex Systems}{\includegraphics[width=.8\linewidth]{complex.png}}}
 
 
 \end{frame}
@@ -163,7 +175,8 @@
 \usebeamertemplate{section intro}{}{}
 \textcolor{uscgold}{
 \Large {\bf Part 1: On the Prediction of Gene Functions Using Phylogenetic Trees} \vskip0.25em
-\large \textit{Joint with}: Paul D Thomas, Paul Marjoram, Huaiyu Mi, Duncan Thomas, and John Morrison
+\large \textit{Joint with}: Paul D Thomas, Paul Marjoram, Huaiyu Mi, Duncan Thomas, and John Morrison \\
+(\small 2nd round of review at \textit{PLOS Computational Biology})
 }
 \end{frame}
 
@@ -372,12 +385,17 @@
 	\frametitle{Results: Implementation and Large scale study}
 	\pause
 	\begin{itemize}
-		\item Simulation, estimation, and prediction implemented in the \textbf{aphylo} R package.	\pause
-		\item Large simulation study using all known trees (about 15,000).\pause
+		\item Simulation, estimation, and prediction: \textbf{aphylo} R package.\pause
+		\item Large simulation study (all known trees, about 15,000) on USC's HPC cluster.\pause
 		\item Prediction quality assessment on $\sim$ 1,300 genes involving $\sim$ 130 families...	\pause
-		estimation of parameters using a pooled-data model. \hyperlink{aphylo-model-levels}{\beamerreturnbutton{modeling}} \hyperlink{aphylo-table}{\beamerreturnbutton{estimates}}\pause
-		\item 2nd round of review at \textit{PLOS Computational Biology}\\(\small plus two other papers published in the \textit{Journal of Open Source Software}, \textbf{slurmR} and \textbf{fmcmc}).
+		estimation of parameters using a pooled-data model ($<$ 5 min). \hyperlink{aphylo-model-levels}{\beamerreturnbutton{modeling}} \hyperlink{aphylo-table}{\beamerreturnbutton{estimates}}
 	\end{itemize}
+\end{frame}
+
+\begin{frame}[c]
+	\begin{figure}
+		\includegraphics[width=.6\linewidth]{aphylo-results.pdf}
+	\end{figure}
 \end{frame}
 
 \begin{frame}[c]
@@ -442,21 +460,20 @@ data from PantherDB with GO annotations and fit a large pooled model.
 
 
 \begin{frame}
-	\frametitle{Computational Complexity}
+	\frametitle{Computational Complexity: aphylo}
 	\begin{minipage}[m]{.55\linewidth}
 		\small
-	\shadowbox{Baseline features}\pause
+	\shadowbox{Baseline features}
 	\begin{itemize}
-		\item Parsimony: Independence across functions/siblings.\pause
-		\item Post-order Tree traversal: Linear complexity $O(|\mbox{tree}|)$.
+		\item<2-> Parsimony: Independence across functions/siblings.
+		\item<3-> Post-order Tree traversal: Linear complexity $O(|\mbox{tree}|)$.
 	\end{itemize}
-\pause
-	\shadowbox{Additional features}\pause
+	\uncover<4->{\shadowbox{Additional features}}
 	\begin{itemize}
-		\item Reduced pruning sequence: Induced sub-tree of nodes connected to annotated leafs\\ $\implies$ Complexity $O(\left|\mbox{Induced sub-tree}\right|)\leq O(|\mbox{tree}|)$\pause
-		\item Implemented in C++ (\textbf{pruner} library):\\\pause
-		$\implies$ Fast \\\pause
-		$\implies$ Efficient use of memory (data structures)
+		\item<5-> Reduced pruning sequence: Induced sub-tree of nodes connected to annotated leafs\\ $\implies$ Complexity $O(\left|\mbox{Induced sub-tree}\right|)\leq O(|\mbox{tree}|)$
+		\item<6-> Implemented in C++ (\textbf{pruner} library):\\
+		\uncover<7->{$\implies$ Fast} \\
+		\uncover<8->{$\implies$ Efficient use of memory (data structures)}
 	\end{itemize}
 	\end{minipage}\hfill
 \begin{minipage}[m]{.44\linewidth}
@@ -715,6 +732,27 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 \end{frame}
 
 
+\begin{frame}
+	\frametitle{Computational Complexity: ergmito}
+	\begin{minipage}[m]{.4\linewidth}
+		\shadowbox{Premise}
+		\begin{itemize}
+			\item<2-> Full enumeration $\neq$ Large support
+		\end{itemize}
+		\uncover<3->{\shadowbox{Extra features}}
+		\begin{itemize}
+			\item<4-> \textit{Iso-support} structures (model) recycled
+			\item<5-> Normalizing constant updated \textit{as needed} (e.g. BFGS)
+			\item<6-> Core algorithm written in C++
+			\item<7-> Parallel computing using \textbf{OpenMP}
+		\end{itemize}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.59\linewidth}
+	\centering
+	\uncover<4->{\includegraphics[width=1\linewidth]{ergm-computing.pdf}}
+	\end{minipage}
+\uncover<8->{Simple ERGMito with 80,000 nodes $\sim$ 4s}
+\end{frame}
 
 
 
@@ -983,8 +1021,14 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 	\usebeamertemplate{section intro}{}{}
 	\textbf{%
 		\color{uscgold}
-		\large Essays on Bioinformatics and Social Network Analysis\linebreak %
-		{\small Statistical and Computational Methods for Complex Systems}%
+		\Large Statistical and Computational Methods for Complex Systems\large %
+	}
+
+	\textbf{
+		\color{uscgold}
+		George G Vega Yon \\
+		\url{https://ggvy.cl} \\
+		vegayon@usc.edu
 	}
 	
 	
