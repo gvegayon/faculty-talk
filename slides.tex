@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169, 9pt]{beamer}
+\documentclass[aspectratio=169, 9pt, handout]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
@@ -71,7 +71,7 @@
 \newcommand{\ergmpkg}[0]{\texttt{ergm}}
 \newcommand{\ergmitopkg}[0]{\texttt{ergmito}}
 \newcommand{\aphylopkg}[0]{\texttt{aphylo}}
-\graphicspath{{.}{fig/}{fig-whoami/}}
+\graphicspath{{.}{fig/}{fig-whoami/}{fig-struct-test/}}
 
 \usepackage{media9}
 
@@ -142,18 +142,18 @@
 	You can download the slides from\large{} {\color{usccardinal}\url{https://github.com/gvegayon/faculty-talk}}\normalsize
 }
 
-\begin{frame}
-		\Large Career path\bigskip\normalsize
-	\begin{center}
-		\begin{tabular}{*{3}{m{.25\linewidth}<\centering}}
-			Master Economics and Public Policy & %
-			Master in Social Science \linebreak  Economics &
-			PhD in Biostatistics \linebreak Statistical Computing 
-			\\
-			(UAI)  & (Caltech) & (USC)
-		\end{tabular}
-	\end{center}\bigskip
-\end{frame}
+%\begin{frame}
+%		\Large Career path\bigskip\normalsize
+%	\begin{center}
+%		\begin{tabular}{*{3}{m{.25\linewidth}<\centering}}
+%			Master Economics and Public Policy & %
+%			Master in Social Science \linebreak  Economics &
+%			PhD in Biostatistics \linebreak Statistical Computing 
+%			\\
+%			(UAI)  & (Caltech) & (USC)
+%		\end{tabular}
+%	\end{center}\bigskip
+%\end{frame}
 
 \begin{frame}[c]
 %	\frametitle{George G. Vega Yon}
@@ -617,37 +617,11 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 
 
 
-% ------------------------------------------------------------------------------
 \begin{frame}[c]
-	\frametitle{Featured Application: Small Teams}
-	
-	\begin{minipage}[t]{.38\linewidth}
-		\small
-	\noindent \textbf{Sample}
-	\pause
-	\begin{itemize}
-		\item 31 mixed-gender teams (4-5 members).\pause
-		\item University students.\pause
-		\item Don't know each other.\pause
-		\item At least one female/male per team.\pause
-	\end{itemize}
-	\noindent \textbf{Experiment}\pause
-	\begin{itemize}
-		\item Complete 1 hour of group tasks.\pause
-		\item Captured network data using name generator survey: \textit{Who did you go to for advice, information or help to complete the group task?}
-	\end{itemize}
-	\end{minipage}
-\hfill
-	\begin{minipage}[t]{.6\linewidth}
-		\centering
-		\uncover<9->{
-		\begin{figure}
-			\includegraphics[width=.99\linewidth]{ci-ergm-all-nets.pdf}
-		\end{figure}
-		\uncover<10->{\Large Is Gender Homophily a feature of these graphs?}
-		}
-	\end{minipage}
-	
+	\usebeamertemplate{section intro}{}{}
+	\textcolor{uscgold}{
+		\Large \textbf{ergmito}: Featured Example
+	}
 \end{frame}
 
 
@@ -655,16 +629,19 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 \begin{frame}[t, label=ergmito-applied]
 	\centering
 	\mode<beamer>{
-		\includegraphics<1-2>[width=.99\linewidth]{fig/ci-ergm-all-nets-wide.pdf}%
-		\includegraphics<3>[width=.99\linewidth]{fig/ci-ergm-all-nets-wide-edges.pdf}%
-		\includegraphics<4>[width=.99\linewidth]{fig/ci-ergm-all-nets-wide-transitivity.pdf}%
-		\includegraphics<5>[width=.99\linewidth]{fig/ci-ergm-all-nets-wide.pdf}%
-		\includegraphics<6>[width=.99\linewidth]{fig/ci-ergm-all-nets-wide-sender.pdf}%
-		\includegraphics<7->[width=.99\linewidth]{fig/ci-ergm-all-nets-wide-all.pdf}
+		\includegraphics<1-2>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide.pdf}%
+		\includegraphics<3>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-edges.pdf}%
+		\includegraphics<4>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-transitivity.pdf}%
+		\includegraphics<5>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide.pdf}%
+		\includegraphics<6>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-sender.pdf}%
+		\includegraphics<7->[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-all.pdf}
 	}%
 	\mode<handout>{
-		\includegraphics[width=.99\linewidth]{fig/ci-ergm-all-nets-wide-all.pdf}
+		\includegraphics[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-all.pdf}
 	}
+
+	\vspace{-.75cm}\hfill\hyperlink{ergmito-teams-data}{\beamergotobutton{experiment}} \\ \vspace{.75cm}
+
 	\small\pause
 	\begin{minipage}[t]{.38\linewidth}
 	\begin{center}
@@ -873,50 +850,52 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 \end{frame}
 
 \begin{frame}
+		\def\svgwidth{.8\linewidth}
+	\begin{figure}[tb]
+		\centering
+		\input{fig-struct-test/struct-test.pdf_tex}
+		\caption{Semi-parametric test of association between graph structure, $t(\cdot)$ and a group level outcome $y$. Using ERGMitos, we can generate null distribution for complex hypothesis involving motifs beyond density and degree sequences.}
+		\label{fig:ergmito-sim}
+	\end{figure}	
+\end{frame}
+
+\begin{frame}
+	\Large Continue developing scientific software... \normalsize
 	\begin{figure}
-		\includegraphics[width=.7\linewidth]{fig-packages/hexlogos.png}
+		\includegraphics[width=.65\linewidth]{fig-packages/hexlogos.png}
 	\end{figure}
 \end{frame}
 
-%-------------------------------------------------------------------------------
-\begin{frame}[c]
-	\centering
-	\mode<beamer>{\scalebox{1.5}{
-			\only<1>{barray}\only<2->{\Huge{}{\color{usccardinal}Barr}\small{}a\Huge{}{\color{usccardinal}y}\normalsize}:
-	}}\mode<handout>{\Huge{}{\color{usccardinal}Barr}\small{}a\Huge{}{\color{usccardinal}y}\normalsize}
+\begin{frame}
+	\Large Keep building bridges...
 	
-	\scalebox{1.5}{C++ header-only library for counting structures in binary arrays}
-	\pause
-	\vfill\raggedright {\footnotesize \href{https://en.wikipedia.org/wiki/The_Sniffing_Accountant}{``The Sniffing Accountant'' (Seinfeld, Season 5, Episode 4)}}
+	\mode<beamer>{
+		\begin{figure}
+					\centering
+	\includegraphics<1>[width=.65\linewidth]{coauthors0.png}
+	\includegraphics<2->[width=.65\linewidth]{coauthors.png}
+	\end{figure}
+}
+\mode<handout>{
+	\begin{figure}
+		\centering
+	\includegraphics[width=.65\linewidth]{coauthors.png}
+	\end{figure}
+}
+\hfill \uncover<2->{...you could be next!}\normalsize
 \end{frame}
 
-%-------------------------------------------------------------------------------
-\begin{frame}[c]
-	\frametitle{Barry: your go-to \textit{motif} accountant}
-	\centering
-\begin{minipage}[m]{.33\linewidth}
-	\small
-\begin{itemize}
-	\item<1-> Sparse matrix represented using double hashmaps (fast row/column access).
-	\item<2-> Template implementation for flexible weights and metadata.
-%	\item<3-> Full enumeration of array powersets.
-	\item<3-> Fast counting using change statistics (\tiny Ch. 4\normalsize).
-	\item<4-> Calculation of support for sufficient stats.
-\end{itemize}
-\only<1->{\url{https://USCbiostats.github.io/binaryarrays}}
-\end{minipage}\hfill
-\begin{minipage}[m]{.65\linewidth}
-	\begin{figure}
-	\begin{minipage}[m]{.49\linewidth}
-		\uncover<5->{\includegraphics[width=.99\linewidth]{barray-phylo.png}}
-	\end{minipage}
-	\begin{minipage}[m]{.49\linewidth}
-		\uncover<6->{\includegraphics[width=.99\linewidth]{barray-network.png}}
-	\end{minipage}
-	\uncover<5->{\caption{Screenshots from the project's website on GitHub.}}
-	\end{figure}
-\end{minipage}
-\end{frame}
+%%-------------------------------------------------------------------------------
+%\begin{frame}[c]
+%	\centering
+%	\mode<beamer>{\scalebox{1.5}{
+%			\only<1>{barray}\only<2->{\Huge{}{\color{usccardinal}Barr}\small{}a\Huge{}{\color{usccardinal}y}\normalsize}:
+%	}}\mode<handout>{\Huge{}{\color{usccardinal}Barr}\small{}a\Huge{}{\color{usccardinal}y}\normalsize}
+%	
+%	\scalebox{1.5}{C++ header-only library for counting structures in binary arrays}
+%	\pause
+%	\vfill\raggedright {\footnotesize \href{https://en.wikipedia.org/wiki/The_Sniffing_Accountant}{``The Sniffing Accountant'' (Seinfeld, Season 5, Episode 4)}}
+%\end{frame}
 
 % ------------------------------------------------------------------------------
 %\newcommand{\ultima}[3]{\begin{minipage}[t]{#1\linewidth}%
@@ -1713,6 +1692,39 @@ these are part of the same evolutionary tree!}
 	\end{minipage}
 \end{frame}
 
+% ------------------------------------------------------------------------------
+\begin{frame}[c,label=ergmito-teams-data]
+	\frametitle{Featured Application: Small Teams}
+	
+	\begin{minipage}[t]{.38\linewidth}
+		\small
+		\noindent \textbf{Sample}
+		\pause
+		\begin{itemize}
+			\item 31 mixed-gender teams (4-5 members).\pause
+			\item University students.\pause
+			\item Don't know each other.\pause
+			\item At least one female/male per team.\pause
+		\end{itemize}
+		\noindent \textbf{Experiment}\pause
+		\begin{itemize}
+			\item Complete 1 hour of group tasks.\pause
+			\item Captured network data using name generator survey: \textit{Who did you go to for advice, information or help to complete the group task?}
+		\end{itemize}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.6\linewidth}
+		\centering
+		\uncover<9->{
+			\begin{figure}
+				\includegraphics[width=.95\linewidth]{ci-ergm-all-nets.pdf}
+			\end{figure}
+			\uncover<10->{\Large Is Gender Homophily a feature of these graphs?}
+		}
+	\end{minipage}
+	\vfill\hfill\hyperlink{ergmito-applied}{\beamerreturnbutton{go back}}
+\end{frame}
+
 %-------------------------------------------------------------------------------
 \begin{frame}[label=ergmito-table]
 	
@@ -1814,56 +1826,34 @@ these are part of the same evolutionary tree!}
 \vfill\hfill\hyperlink{ergmito-applied}{\beamerreturnbutton{go back}}
 \end{frame}
 
-%--------------------------------------------------------------------------------
-\begin{frame}[c,label=conditional-mutual]
-	\frametitle{Conditional Distribution: Mutual Ties}
-	\begin{minipage}[b]{.23\linewidth}
-		\begin{figure}
-			\includegraphics[width=.3\linewidth]{mutual.pdf}
-		\end{figure}
-		\small
-		\begin{itemize}[<+->]
-			\item Better predicted by other Markov structures.
-			\item Non-Markov structures = poor prediction.
-			\item No big impact of prevalence ($\theta_{\mbox{mutual}}$).
-		\end{itemize}
-	\end{minipage}
-	\begin{minipage}[b]{.75\linewidth}
-		\begin{figure}
-			\centering
-			\def\svgwidth{.95\linewidth}
-			\mode<beamer>{\only<1-2>{\input{fig/conditional-prob-mutuals-1.pdf_tex}}\only<3->{\input{fig/conditional-prob-mutuals.pdf_tex}}}
-			\mode<handout>{\input{fig/conditional-prob-mutuals.pdf_tex}}
-		\end{figure}
-	\end{minipage}
-	\vfill\hfill
-	\hyperlink{conditional-transitivity}{\beamerreturnbutton{go back}}
-\end{frame}
 
-%--------------------------------------------------------------------------------
-\begin{frame}[c,label=conditional-homophily]
-	\frametitle{Conditional Distribution: Homophily}
-	\begin{minipage}[b]{.75\linewidth}
-		\begin{figure}
-			\centering
-			\def\svgwidth{.95\linewidth}
-			\mode<beamer>{\only<1-2>{\input{fig/conditional-prob-homophily-1.pdf_tex}}\only<3->{\input{fig/conditional-prob-homophily.pdf_tex}}}
-			\mode<handout>{\input{fig/conditional-prob-homophily.pdf_tex}}
-		\end{figure}
-	\end{minipage}
-	\begin{minipage}[b]{.23\linewidth}
-		\begin{figure}
-			\includegraphics[width=.3\linewidth]{homophily.pdf}
-		\end{figure}
+
+%-------------------------------------------------------------------------------
+\begin{frame}[c, label=barry-pkg]
+	\frametitle{Barry: your go-to \textit{motif} accountant}
+	\centering
+	\begin{minipage}[m]{.33\linewidth}
 		\small
-		\begin{itemize}[<+->]
-			\item No structure has high predictive power.
-			\item Almost zero association with Receiver Effect.
-			\item Prevalence ($\theta_{\mbox{homophily}}$) has no effect.
+		\begin{itemize}
+			\item<1-> Sparse matrix represented using double hashmaps (fast row/column access).
+			\item<2-> Template implementation for flexible weights and metadata.
+			%	\item<3-> Full enumeration of array powersets.
+			\item<3-> Fast counting using change statistics (\tiny Ch. 4\normalsize).
+			\item<4-> Calculation of support for sufficient stats.
 		\end{itemize}
+		\only<1->{\url{https://USCbiostats.github.io/binaryarrays}}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.65\linewidth}
+		\begin{figure}
+			\begin{minipage}[m]{.49\linewidth}
+				\uncover<5->{\includegraphics[width=.99\linewidth]{barray-phylo.png}}
+			\end{minipage}
+			\begin{minipage}[m]{.49\linewidth}
+				\uncover<6->{\includegraphics[width=.99\linewidth]{barray-network.png}}
+			\end{minipage}
+			\uncover<5->{\caption{Screenshots from the project's website on GitHub.}}
+		\end{figure}
 	\end{minipage}
-	\vfill\hfill
-	\hyperlink{conditional-transitivity}{\beamerreturnbutton{go back}}
 \end{frame}
 
 \end{document}
