@@ -1,0 +1,23 @@
+\documentclass{beamer}
+\usepackage{amsmath,amssymb}
+
+\begin{document}
+	\newcommand{\para}{\theta}
+	\newcommand{\Para}{\Theta}
+	\frame{
+	\begin{equation*}
+	\Para = \begin{pmatrix}
+		\para_1 & & \para_2 & & \dots & & \para_{64} \\\\
+		\para_{65} & & \para_{66} & & \dots & & \para_{128} \\\\
+		\vdots & & \vdots&& \ddots & &\vdots \\\\
+		\para_{448} && \para_{449} && \dots && \para_{512}
+	\end{pmatrix}
+	\end{equation*}
+
+	\begin{equation*}
+	\Para = \begin{bmatrix}
+		\para_{\mbox{\# gains}} & & \para_{\mbox{\# loss}} & & \para_{\mbox{specialization}} & & \para_{\mbox{one sibling unchanged}} 
+	\end{bmatrix}
+	\end{equation*}
+}
+\end{document}

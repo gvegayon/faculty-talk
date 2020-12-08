@@ -1,9 +1,10 @@
-\documentclass[aspectratio=169, 9pt, handout]{beamer}
+\documentclass[aspectratio=169, 9pt]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
 % Some important packages
 \usepackage{epstopdf}
+\usepackage{ulem} % sout
 \hypersetup{colorlinks=false, allcolors=purple}
 \usepackage{booktabs}
 \linespread{1.3}
@@ -176,7 +177,7 @@
 \textcolor{uscgold}{
 \Large {\bf Part 1: On the Prediction of Gene Functions Using Phylogenetic Trees} \vskip0.25em
 \large \textit{Joint with}: Paul D Thomas, Paul Marjoram, Huaiyu Mi, Duncan Thomas, and John Morrison \\
-(\small 2nd round of review at \textit{PLOS Computational Biology})
+(\small \sout{2nd round of review} Accepted at \textit{PLOS Computational Biology})
 }
 \end{frame}
 
@@ -202,72 +203,31 @@
 
 \end{frame}
 
-% ------------------------------------------------------------------------------
-\begin{frame}[label=geneontology]
-\frametitle{The Gene Ontology Project}
-
-\begin{figure}
-\includegraphics[width=.5\linewidth]{go-logo.png}
-\end{figure}
-\pause
-\begin{itemize}
-% \item Three domains: Cellular component, molecular function, biological process.
-\item The GO project has $\sim$ 44,400 validated terms \pause \hyperlink{go-functions-types}{\beamergotobutton{more}}, $\sim$ 7.9M annotations\pause on $\sim$ 4,600 species.\pause
-\item About $\sim$ 550,000 are on human genes.\pause
-%\item Roughly half of human genes ($\sim$ 10,000 / 20,000) have some form of annotation.
-\item Yet, less than 10\% of those annotations are based on experimental evidence.\pause % 40610
-\item The PANTHER data base (part of GO) organizes genes in $\sim$ 15,000 trees.
-%\item An important effort of the GO has to do with phylogenetics...
-\end{itemize}
-
-\vfill
-\hfill \small \textbf{source}: Statistics from \url{http://pantherdb.org} and \url{http://geneontology.org}\normalsize
-
+\begin{frame}[c,label=geneontology]
+	\frametitle{The Gene Ontology Project}
+	\begin{minipage}[m]{.33\linewidth}
+		\includegraphics[width=1\linewidth]{aphylo-data-2.png}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.66\linewidth}
+		\begin{figure}
+		\includegraphics[width=.5\linewidth]{go-logo.png}
+		\end{figure}
+	\begin{itemize}
+		\item $\sim$ 15,000 evolutionary trees		
+		\item $\sim$ 8 million annotations
+		\item $\sim$ 600 thousand on human genes
+		\item $\sim$ $<$ 10\% are based on experimental evidence
+	\end{itemize}
+	\end{minipage}
+\vfill \hfill
+\Large ...Improving our knowledge on this is key to biomedical research\normalsize\\
+\hfill\hyperlink{go-functions-types}{\beamergotobutton{more}}
+	
 \end{frame}
-
 
 %--------------------------------------------------------------------------------
 \newcommand{\oinclude}[2]{\only<#1>{\includegraphics[width=\tmpwdth,clip,trim={0 0 0 2cm}]{#2}}}
 
-\begin{frame}[t]
-	\frametitle{GO Annotations and Phylogenetic Trees}
-	
-	\begin{minipage}[m]{.3\linewidth}
-		\small
-		%	The AUC for this analysis is 0.91 and the Mean Absolute Error is 0.34
-		\uncover<1->{\textbf{Family: PTHR11258}}\\
-		\uncover<2->{%
-			\textbf{Type:} Molecular Function\\
-			\textbf{Name:} 2'-5'-oligoadenylate synthetase activity\\
-			\textbf{Desc:}  \href{http://amigo.geneontology.org/amigo/term/GO:0001730}{\alert{GO:0001730}} involved in the process of cellular antiviral activity (wiki on \href{https://en.wikipedia.org/wiki/Interferon}{\alert{interferon}}).
-		}\\
-		\phantom{%
-			\textbf{MAE:} 0.34 \\
-			\textbf{AUC:} 0.91%
-		}
-%		\vfill
-%		\hyperlink{phylo-bad}{\beamerbutton{see a bad one}}
-	\end{minipage}
-	\begin{minipage}[m]{.65\linewidth}
-		\def\tmpwdth{.9\linewidth}
-		\mode<beamer>{
-			\centering
-			\oinclude{1}{example-trees-good1-loo-annotated-parts-0.pdf}%
-			\oinclude{2}{example-trees-good1-loo-annotated-parts-1.pdf}%
-%			\oinclude{3}{example-trees-good1-loo-annotated-0.pdf}%
-%			\oinclude{4}{example-trees-good1-loo-annotated-1.pdf}%
-%			\oinclude{5}{example-trees-good1-loo-annotated-2.pdf}%
-%			\oinclude{6}{example-trees-good1-loo-annotated.pdf}
-			%			\only<1>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-0.pdf}}\only<2>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-1.pdf}}\only<3>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-2.pdf}}\only<4>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated.pdf}}
-		}
-		
-		\mode<handout>{
-			\centering
-			\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-parts-1.pdf}
-		}
-		
-	\end{minipage}
-\end{frame}
 
 %-------------------------------------------------------------------------------
 \begin{frame}
@@ -324,7 +284,6 @@
 \end{frame}
 
 
-
 %--------------------------------------------------------------------------------
 %\newcommand{\oinclude}[2]{\only<#1>{\includegraphics[width=\tmpwdth,clip,trim={0 0 0 2cm}]{#2}}}
 
@@ -340,32 +299,30 @@
 			\textbf{Name:} 2'-5'-oligoadenylate synthetase activity\\
 			\textbf{Desc:}  \href{http://amigo.geneontology.org/amigo/term/GO:0001730}{\alert{GO:0001730}} involved in the process of cellular antiviral activity (wiki on \href{https://en.wikipedia.org/wiki/Interferon}{\alert{interferon}}).
 		}\\
-		\uncover<2->{%
+		\uncover<3->{%
 			\textbf{MAE:} 0.34 \\
 			\textbf{AUC:} 0.91%
 		}
 		\vfill
-		\hyperlink{phylo-bad}{\beamerbutton{see a bad one}}
+		\hyperlink{aphylo-good-details}{\beamerbutton{see details}}
 	\end{minipage}
 	\begin{minipage}[m]{.65\linewidth}
-		\def\tmpwdth{.9\linewidth}
-		\mode<beamer>{
-			\centering
-			\oinclude{1}{example-trees-good1-loo-annotated-parts-1.pdf}%
-			\oinclude{2}{example-trees-good1-loo-annotated-0.pdf}%
-			\oinclude{3}{example-trees-good1-loo-annotated-1.pdf}%
-			\oinclude{4}{example-trees-good1-loo-annotated-2.pdf}%
-			\oinclude{5}{example-trees-good1-loo-annotated.pdf}
-			%			\only<1>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-0.pdf}}\only<2>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-1.pdf}}\only<3>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-2.pdf}}\only<4>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated.pdf}}
-		}
+		\centering
 		
-		\mode<handout>{
-			\centering
-			\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated.pdf}
+		\mode<beamer>{
+			\only<1>{\includegraphics[width=.9\linewidth, clip, trim={0 0 0 2cm}]{example-trees-good1-parts-1.pdf}}%
+			\only<2->{\includegraphics[width=.9\linewidth, clip, trim={0 0 0 2cm}]{example-trees-good1-parts-1b.pdf}}
 		}
+		\mode<handout>{
+			\includegraphics[width=.9\linewidth, clip, trim={0 0 0 2cm}]{example-trees-good1-parts-1b.pdf}
+		}
+	
 		
 	\end{minipage}
 \end{frame}
+
+
+
 
 
 \begin{frame}[label=aphylo-results-overview]
@@ -745,95 +702,36 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 \end{frame}
 
 % ------------------------------------------------------------------------------
-\begin{frame}[t]
-	\frametitle{What Drives Evolution}
+\begin{frame}[c,label=aphylo-ergm-example]
 	
-	Imagine that we have 3 functions (rows) and that each node has 2 siblings (columns)
+	\Large If we wanted to build a model with 3 functions, we would need to estimate...\large
+	\\\bigskip
 	
-	\mode<beamer>{
-		\begin{table}
-			\begin{tabular}{llcc}
-				\toprule
-				& & \multicolumn{2}{c}{\bf Transitions to} \\
-				& & Case 1 & Case 2 \\ \cmidrule(r){3-4}
-				\multicolumn{2}{r}{\textbf{Parent} $\begin{array}{c}\mbox{A} \\ \mbox{B} \\ \mbox{C}\end{array}\left[\begin{array}{c}0 \\ 1 \\ 1\end{array}\right]$} & 
-				$\left[\begin{array}{cc} %
-				0 & \nhlc{1-2}{1}\hlc{3-5}{1}\nhlc{6-}{1} \\ %
-				1 & \nhlc{1-3}{0}\hlc{4-5}{0}\nhlc{6-}{0} \\ %
-				1 & \nhlc{1-3}{0}\hlc{4}{1}\nhlc{5-}{1} %
-				\end{array}\right]$ & 
-				$\left[\begin{array}{cc} %
-				0 & \nhlc{-2}{1}\nhlc{4}{1}\hlc{3}{1}\hlc{5}{1}\nhlc{6-}{1} \\ %
-				\nhlc{-5}{1}\hlc{6}{1} & \nhlc{-4}{0}\hlc{5}{0}\nhlc{6-}{0}\\ %
-				\nhlc{-4}{0}\hlc{5}{0}\nhlc{6-}{0} & \nhlc{1-5}{1}\hlc{6}{1}%
-				\end{array}\right]$ \pause \\ \midrule 
-				\multicolumn{3}{l}{\textbf{Sufficient statistics}} \pause \\ 
-				& \# Gains & 1 & 1 \pause \\
-				& Only one offspring changes (yes/no) & 1 & 0 \pause \\
-				& \# Changes (gain+loss) & 2 & 3 \pause \\
-				& Subfunctionalization (yes/no) & 0 & 1 \\ \bottomrule
-			\end{tabular}
-		\end{table}
+	\begin{minipage}[t]{.40\linewidth}
+		\centering
+		\shadowbox{Full Markov Transition Matrix}\\\bigskip
+		\uncover<2->{\includegraphics[width=.8\linewidth]{aphylo-ergm-eq1.png} \\
+		\vfill 512 parameters
 	}
-	\mode<handout>{
-		\begin{table}
-			\begin{tabular}{llcc}
-				\toprule
-				& & \multicolumn{2}{c}{\bf Transitions to} \\
-				& & Case 1 & Case 2 \\ \cmidrule(r){3-4}
-				\multicolumn{2}{r}{\textbf{Parent} $\begin{array}{c}\mbox{A} \\ \mbox{B} \\ \mbox{C}\end{array}\left[\begin{array}{c}0 \\ 1 \\ 1\end{array}\right]$} & 
-				$\left[\begin{array}{cc} %
-				0 & 1 \\ %
-				1 & 0 \\ %
-				1 & 1 %
-				\end{array}\right]$ & 
-				$\left[\begin{array}{cc} %
-				0 & 1 \\ %
-				1 & 0\\ %
-				0 & 1%
-				\end{array}\right]$ \\ \midrule 
-				\multicolumn{3}{l}{\textbf{Sufficient statistics}} \\ 
-				& \# Gains & 1 & 1  \\
-				& Only one offspring changes (yes/no) & 1 & 0 \\
-				& \# Changes (gain+loss) & 2 & 3 \\
-				& Subfunctionalizations (yes/no) & 0 & 1 \\ \bottomrule
-			\end{tabular}
-		\end{table}
-	}
-	
-%	\pause
-%	Modeling the full Markov transition matrix would take $2^3 \times 2^6 = 512$ parameters.
-	
+	\end{minipage}\hfill
+\begin{minipage}[t]{.19\linewidth}
+	\centering 
+	\uncover<4->{
+		\includegraphics[width=.8\linewidth]{aphylo-ergm-eq2.png}\\
+	Easier to fit \\
+	Easier to interpret}	
+\end{minipage}\hfill
+	\begin{minipage}[t]{.40\linewidth}		
+		\centering
+		\shadowbox{Sufficient statistics}\\\bigskip
+		\uncover<3->{\includegraphics[width=.8\linewidth]{aphylo-ergm-eq2.png} \\
+		\vfill 5 parameters}
+	\end{minipage}
+\uncover<4->{\vfill\hfill\hyperlink{aphylo-ergm-table}{\beamergotobutton{numeric example}}}
 \end{frame}
 
-%-------------------------------------------------------------------------------
-\begin{frame}[c]
-	\frametitle{What Drives Evolution: a game changer}
-	
-	\begin{minipage}[m]{.59\linewidth}
-		In the model with 3 functions and 2 offspring per node:\pause
-		\begin{itemize}
-			\item Full Markov transition matrix: $2^3 \times 2^6 = 512$\pause
-			\item Using sufficient statistics:\pause
-			\begin{itemize}
-				\item[] Pairwise co-evolution: 3 terms,\pause
-				\item[]	Pairwise Neofunctionalization: 3 terms,\pause
-				\item[] Pairwise Subfunctionalization: 3 terms,\pause
-				\item[] Function specific gain: 3 terms,\pause
-				\item[] Function specific loss: 3 terms,\pause
-				\item[Total:] 15 parameters. \pause
-			\end{itemize}
-			\item Easier to fit and interpret.
-		\end{itemize}
-	\end{minipage}\hfill
-	\begin{minipage}[m]{.39\linewidth}
-		\begin{figure}
-			\centering
-			\includegraphics[width=.99\linewidth]{phylo-model-overview.pdf}
-		\end{figure}
-	\end{minipage}
-	
-\end{frame}
+
+
 
 % ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
@@ -1107,6 +1005,49 @@ these are part of the same evolutionary tree!}
 
 \vfill \hfill \hyperlink{geneontology}{\beamerreturnbutton{go back}}
 
+\end{frame}
+
+%--------------------------------------------------------------------------------
+%\newcommand{\oinclude}[2]{\only<#1>{\includegraphics[width=\tmpwdth,clip,trim={0 0 0 2cm}]{#2}}}
+
+\begin{frame}[t, label=aphylo-good-details]
+	\frametitle{Example of Data + Predictions}
+	
+	\begin{minipage}[m]{.3\linewidth}
+		\small
+		%	The AUC for this analysis is 0.91 and the Mean Absolute Error is 0.34
+		\uncover<1->{\textbf{Family: PTHR11258}}\\
+		\uncover<1->{%
+			\textbf{Type:} Molecular Function\\
+			\textbf{Name:} 2'-5'-oligoadenylate synthetase activity\\
+			\textbf{Desc:}  \href{http://amigo.geneontology.org/amigo/term/GO:0001730}{\alert{GO:0001730}} involved in the process of cellular antiviral activity (wiki on \href{https://en.wikipedia.org/wiki/Interferon}{\alert{interferon}}).
+		}\\
+		\uncover<2->{%
+			\textbf{MAE:} 0.34 \\
+			\textbf{AUC:} 0.91%
+		}
+		\vfill
+		\hyperlink{aphylo-bad}{\beamerbutton{see a bad one}} 
+		\hyperlink{aphylo-good}{\beamerreturnbutton{go back}}
+	\end{minipage}
+	\begin{minipage}[m]{.65\linewidth}
+		\def\tmpwdth{.9\linewidth}
+		\mode<beamer>{
+			\centering
+			\oinclude{1}{example-trees-good1-loo-annotated-parts-1.pdf}%
+			\oinclude{2}{example-trees-good1-loo-annotated-0.pdf}%
+			\oinclude{3}{example-trees-good1-loo-annotated-1.pdf}%
+			\oinclude{4}{example-trees-good1-loo-annotated-2.pdf}%
+			\oinclude{5}{example-trees-good1-loo-annotated.pdf}
+			%			\only<1>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-0.pdf}}\only<2>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-1.pdf}}\only<3>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated-2.pdf}}\only<4>{\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated.pdf}}
+		}
+		
+		\mode<handout>{
+			\centering
+			\includegraphics[width=\tmpwdth, clip, trim={0 0 0 2cm}]{example-trees-good1-loo-annotated.pdf}
+		}
+		
+	\end{minipage}
 \end{frame}
 
 \begin{frame}[t,label=aphylo-bad]
@@ -1854,6 +1795,99 @@ these are part of the same evolutionary tree!}
 			\uncover<5->{\caption{Screenshots from the project's website on GitHub.}}
 		\end{figure}
 	\end{minipage}
+\end{frame}
+
+
+% ------------------------------------------------------------------------------
+\begin{frame}[t, label=aphylo-ergm-table]
+	\frametitle{What Drives Evolution}
+	
+	Imagine that we have 3 functions (rows) and that each node has 2 siblings (columns)
+	
+	\mode<beamer>{
+		\begin{table}
+			\begin{tabular}{llcc}
+				\toprule
+				& & \multicolumn{2}{c}{\bf Transitions to} \\
+				& & Case 1 & Case 2 \\ \cmidrule(r){3-4}
+				\multicolumn{2}{r}{\textbf{Parent} $\begin{array}{c}\mbox{A} \\ \mbox{B} \\ \mbox{C}\end{array}\left[\begin{array}{c}0 \\ 1 \\ 1\end{array}\right]$} & 
+				$\left[\begin{array}{cc} %
+					0 & \nhlc{1-2}{1}\hlc{3-5}{1}\nhlc{6-}{1} \\ %
+					1 & \nhlc{1-3}{0}\hlc{4-5}{0}\nhlc{6-}{0} \\ %
+					1 & \nhlc{1-3}{0}\hlc{4}{1}\nhlc{5-}{1} %
+				\end{array}\right]$ & 
+				$\left[\begin{array}{cc} %
+					0 & \nhlc{-2}{1}\nhlc{4}{1}\hlc{3}{1}\hlc{5}{1}\nhlc{6-}{1} \\ %
+					\nhlc{-5}{1}\hlc{6}{1} & \nhlc{-4}{0}\hlc{5}{0}\nhlc{6-}{0}\\ %
+					\nhlc{-4}{0}\hlc{5}{0}\nhlc{6-}{0} & \nhlc{1-5}{1}\hlc{6}{1}%
+				\end{array}\right]$ \pause \\ \midrule 
+				\multicolumn{3}{l}{\textbf{Sufficient statistics}} \pause \\ 
+				& \# Gains & 1 & 1 \pause \\
+				& Only one offspring changes (yes/no) & 1 & 0 \pause \\
+				& \# Changes (gain+loss) & 2 & 3 \pause \\
+				& Subfunctionalization (yes/no) & 0 & 1 \\ \bottomrule
+			\end{tabular}
+		\end{table}
+	}
+	\mode<handout>{
+		\begin{table}
+			\begin{tabular}{llcc}
+				\toprule
+				& & \multicolumn{2}{c}{\bf Transitions to} \\
+				& & Case 1 & Case 2 \\ \cmidrule(r){3-4}
+				\multicolumn{2}{r}{\textbf{Parent} $\begin{array}{c}\mbox{A} \\ \mbox{B} \\ \mbox{C}\end{array}\left[\begin{array}{c}0 \\ 1 \\ 1\end{array}\right]$} & 
+				$\left[\begin{array}{cc} %
+					0 & 1 \\ %
+					1 & 0 \\ %
+					1 & 1 %
+				\end{array}\right]$ & 
+				$\left[\begin{array}{cc} %
+					0 & 1 \\ %
+					1 & 0\\ %
+					0 & 1%
+				\end{array}\right]$ \\ \midrule 
+				\multicolumn{3}{l}{\textbf{Sufficient statistics}} \\ 
+				& \# Gains & 1 & 1  \\
+				& Only one offspring changes (yes/no) & 1 & 0 \\
+				& \# Changes (gain+loss) & 2 & 3 \\
+				& Subfunctionalizations (yes/no) & 0 & 1 \\ \bottomrule
+			\end{tabular}
+		\end{table}
+	}
+	
+	\vfill\hfill\hyperlink{aphylo-ergm-example}{\beamergotobutton{return}}
+	%	\pause
+	%	Modeling the full Markov transition matrix would take $2^3 \times 2^6 = 512$ parameters.
+	
+\end{frame}
+
+%-------------------------------------------------------------------------------
+\begin{frame}[c]
+	\frametitle{What Drives Evolution: a game changer}
+	
+	\begin{minipage}[m]{.59\linewidth}
+		In the model with 3 functions and 2 offspring per node:\pause
+		\begin{itemize}
+			\item Full Markov transition matrix: $2^3 \times 2^6 = 512$\pause
+			\item Using sufficient statistics:\pause
+			\begin{itemize}
+				\item[] Pairwise co-evolution: 3 terms,\pause
+				\item[]	Pairwise Neofunctionalization: 3 terms,\pause
+				\item[] Pairwise Subfunctionalization: 3 terms,\pause
+				\item[] Function specific gain: 3 terms,\pause
+				\item[] Function specific loss: 3 terms,\pause
+				\item[Total:] 15 parameters. \pause
+			\end{itemize}
+			\item Easier to fit and interpret.
+		\end{itemize}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.39\linewidth}
+		\begin{figure}
+			\centering
+			\includegraphics[width=.99\linewidth]{phylo-model-overview.pdf}
+		\end{figure}
+	\end{minipage}
+	\vfill\hfill\hyperlink{aphylo-ergm-example}{\beamergotobutton{return}}
 \end{frame}
 
 \end{document}
