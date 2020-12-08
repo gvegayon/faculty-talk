@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169, 9pt]{beamer}
+\documentclass[aspectratio=169, 9pt, handout]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
@@ -159,7 +159,7 @@
 \begin{frame}[c]
 %	\frametitle{George G. Vega Yon}
 	
-	\Large My work sits on the intersection between...\normalsize
+	\Large My work sits at the intersection between...\normalsize
 	
 
 \uncover<2->{\byside{.32}{Statistics}{\includegraphics[width=.8\linewidth]{mcmc.png}}}
@@ -229,17 +229,17 @@
 \newcommand{\oinclude}[2]{\only<#1>{\includegraphics[width=\tmpwdth,clip,trim={0 0 0 2cm}]{#2}}}
 
 
-%-------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{An evolutionary model of gene functions}
-	
-	Imagine a relay race...
-	\begin{figure}
-		\includegraphics[width=.55\linewidth]{800px-2019-09-01_ISTAF_2019_4_x_100_m_relay_race_(Martin_Rulsch)_10.jpg}
-		\caption{ISTAF 2019 4 x 100 m relay race (Martin Rulsch, \href{https://commons.wikimedia.org/wiki/File:2019-09-01_ISTAF_2019_4_x_100_m_relay_race_(Martin_Rulsch)_10.jpg}{wikimedia})}
-	\end{figure}
-	
-\end{frame}
+%%-------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{An evolutionary model of gene functions}
+%	
+%	Imagine a relay race...
+%	\begin{figure}
+%		\includegraphics[width=.55\linewidth]{800px-2019-09-01_ISTAF_2019_4_x_100_m_relay_race_(Martin_Rulsch)_10.jpg}
+%		\caption{ISTAF 2019 4 x 100 m relay race (Martin Rulsch, \href{https://commons.wikimedia.org/wiki/File:2019-09-01_ISTAF_2019_4_x_100_m_relay_race_(Martin_Rulsch)_10.jpg}{wikimedia})}
+%	\end{figure}
+%	
+%\end{frame}
 
 % ------------------------------------------------------------------------------
 \begin{frame}[label=aphylographicalview,c]
@@ -275,7 +275,7 @@
 			\item Possibly without change (on this particular function).\pause
 			\item Or, with some probability, gaining...\pause[7] or loosing the function.\pause
 %			\item \textcolor{leafnode}{\textbf{Observed} annotations may be incorrect.}\pause
-			\item Until the \textit{baton} reaches the end of the tree (modern genes).\pause
+			\item Until it reaches the end of the tree (modern genes).\pause
 		\end{itemize}
 	\vfill\hfill\hyperlink{duplicationvsspeciation}{\beamergotobutton{more on diplication}} %
 	 \hyperlink{aphylographicalview}{\beamergotobutton{alt view}}
@@ -322,6 +322,30 @@
 \end{frame}
 
 
+\begin{frame}[c]
+	\frametitle{Results}
+	\begin{center}
+		\includegraphics[width=.2\linewidth]{aphylo-logo.png}
+	\end{center}
+	
+	\begin{minipage}[t]{.30\linewidth}\centering
+		\shadowbox{Biology}\\
+		Pooled-data model provides inference
+		\textbf{aligned with theoretical results}\\
+	\end{minipage}\hfill
+	\begin{minipage}[t]{.30\linewidth}\centering
+		\shadowbox{Scalability}\\
+		Simplicity and computational efficiency
+		allow making \textbf{inference and prediction fast}\\
+		(1 second vs 2 hours)
+	\end{minipage}\hfill
+	\begin{minipage}[t]{.30\linewidth}\centering
+		\shadowbox{Accuracy}\\
+		\textbf{aphylo} outperforms state-of-the-art
+		phylo-models\\
+		(0.72 vs 0.60 AUC)
+	\end{minipage}
+\end{frame}
 
 
 
