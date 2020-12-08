@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169, 9pt, handout]{beamer}
+\documentclass[aspectratio=169, 9pt,handout]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
@@ -136,6 +136,18 @@
 %\end{itemize}
 %\end{frame}
 
+\begin{frame}[c]
+	%	\frametitle{George G. Vega Yon}
+	
+	\Large My work sits at the intersection between...\normalsize
+	
+	
+	\uncover<2->{\byside{.32}{Statistics}{\includegraphics[width=.8\linewidth]{mcmc.png}\\Bayesian, Non-parametric, Spatial}}
+	\uncover<3->{\byside{.32}{Computer Science}{\includegraphics[width=.8\linewidth]{time.png}\\ parallel computing, HPC, software}}
+	\uncover<4->{\byside{.32}{Complex Systems}{\includegraphics[width=.8\linewidth]{complex.png}\\social, biological, technical}}
+	
+	
+\end{frame}
 
 \frame{\frametitle{Contents}
 	\tableofcontents
@@ -156,18 +168,7 @@
 %	\end{center}\bigskip
 %\end{frame}
 
-\begin{frame}[c]
-%	\frametitle{George G. Vega Yon}
-	
-	\Large My work sits at the intersection between...\normalsize
-	
 
-\uncover<2->{\byside{.32}{Statistics}{\includegraphics[width=.8\linewidth]{mcmc.png}}}
-\uncover<3->{\byside{.32}{Computer Science}{\includegraphics[width=.8\linewidth]{time.png}}}
-\uncover<4->{\byside{.32}{Complex Systems}{\includegraphics[width=.8\linewidth]{complex.png}}}
-
-
-\end{frame}
 
 % ------------------------------------------------------------------------------
 \section{Part 1: On the Prediction of Gene Functions Using Phylogenetic Trees}
@@ -177,7 +178,7 @@
 \textcolor{uscgold}{
 \Large {\bf Part 1: On the Prediction of Gene Functions Using Phylogenetic Trees} \vskip0.25em
 \large \textit{Joint with}: Paul D Thomas, Paul Marjoram, Huaiyu Mi, Duncan Thomas, and John Morrison \\
-(\small \sout{2nd round of review} Accepted at \textit{PLOS Computational Biology})
+(\small Accepted at \textit{PLOS Computational Biology})
 }
 \end{frame}
 
@@ -187,7 +188,7 @@
 \begin{frame}[c]
 	\frametitle{Uncovering the role of genes}
 	
-	\Large Does Gene XYZ regulates antibody production?\normalsize\bigskip
+	\Large Is Gene \textit{XYZ} involved in process \textit{ABC}?\normalsize\bigskip
 	
 	\begin{minipage}[m]{.33\linewidth}
 		\includegraphics[width=1\linewidth]{aphylo-data-0.png}
@@ -200,6 +201,17 @@
 	\end{minipage}}\hfill
 	
 \bigskip\uncover<4>{\raggedleft\Large ... Phylogenetic trees can help us answer this question. \normalsize}
+
+\end{frame}
+
+\begin{frame}[c,label=aphylo-prob-diagram]
+	\large What is the probability that the human gene \textbf{XYZ} has function \textbf{F}, given what we know about that function for other \textit{related} species?\normalsize
+	
+	\begin{figure}
+		\includegraphics[width=.9\linewidth]{aphylo-data-probability.pdf}
+	\end{figure}
+
+\vfill\hfill\hyperlink{aphylographicalview}{\beamergotobutton{more}}
 
 \end{frame}
 
@@ -241,54 +253,11 @@
 %	
 %\end{frame}
 
-% ------------------------------------------------------------------------------
-\begin{frame}[label=aphylographicalview,c]
-	\frametitle{An evolutionary model of gene functions}
-	\def\shadowsize{2pt}
-	\definecolor{rootnode}{RGB}{0,159,211}
-	\definecolor{innernode}{RGB}{90,159,89}
-	\definecolor{leafnode}{RGB}{255,107,0}
-	
-	\begin{minipage}[m]{.60\linewidth}
-		\begin{figure}
-			\footnotesize
-			\centering
-			\mode<beamer>{
-				\only<1>{\includegraphics[width=.9\linewidth]{phylo-model2-0.pdf}}%
-				\only<2>{\includegraphics[width=.9\linewidth]{phylo-model2-1.pdf}}%
-				\only<3>{\includegraphics[width=.9\linewidth]{phylo-model2-2.pdf}}%
-				\only<4>{\includegraphics[width=.9\linewidth]{phylo-model2-3.pdf}}%
-				\only<5>{\includegraphics[width=.9\linewidth]{phylo-model2-4.pdf}}%
-				\only<6>{\includegraphics[width=.9\linewidth]{phylo-model2-5.pdf}}%
-				\only<7>{\includegraphics[width=.9\linewidth]{phylo-model2-6.pdf}}%
-				\only<8>{\includegraphics[width=.9\linewidth]{phylo-model2-7.pdf}}%
-				\only<9->{\includegraphics[width=.9\linewidth]{phylo-model2.pdf}}%
-			}\mode<handout>{\includegraphics[width=.9\linewidth]{fig/phylo-model2.pdf}}
-		\end{figure}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[m]{.38\linewidth}
-		\pause
-		\begin{itemize}
-			\item Starting with the root node (no function in this case).\pause
-			\item Passes the baton to its offspring.\pause
-			\item Possibly without change (on this particular function).\pause
-			\item Or, with some probability, gaining...\pause[7] or loosing the function.\pause
-%			\item \textcolor{leafnode}{\textbf{Observed} annotations may be incorrect.}\pause
-			\item Until it reaches the end of the tree (modern genes).\pause
-		\end{itemize}
-	\vfill\hfill\hyperlink{duplicationvsspeciation}{\beamergotobutton{more on diplication}} %
-	 \hyperlink{aphylographicalview}{\beamergotobutton{alt view}}
-	\end{minipage}
-	
-\end{frame}
-
-
 %--------------------------------------------------------------------------------
 %\newcommand{\oinclude}[2]{\only<#1>{\includegraphics[width=\tmpwdth,clip,trim={0 0 0 2cm}]{#2}}}
 
 \begin{frame}[t, label=aphylo-good]
-	\frametitle{Example of Data + Predictions}
+	\frametitle{\textbf{aphylo}: An evolutionary model of gene functions}
 	
 	\begin{minipage}[m]{.3\linewidth}
 		\small
@@ -321,138 +290,65 @@
 	\end{minipage}
 \end{frame}
 
-
-\begin{frame}[c]
-	\frametitle{Results}
-	\begin{center}
-		\includegraphics[width=.2\linewidth]{aphylo-logo.png}
-	\end{center}
-	
-	\begin{minipage}[t]{.30\linewidth}\centering
-		\shadowbox{Biology}\\
-		Pooled-data model provides inference
-		\textbf{aligned with theoretical results}\\
-	\end{minipage}\hfill
-	\begin{minipage}[t]{.30\linewidth}\centering
-		\shadowbox{Scalability}\\
-		Simplicity and computational efficiency
-		allow making \textbf{inference and prediction fast}\\
-		(1 second vs 2 hours)
-	\end{minipage}\hfill
-	\begin{minipage}[t]{.30\linewidth}\centering
-		\shadowbox{Accuracy}\\
-		\textbf{aphylo} outperforms state-of-the-art
-		phylo-models\\
-		(0.72 vs 0.60 AUC)
-	\end{minipage}
-\end{frame}
-
-
-
-\begin{frame}[label=aphylo-results-overview]
-	\frametitle{Results: Implementation and Large scale study}
-	
-	\begin{minipage}[m]{.69\linewidth}
-		\begin{itemize}
-			\item<1-> Simulation, estimation, and prediction: \textbf{aphylo} R package.
-			\item<2-> Large simulation study (all known trees, about 15,000) on USC's HPC cluster.
-			\item<3-> Prediction quality assessment on $\sim$ 1,300 genes involving $\sim$ 130 families...
-			estimation of parameters using a pooled-data model ($<$ 5 min). \hyperlink{aphylo-model-levels}{\beamerreturnbutton{modeling}} \hyperlink{aphylo-table}{\beamerreturnbutton{estimates}}
-			\item<4-> In a subset of $\sim 200$ predictions we found 46 novel annotations 
-			\hyperlink{aphylo-200funs}{\beamergotobutton{more}}
-		\end{itemize}
-	\end{minipage}\hfill
-	\begin{minipage}[m]{.3\linewidth}
-	\begin{center}
-		\includegraphics[width=.9\linewidth]{aphylo-logo.png}
-	\end{center}
-	\end{minipage}
-
-\end{frame}
-
-\begin{frame}[c]
-	\frametitle{Results: Performance and Scalability}
-	aphylo vs SIFTER (state-of-the-art phylo-based model) on 147 genes.
-	
-\begin{minipage}[m]{.50\linewidth}
-	\bigskip
-	\uncover<3->{\begin{figure}
-		\includegraphics[width=1\linewidth]{auc.pdf}
-	\end{figure}}
-\end{minipage}\hfill
-\begin{minipage}[m]{.45\linewidth}
-	\bigskip
-\begin{itemize}
-	\item<2->[] \shadowbox{Fast} 110 minutes (SIFTER) to calculate the posterior probabilities, aphylo took 1 second.
-	\item<3->[] \shadowbox{Accurate} aphylo reported higher accuracy levels in LOO cross-validation (0.72 vs 0.60 AUC).
-\end{itemize}
-\end{minipage}
-
-\end{frame}
-
 %--------------------------------------------------------------------------------
-
-%\begin{frame}[c,label=phylo-old-results]
-%	\frametitle{Results from the first version}
-%	\centering\pause
-%	\byside{.24}{Scalable}{%
-%		Pooled-data model including hundreds of trees (thousands of genes) fitted within minutes.%
-%	}\hfill\pause
-%	\byside{.24}{Robust}{%
-%		Accuracy and estimates are consistent regardless of the used prior.%
-%	}\hfill\pause
-%	\byside{.24}{Intuitive}{%
-%		Gains and losses are more likely to happen at \alert{duplication} events.%
-%	}\hfill\pause
-%	\byside{.24}{Competitive}{Matches state-of-the-art phylo-based prediction models with $\sim$ 0.75 AUC.}
-%	\vfill
-%	\uncover<6>{...all this assuming that all functions had the same gain/loss rate.}
-%\end{frame}
-
-
-
-\note[enumerate]{
-\item In the version of the qual document you saw an implementation of the model
-that did not incorporated information regarding the node types, but that is trivially
-added by just adding a separate gain/loss parameter per type
-\item Another venue we have explored is accounting for publication bias, most
-annotations are of the positive type (has function), but few are (no function).
-\item we have failed in the last tests.
-\item The model has been thoroughly tested. In particular, we did a large scale
-simulation study in which we used all 15,000 trees from panther to simulate
-annotations and then fitted our model using MCMC to check for bias and coverage
-probabilities (which are available in the paper)
-\item The experiment was carried out using USC's High Performance Computing
-cluster with the R package slurmR (described in the document).
-\item Now, I will show you more recent information in which we take 
-data from PantherDB with GO annotations and fit a large pooled model.
-}
-
-
-
-
 \begin{frame}
 	\frametitle{Computational Complexity: aphylo}
 	\begin{minipage}[m]{.55\linewidth}
 		\small
-	\shadowbox{Baseline features}
-	\begin{itemize}
-		\item<2-> Parsimony: Independence across functions/siblings.
-		\item<3-> Post-order Tree traversal: Linear complexity $O(|\mbox{tree}|)$.
-	\end{itemize}
-	\uncover<4->{\shadowbox{Additional features}}
-	\begin{itemize}
-		\item<5-> Reduced pruning sequence: Induced sub-tree of nodes connected to annotated leafs\\ $\implies$ Complexity $O(\left|\mbox{Induced sub-tree}\right|)\leq O(|\mbox{tree}|)$
-		\item<6-> Implemented in C++ (\textbf{pruner} library):\\
-		\uncover<7->{$\implies$ Fast} \\
-		\uncover<8->{$\implies$ Efficient use of memory (data structures)}
-	\end{itemize}
+		\shadowbox{Baseline features}
+		\begin{itemize}
+			\item<2-> Parsimony: Independence across functions/siblings.
+			\item<3-> Post-order Tree traversal: Linear complexity $O(|\mbox{tree}|)$.
+		\end{itemize}
+		\uncover<4->{\shadowbox{Additional features}}
+		\begin{itemize}
+			\item<5-> Reduced pruning sequence: Induced sub-tree of nodes connected to annotated leafs\\ $\implies$ Complexity $O(\left|\mbox{Induced sub-tree}\right|)\leq O(|\mbox{tree}|)$
+			\item<6-> Implemented in C++ (\textbf{pruner} library):\\
+			\uncover<7->{$\implies$ Fast} \\
+			\uncover<8->{$\implies$ Efficient use of memory (data structures)}
+		\end{itemize}
 	\end{minipage}\hfill
-\begin{minipage}[m]{.44\linewidth}
-	\centering
-	\uncover<5->{\includegraphics[width=1\linewidth]{reduced-sequence.pdf}}
-\end{minipage}
+	\begin{minipage}[m]{.44\linewidth}
+		\centering
+		\uncover<5->{\includegraphics[width=1\linewidth]{reduced-sequence.pdf}}
+	\end{minipage}
 \end{frame}
+
+\begin{frame}[c,label=aphylo-results-brief]
+	\frametitle{Results: What does aphylo brings to the table?}
+	\begin{center}
+		\includegraphics[width=.2\linewidth]{aphylo-logo.png}
+	\end{center}
+	
+	\begin{minipage}[t]{.24\linewidth}\centering
+		\shadowbox{Large scale}\\\small
+		Estimate \textbf{pooled-data models} involving
+		\textbf{hundreds of families}\\
+		(1,300 genes at a time)
+	\end{minipage}\hfill
+	\begin{minipage}[t]{.24\linewidth}\centering
+		\shadowbox{Interpretable}\\\small
+		Pooled-data model provides inference
+		\textbf{aligned with theoretical results}\\
+		(gene duplication is key)
+	\end{minipage}\hfill
+	\begin{minipage}[t]{.24\linewidth}\centering
+		\shadowbox{Fast}\\\small
+		Computational efficiency
+		allows making \textbf{inference and prediction fast}\\
+		(1 second vs 2 hours)
+	\end{minipage}\hfill
+	\begin{minipage}[t]{.24\linewidth}\centering
+		\shadowbox{Accuracy}\\\small
+		Outperforms state-of-the-art
+		phylo-models\\
+		(0.72 vs 0.60 AUC)
+	\end{minipage}
+\vfill\hfill\hyperlink{aphylo-results-overview}{\beamergotobutton{details}}
+\end{frame}
+
+
+
 
 %% ------------------------------------------------------------------------------
 %\begin{frame}
@@ -685,91 +581,26 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 % ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
-\section{Part 3: Current Research}
+\section{Part 3: Current and Future Research}
 
 %-------------------------------------------------------------------------------
 \begin{frame}[t]
 	\usebeamertemplate{section intro}{}{}
 	\textcolor{uscgold}{
-		\Large {\bf Part 3: Current Research}
+		\Large {\bf Part 3: Current and Future Research}
 	}
 \end{frame}
 
-% ------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Phylogenetics Modeling Strategies}
-	
-	\begin{minipage}[m]{.3\linewidth}
+\begin{frame}[c,label=current-research]
+\frametitle{Current Research}
 
-	\begin{figure}
-	\includegraphics[width=.9\linewidth]{phylo-model-overview-legend.pdf}
-	\end{figure}
-	\end{minipage}\hfill
-	\begin{minipage}[m]{.69\linewidth}
-	\mode<beamer>{
-		\begin{figure}
-			\phantom{\includegraphics<1>[width=.9\linewidth]{phylo-model-overview-1.pdf}}%
-			\includegraphics<2>[width=.9\linewidth]{phylo-model-overview-1.pdf}%
-			\includegraphics<3>[width=.9\linewidth]{phylo-model-overview-2.pdf}%
-			\includegraphics<4>[width=.9\linewidth]{phylo-model-overview.pdf}
-		\end{figure}
-	}
-	
-	\mode<handout>{
-		\begin{figure}
-			\includegraphics[width=.9\linewidth]{phylo-model-overview.pdf}
-		\end{figure}
-	}
-	\end{minipage}
+\byside{.33}{Biology}{Extension of gene functional-evolution model using the ERGMs framework\\
+\hyperlink{aphylo-current}{\beamergotobutton{more}}}\hfill
+\byside{.33}{Criminology}{The role of social networks on police use of force}\hfill
+\byside{.33}{Sociology}{Using ERGMitos to model political discussion networks in Romania}
 
-		
 \end{frame}
 
-% ------------------------------------------------------------------------------
-\begin{frame}[c,label=aphylo-ergm-example]
-	
-	\Large If we wanted to build a model with 3 functions, we would need to estimate...\large
-	\\\bigskip
-	
-	\begin{minipage}[t]{.40\linewidth}
-		\centering
-		\shadowbox{Full Markov Transition Matrix}\\\bigskip
-		\uncover<2->{\includegraphics[width=.8\linewidth]{aphylo-ergm-eq1.png} \\
-		\vfill 512 parameters
-	}
-	\end{minipage}\hfill
-\begin{minipage}[t]{.19\linewidth}
-	\centering 
-	\uncover<4->{
-		\includegraphics[width=.8\linewidth]{aphylo-ergm-eq2.png}\\
-	Easier to fit \\
-	Easier to interpret}	
-\end{minipage}\hfill
-	\begin{minipage}[t]{.40\linewidth}		
-		\centering
-		\shadowbox{Sufficient statistics}\\\bigskip
-		\uncover<3->{\includegraphics[width=.8\linewidth]{aphylo-ergm-eq2.png} \\
-		\vfill 5 parameters}
-	\end{minipage}
-\uncover<4->{\vfill\hfill\hyperlink{aphylo-ergm-table}{\beamergotobutton{numeric example}}}
-\end{frame}
-
-
-
-
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-\section{Part 4: Future Research}
-
-%-------------------------------------------------------------------------------
-\begin{frame}[t]
-	\usebeamertemplate{section intro}{}{}
-	\textcolor{uscgold}{
-		\Large {\bf Part 4: Future Research} 
-	}
-\end{frame}
 
 \begin{frame}
 		\def\svgwidth{.8\linewidth}
@@ -941,6 +772,49 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 
 % ------------------------------------------------------------------------------
 \changemode{handout}
+
+% ------------------------------------------------------------------------------
+\begin{frame}[label=aphylographicalview,c]
+	\frametitle{An evolutionary model of gene functions}
+	\def\shadowsize{2pt}
+	\definecolor{rootnode}{RGB}{0,159,211}
+	\definecolor{innernode}{RGB}{90,159,89}
+	\definecolor{leafnode}{RGB}{255,107,0}
+	
+	\begin{minipage}[m]{.60\linewidth}
+		\begin{figure}
+			\footnotesize
+			\centering
+			\mode<beamer>{
+				\only<1>{\includegraphics[width=.9\linewidth]{phylo-model2-0.pdf}}%
+				\only<2>{\includegraphics[width=.9\linewidth]{phylo-model2-1.pdf}}%
+				\only<3>{\includegraphics[width=.9\linewidth]{phylo-model2-2.pdf}}%
+				\only<4>{\includegraphics[width=.9\linewidth]{phylo-model2-3.pdf}}%
+				\only<5>{\includegraphics[width=.9\linewidth]{phylo-model2-4.pdf}}%
+				\only<6>{\includegraphics[width=.9\linewidth]{phylo-model2-5.pdf}}%
+				\only<7>{\includegraphics[width=.9\linewidth]{phylo-model2-6.pdf}}%
+				\only<8>{\includegraphics[width=.9\linewidth]{phylo-model2-7.pdf}}%
+				\only<9->{\includegraphics[width=.9\linewidth]{phylo-model2.pdf}}%
+			}\mode<handout>{\includegraphics[width=.9\linewidth]{fig/phylo-model2.pdf}}
+		\end{figure}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[m]{.38\linewidth}
+		\pause
+		\begin{itemize}
+			\item Starting with the root node (no function in this case).\pause
+			\item Passes the baton to its offspring.\pause
+			\item Possibly without change (on this particular function).\pause
+			\item Or, with some probability, gaining...\pause[7] or loosing the function.\pause
+			%			\item \textcolor{leafnode}{\textbf{Observed} annotations may be incorrect.}\pause
+			\item Until it reaches the end of the tree (modern genes).\pause
+		\end{itemize}
+		\vfill\hfill\hyperlink{duplicationvsspeciation}{\beamergotobutton{more on diplication}} %
+		\hyperlink{aphylographicalview}{\beamergotobutton{alt view}}
+		\hyperlink{aphylo-prob-diagram}{\beamerreturnbutton{go back}}
+	\end{minipage}
+	
+\end{frame}
 
 % ------------------------------------------------------------------------------
 \begin{frame}[label=go-functions-types]
@@ -1329,6 +1203,49 @@ these are part of the same evolutionary tree!}
 		\includegraphics[width=.7\linewidth]{distribution-annotation-type.pdf}
 	\end{figure}
 	\vfill\hfill\hyperlink{phylo-table}{\beamerreturnbutton{go back}}
+\end{frame}
+
+\begin{frame}[label=aphylo-results-overview]
+	\frametitle{Results: Implementation and Large scale study}
+	
+	\begin{minipage}[m]{.69\linewidth}
+		\begin{itemize}
+			\item<1-> Simulation, estimation, and prediction: \textbf{aphylo} R package.
+			\item<2-> Large simulation study (all known trees, about 15,000) on USC's HPC cluster.
+			\item<3-> Prediction quality assessment on $\sim$ 1,300 genes involving $\sim$ 130 families...
+			estimation of parameters using a pooled-data model ($<$ 5 min). \hyperlink{aphylo-model-levels}{\beamerreturnbutton{modeling}} \hyperlink{aphylo-table}{\beamerreturnbutton{estimates}}
+			\item<4-> In a subset of $\sim 200$ predictions we found 46 novel annotations 
+			\hyperlink{aphylo-200funs}{\beamergotobutton{more}}
+		\end{itemize}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.3\linewidth}
+		\begin{center}
+			\includegraphics[width=.9\linewidth]{aphylo-logo.png}
+		\end{center}
+	\end{minipage}
+	
+	\vfill\hfill\hyperlink{aphylo-results-brief}{\beamerreturnbutton{go back}}
+	
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Results: Performance and Scalability}
+	aphylo vs SIFTER (state-of-the-art phylo-based model) on 147 genes.
+	
+	\begin{minipage}[m]{.50\linewidth}
+		\bigskip
+		\uncover<3->{\begin{figure}
+				\includegraphics[width=1\linewidth]{auc.pdf}
+		\end{figure}}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.45\linewidth}
+		\bigskip
+		\begin{itemize}
+			\item<2->[] \shadowbox{Fast} 110 minutes (SIFTER) to calculate the posterior probabilities, aphylo took 1 second.
+			\item<3->[] \shadowbox{Accurate} aphylo reported higher accuracy levels in LOO cross-validation (0.72 vs 0.60 AUC).
+		\end{itemize}
+	\end{minipage}
+	
 \end{frame}
 
 % ------------------------------------------------------------------------------
@@ -1791,6 +1708,66 @@ these are part of the same evolutionary tree!}
 \vfill\hfill\hyperlink{ergmito-applied}{\beamerreturnbutton{go back}}
 \end{frame}
 
+% ------------------------------------------------------------------------------
+\begin{frame}[label=aphylo-current]
+	\frametitle{Phylogenetics Modeling Strategies}
+	
+	\begin{minipage}[m]{.3\linewidth}
+		
+		\begin{figure}
+			\includegraphics[width=.9\linewidth]{phylo-model-overview-legend.pdf}
+		\end{figure}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.69\linewidth}
+		\mode<beamer>{
+			\begin{figure}
+				\phantom{\includegraphics<1>[width=.9\linewidth]{phylo-model-overview-1.pdf}}%
+				\includegraphics<2>[width=.9\linewidth]{phylo-model-overview-1.pdf}%
+				\includegraphics<3>[width=.9\linewidth]{phylo-model-overview-2.pdf}%
+				\includegraphics<4>[width=.9\linewidth]{phylo-model-overview.pdf}
+			\end{figure}
+		}
+		
+		\mode<handout>{
+			\begin{figure}
+				\includegraphics[width=.9\linewidth]{phylo-model-overview.pdf}
+			\end{figure}
+		}
+	\end{minipage}
+	
+	\vfill\hfill\hyperlink{current-research}{\beamerreturnbutton{go back}}
+	
+\end{frame}
+
+% ------------------------------------------------------------------------------
+\begin{frame}[c,label=aphylo-ergm-example]
+	
+	\Large If we wanted to build a model with 3 functions, we would need to estimate...\large
+	\\\bigskip
+	
+	\begin{minipage}[t]{.40\linewidth}
+		\centering
+		\shadowbox{Full Markov Transition Matrix}\\\bigskip
+		\uncover<2->{\includegraphics[width=.8\linewidth]{aphylo-ergm-eq1.png} \\
+			\vfill 512 parameters
+		}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{.19\linewidth}
+		\centering 
+		\uncover<4->{
+			\includegraphics[width=.8\linewidth]{aphylo-ergm-eq2.png}\\
+			Easier to fit \\
+			Easier to interpret}	
+	\end{minipage}\hfill
+	\begin{minipage}[t]{.40\linewidth}		
+		\centering
+		\shadowbox{Sufficient statistics}\\\bigskip
+		\uncover<3->{\includegraphics[width=.8\linewidth]{aphylo-ergm-eq2.png} \\
+			\vfill 5 parameters}
+	\end{minipage}
+	\uncover<4->{\vfill\hfill\hyperlink{current-research}{\beamerreturnbutton{numeric example}}}
+	
+\end{frame}
 
 
 %-------------------------------------------------------------------------------
