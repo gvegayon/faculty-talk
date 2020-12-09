@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169, 9pt,handout]{beamer}
+\documentclass[aspectratio=169,9pt,handout]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
@@ -63,9 +63,9 @@
 \title[Stat. Comp. for Complex Systems]{%
 	Statistical and Computational Methods for Complex Systems
 }
-\author[GGVY -- slides on \url{https://github.com/gvegayon/faculty-talk}]{George G Vega Yon}
+\author[GGVY -- \href{vegayon@usc.edu}{vegayon@usc.edu}]{George G Vega Yon}
 \institute[USC-PREVMED]{University of Southern California, Department of Preventive Medicine}
-\date{Job Talk at Universidad Adolfo Ibáñez\\December 10, 2020}
+\date{Universidad Adolfo Ibáñez\\December 10, 2020}
 
 % Some definitions
 \def\cursection{\frame{\frametitle{Contents}\tableofcontents[current]}}
@@ -186,30 +186,40 @@
 % ------------------------------------------------------------------------------
 
 \begin{frame}[c]
-	\frametitle{Uncovering the role of genes}
+%	\frametitle{Uncovering the role of genes}
 	
-	\Large Is Gene \textit{XYZ} involved in process \textit{ABC}?\normalsize\bigskip
+	\Large Is gene \textit{XYZ} involved in process \textit{ABC}?\normalsize\bigskip
 	
-	\begin{minipage}[m]{.33\linewidth}
-		\includegraphics[width=1\linewidth]{aphylo-data-0.png}
+	\begin{minipage}[t]{.33\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{aphylo-data-0.png} \\
+		Complex to directly assess
 	\end{minipage}\hfill
-	\uncover<2->{\begin{minipage}[m]{.33\linewidth}
-		\includegraphics[width=1\linewidth]{aphylo-data-1.png}
+	\uncover<2->{\begin{minipage}[t]{.33\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{aphylo-data-1.png}\\
+		But we may know from other species
 	\end{minipage}}\hfill
-	\uncover<3->{\begin{minipage}[m]{.33\linewidth}
-		\includegraphics[width=1\linewidth]{aphylo-data-2.png}
+	\uncover<3->{\begin{minipage}[t]{.33\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{aphylo-data-2.png}\\
+		And we further know how these \textit{genetically} connected
 	\end{minipage}}\hfill
 	
-\bigskip\uncover<4>{\raggedleft\Large ... Phylogenetic trees can help us answer this question. \normalsize}
+\bigskip\uncover<4>{\raggedleft\Large ... let's rephrase the question. \normalsize}
 
 \end{frame}
 
 \begin{frame}[c,label=aphylo-prob-diagram]
-	\large What is the probability that the human gene \textbf{XYZ} has function \textbf{F}, given what we know about that function for other \textit{related} species?\normalsize
+	\begin{center}
+		\normalsize Is the human gene \textbf{XYZ} involved in process \textbf{ABC}, \uline{given what we know about that for other \textit{related} species}?
+	\end{center}
 	
 	\begin{figure}
 		\includegraphics[width=.9\linewidth]{aphylo-data-probability.pdf}
-	\end{figure}
+	\end{figure}\pause
+	\Large \bigskip\hfill... Where is all this data?\normalsize
+
 
 \vfill\hfill\hyperlink{aphylographicalview}{\beamergotobutton{more}}
 
@@ -225,16 +235,16 @@
 		\includegraphics[width=.5\linewidth]{go-logo.png}
 		\end{figure}
 	\begin{itemize}
-		\item $\sim$ 15,000 evolutionary trees		
-		\item $\sim$ 8 million annotations
-		\item $\sim$ 600 thousand on human genes
-		\item $\sim$ $<$ 10\% are based on experimental evidence
+		\item<2-> $\sim$ 15,000 phylogenetic trees		
+		\item<3-> $\sim$ 8 million annotations
+		\item<4-> $\sim$ 600 thousand on human genes
+		\item<5-> $\sim$ $<$ 10\% are based on experimental evidence... \uncover<6->{Improving our knowledge on genetics is fundamental for advancing Biomedical Research}
 	\end{itemize}
 	\end{minipage}
 \vfill \hfill
-\Large ...Improving our knowledge on this is key to biomedical research\normalsize\\
+\Large \uncover<7->{Only on 2020, 2,000+ COVID-19 papers using the GO \href{https://scholar.google.com/scholar?as\_ylo=2020\&q="gene+ontology"+(covid+OR+coronavirus)}{(Google Scholar)}}\normalsize\\
 \hfill\hyperlink{go-functions-types}{\beamergotobutton{more}}
-	
+
 \end{frame}
 
 %--------------------------------------------------------------------------------
@@ -257,9 +267,9 @@
 %\newcommand{\oinclude}[2]{\only<#1>{\includegraphics[width=\tmpwdth,clip,trim={0 0 0 2cm}]{#2}}}
 
 \begin{frame}[t, label=aphylo-good]
-	\frametitle{\textbf{aphylo}: An evolutionary model of gene functions}
+	\frametitle{An evolutionary model of gene functions}
 	
-	\begin{minipage}[m]{.3\linewidth}
+	\begin{minipage}[m]{.34\linewidth}
 		\small
 		%	The AUC for this analysis is 0.91 and the Mean Absolute Error is 0.34
 		\uncover<1->{\textbf{Family: PTHR11258}}\\
@@ -268,10 +278,15 @@
 			\textbf{Name:} 2'-5'-oligoadenylate synthetase activity\\
 			\textbf{Desc:}  \href{http://amigo.geneontology.org/amigo/term/GO:0001730}{\alert{GO:0001730}} involved in the process of cellular antiviral activity (wiki on \href{https://en.wikipedia.org/wiki/Interferon}{\alert{interferon}}).
 		}\\
-		\uncover<3->{%
+		\uncover<2->{%
 			\textbf{MAE:} 0.34 \\
 			\textbf{AUC:} 0.91%
 		}
+	
+		\uncover<3->{
+			\Large This model is implemented in the \textbf{aphylo} R package
+		}
+	
 		\vfill
 		\hyperlink{aphylo-good-details}{\beamerbutton{see details}}
 	\end{minipage}
@@ -292,8 +307,10 @@
 
 %--------------------------------------------------------------------------------
 \begin{frame}
-	\frametitle{Computational Complexity: aphylo}
+	\frametitle{Computational features of \textbf{aphylo}}
 	\begin{minipage}[m]{.55\linewidth}
+		\vspace{-1cm}\raggedleft\includegraphics[width=.35\linewidth]{aphylo-logo.png}\\\vspace{-.5cm}
+		\raggedright
 		\small
 		\shadowbox{Baseline features}
 		\begin{itemize}
@@ -303,9 +320,7 @@
 		\uncover<4->{\shadowbox{Additional features}}
 		\begin{itemize}
 			\item<5-> Reduced pruning sequence: Induced sub-tree of nodes connected to annotated leafs\\ $\implies$ Complexity $O(\left|\mbox{Induced sub-tree}\right|)\leq O(|\mbox{tree}|)$
-			\item<6-> Implemented in C++ (\textbf{pruner} library):\\
-			\uncover<7->{$\implies$ Fast} \\
-			\uncover<8->{$\implies$ Efficient use of memory (data structures)}
+			\item<6-> Implemented in C++ (\textbf{pruner} library)
 		\end{itemize}
 	\end{minipage}\hfill
 	\begin{minipage}[m]{.44\linewidth}
@@ -320,30 +335,30 @@
 		\includegraphics[width=.2\linewidth]{aphylo-logo.png}
 	\end{center}
 	
-	\begin{minipage}[t]{.24\linewidth}\centering
+	\uncover<1->{\begin{minipage}[t]{.24\linewidth}\centering
 		\shadowbox{Large scale}\\\small
 		Estimate \textbf{pooled-data models} involving
 		\textbf{hundreds of families}\\
 		(1,300 genes at a time)
-	\end{minipage}\hfill
-	\begin{minipage}[t]{.24\linewidth}\centering
+	\end{minipage}}\hfill
+	\uncover<2->{\begin{minipage}[t]{.24\linewidth}\centering
 		\shadowbox{Interpretable}\\\small
 		Pooled-data model provides inference
 		\textbf{aligned with theoretical results}\\
 		(gene duplication is key)
-	\end{minipage}\hfill
-	\begin{minipage}[t]{.24\linewidth}\centering
+	\end{minipage}}\hfill
+	\uncover<3->{\begin{minipage}[t]{.24\linewidth}\centering
 		\shadowbox{Fast}\\\small
 		Computational efficiency
 		allows making \textbf{inference and prediction fast}\\
 		(1 second vs 2 hours)
-	\end{minipage}\hfill
-	\begin{minipage}[t]{.24\linewidth}\centering
+	\end{minipage}}\hfill
+	\uncover<4->{\begin{minipage}[t]{.24\linewidth}\centering
 		\shadowbox{Accuracy}\\\small
 		Outperforms state-of-the-art
 		phylo-models\\
 		(0.72 vs 0.60 AUC)
-	\end{minipage}
+	\end{minipage}}
 \vfill\hfill\hyperlink{aphylo-results-overview}{\beamergotobutton{details}}
 \end{frame}
 
@@ -437,15 +452,40 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 		
 	\begin{itemize}
 		%\item<2-> Focused on sufficient statistics $\s{\graph,x}$ \uncover<3->{\textbf{e.g.}\\Two Bernoulli, a.k.a. Erd\H{o}s-R\'enyi, random graphs}.
-		\item For any 0/1 matrix of size $(n\times m)$, there are $2^{(n\times m)}$ possible realizations.\pause
+		\item For any directed graph of size $n$, there are $2^{n(n - 1)}$ possible realizations.\pause
 		\item A directed graph of size 5 has 1,048,576 possible configurations!\pause
 		\item Most (all) applications use \textbf{approximations}...\pause{} yet, for sufficiently small graphs we ``can be exact.''
-	\end{itemize}
+	\end{itemize}\pause
+
+	\Large ... I implemented ``exact calculations'' in the \textbf{ergmito} package (ERGM\textit{ito})\normalsize
 	
 	\vfill\hfill\hyperlink{discrete-exponential-theory}{\beamergotobutton{more theory}} %
 	\hyperlink{ergm-terms}{\beamergotobutton{more terms}}
+
 	
 \end{frame}
+
+\begin{frame}
+	\frametitle{Computational Complexity: ergmito}
+	\begin{minipage}[m]{.4\linewidth}
+		\shadowbox{Premise}
+		\begin{itemize}
+			\item<2-> Full enumeration $\neq$ All networks with $k$ ties
+		\end{itemize}
+		\uncover<3->{\shadowbox{Extra features}}
+		\begin{itemize}
+			\item<4-> \textit{Iso-support} structures (model) recycled
+			\item<5-> Core algorithm written in C++
+			\item<6-> Parallel computing using \textbf{OpenMP}
+		\end{itemize}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.59\linewidth}
+		\centering
+		\uncover<4->{\includegraphics[width=1\linewidth]{ergm-computing.pdf}}
+	\end{minipage}
+	\uncover<8->{Simple ERGMito with 80,000 nodes $\sim$ 4s}
+\end{frame}
+
 
 % % ------------------------------------------------------------------------------
 % \begin{frame}
@@ -460,38 +500,6 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 % \end{itemize}
 % 
 % \end{frame}
-
-\begin{frame}[c,label=ergmito-checklist]
-\frametitle{\texttt{ergmito}: Estimation of Small ERGM using Exact Statistics}
-
-\begin{minipage}[m]{.28\linewidth}
-	
-	\small Using \textbf{exact statistics} means:\normalsize
-	
-	\fbox{\uncover<1->{{\large $\checkmark$}}} Higher convergence rate.\\
-	\fbox{\uncover<1->{{\large $\checkmark$}}} Lower type-I error rate.\\
-	\fbox{\uncover<1->{{\large $\checkmark$}}} Smaller bias.\\
-	\fbox{\uncover<1->{{\large $\checkmark$}}} More power.\\
-	\fbox{\uncover<1->{{\large $\checkmark$}}} Faster.\\
-	\fbox{\uncover<1->{{\large $\checkmark$}}} More flexible.
-	
-	\uncover<3->{\includegraphics[width=.7\linewidth]{cran-downloads-ergmito.pdf}}
-\end{minipage}
-\hfill
-\begin{minipage}[m]{.34\linewidth}
-	\centering
-	\uncover<2->{\includegraphics[width=.99\linewidth]{ergmito-page-cran.png}}
-\end{minipage}
-\hfill
-\begin{minipage}[m]{.34\linewidth}
-	\centering
-	\uncover<2->{\includegraphics[width=.99\linewidth]{ergmito-page-github.png}}
-\end{minipage}
-
-\vfill\hfill\hyperlink{ergmito-simulations}{\beamergotobutton{more}}
-
-\end{frame}
-
 
 
 \begin{frame}[c]
@@ -553,26 +561,32 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 \end{frame}
 
 
-\begin{frame}
-	\frametitle{Computational Complexity: ergmito}
-	\begin{minipage}[m]{.4\linewidth}
-		\shadowbox{Premise}
-		\begin{itemize}
-			\item<2-> Full enumeration $\neq$ Large support
-		\end{itemize}
-		\uncover<3->{\shadowbox{Extra features}}
-		\begin{itemize}
-			\item<4-> \textit{Iso-support} structures (model) recycled
-			\item<5-> Normalizing constant updated \textit{as needed} (e.g. BFGS)
-			\item<6-> Core algorithm written in C++
-			\item<7-> Parallel computing using \textbf{OpenMP}
-		\end{itemize}
-	\end{minipage}\hfill
-	\begin{minipage}[m]{.59\linewidth}
-	\centering
-	\uncover<4->{\includegraphics[width=1\linewidth]{ergm-computing.pdf}}
-	\end{minipage}
-\uncover<8->{Simple ERGMito with 80,000 nodes $\sim$ 4s}
+\begin{frame}[c,label=ergmito-results-brief]
+	\frametitle{Results: What does \textbf{ergmito} brings to the table?}
+	\begin{center}
+		\includegraphics[width=.2\linewidth]{ergmito-logo.png}
+	\end{center}
+	
+	\uncover<1->{\begin{minipage}[t]{.24\linewidth}\centering
+			\shadowbox{Theoretical Goodies}\\\small
+			Higher convergence race, lower bias, lower type-I error, higher power, ...
+	\end{minipage}}\hfill
+	\uncover<2->{\begin{minipage}[t]{.24\linewidth}\centering
+			\shadowbox{Fast}\\\small
+			Orders of magnitude faster than other methods\\
+			(x200 faster in some cases)
+	\end{minipage}}\hfill
+	\uncover<3->{\begin{minipage}[t]{.24\linewidth}\centering
+			\shadowbox{Flexible}\\\small
+			Arbitrary transformations and constrains\\
+			(interaction effects, for example)
+	\end{minipage}}\hfill
+	\uncover<4->{\begin{minipage}[t]{.24\linewidth}\centering
+			\shadowbox{The right tool}\\\small
+			For ego networks, families, small teams, etc.\\
+			(\includegraphics[width=2cm]{cran-downloads-ergmito.pdf} others think so)
+	\end{minipage}}
+\vfill\hfill\hyperlink{ergmito-simulations}{\beamergotobutton{more}}
 \end{frame}
 
 
@@ -591,28 +605,32 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 	}
 \end{frame}
 
-\begin{frame}[c,label=current-research]
+\begin{frame}[t,label=current-research]
 \frametitle{Current Research}
 
-\byside{.33}{Biology}{Extension of gene functional-evolution model using the ERGMs framework\\
-\hyperlink{aphylo-current}{\beamergotobutton{more}}}\hfill
-\byside{.33}{Criminology}{The role of social networks on police use of force}\hfill
-\byside{.33}{Sociology}{Using ERGMitos to model political discussion networks in Romania}
+\uncover<2->{\byside{.33}{Biology}{Extension of gene functional-evolution model using the ERGMs framework%
+%\hyperlink{aphylo-current}{\beamergotobutton{more}}
+}}\hfill
+\uncover<3->{\byside{.33}{Criminology}{The role of social networks on police use of force}}\hfill
+\uncover<4->{\byside{.33}{Sociology}{Using ERGMitos to model political discussion networks in Romania}}
+
+\uncover<2->{\begin{minipage}[m]{.33\linewidth}
+	\centering
+	\includegraphics[width=.6\linewidth]{aphylo-ergm-eq2.png}
+\end{minipage}}\hfill
+\uncover<3->{\begin{minipage}[m]{.33\linewidth}
+	\centering
+	\includegraphics[width=.9\linewidth]{pointing.pdf}
+\end{minipage}}\hfill
+\uncover<4->{\begin{minipage}[m]{.33\linewidth}
+	\centering
+	\includegraphics[width=.7\linewidth]{ergmitos-rumania.pdf}
+\end{minipage}}
 
 \end{frame}
 
-
 \begin{frame}
-		\def\svgwidth{.8\linewidth}
-	\begin{figure}[tb]
-		\centering
-		\input{fig-struct-test/struct-test.pdf_tex}
-		\caption{Semi-parametric test of association between graph structure, $t(\cdot)$ and a group level outcome $y$. Using ERGMitos, we can generate null distribution for complex hypothesis involving motifs beyond density and degree sequences.}
-		\label{fig:ergmito-sim}
-	\end{figure}	
-\end{frame}
-
-\begin{frame}
+	\frametitle{The future}
 	\Large Continue developing scientific software... \normalsize
 	\begin{figure}
 		\includegraphics[width=.65\linewidth]{fig-packages/hexlogos.png}
@@ -620,19 +638,19 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 \end{frame}
 
 \begin{frame}
-	\Large Keep building bridges...
+	\frametitle{The future: Keep building bridges}
 	
 	\mode<beamer>{
 		\begin{figure}
 					\centering
-	\includegraphics<1>[width=.65\linewidth]{coauthors0.png}
-	\includegraphics<2->[width=.65\linewidth]{coauthors.png}
+	\includegraphics<1>[width=.6\linewidth]{coauthors0.png}%
+	\includegraphics<2->[width=.6\linewidth]{coauthors.png}
 	\end{figure}
 }
 \mode<handout>{
 	\begin{figure}
 		\centering
-	\includegraphics[width=.65\linewidth]{coauthors.png}
+	\includegraphics[width=.6\linewidth]{coauthors.png}
 	\end{figure}
 }
 \hfill \uncover<2->{...you could be next!}\normalsize
@@ -756,13 +774,6 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 
 \renewcommand{\section}[2]{}%
 \appendix
-\begin{frame}[allowframebreaks]
-\frametitle{References}
-% \bibliographystyle{apacite}
-% \bibliography{bibliography.bib}
-\printbibliography
-\end{frame}
-
 
 % ------------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
@@ -1459,7 +1470,7 @@ these are part of the same evolutionary tree!}
 		\begin{enumerate}
 			\item \alert{\bf Higher convergence rate}
 		\end{enumerate}
-		\vfill\hyperlink{ergmito-checklist}{\beamerreturnbutton{return}}
+		\vfill\hyperlink{ergmito-results-brief}{\beamerreturnbutton{return}}
 	\end{minipage}
 	\vfill\hfill\begin{minipage}[t]{.65\linewidth}\vspace{-.75cm}
 		\begin{figure}
@@ -1477,7 +1488,7 @@ these are part of the same evolutionary tree!}
 			\item Higher convergence rate
 			\item \alert{\bf Smaller bias}
 		\end{enumerate}
-		\vfill\hyperlink{ergmito-checklist}{\beamerreturnbutton{return}}
+		\vfill\hyperlink{ergmito-results-brief}{\beamerreturnbutton{return}}
 	\end{minipage}
 	\vfill\hfill\begin{minipage}[t]{.65\linewidth}\vspace{-.75cm}
 		\begin{table}
@@ -1506,7 +1517,7 @@ these are part of the same evolutionary tree!}
 			\item Smaller bias
 			\item \alert{\bf Higher power}
 		\end{enumerate}
-		\vfill\hyperlink{ergmito-checklist}{\beamerreturnbutton{return}}
+		\vfill\hyperlink{ergmito-results-brief}{\beamerreturnbutton{return}}
 	\end{minipage}
 	\hfill\begin{minipage}[t]{.65\linewidth}%\vspace{-.75cm}
 		\begin{figure}
@@ -1527,7 +1538,7 @@ these are part of the same evolutionary tree!}
 			\item Higher power
 			\item \alert{\bf Smaller type I error}
 		\end{enumerate}
-		\vfill\hyperlink{ergmito-checklist}{\beamerreturnbutton{return}}
+		\vfill\hyperlink{ergmito-results-brief}{\beamerreturnbutton{return}}
 	\end{minipage}
 	\hfill\begin{minipage}[t]{.65\linewidth}%\vspace{-.75cm}
 		\begin{table}
@@ -1561,7 +1572,7 @@ these are part of the same evolutionary tree!}
 			\item Smaller type I error
 			\item \alert{\bf Elapsed time}
 		\end{enumerate}
-		\vfill\hyperlink{ergmito-checklist}{\beamerreturnbutton{return}}
+		\vfill\hyperlink{ergmito-results-brief}{\beamerreturnbutton{return}}
 	\end{minipage}
 	\hfill\begin{minipage}[t]{.65\linewidth}%\vspace{-.75cm}
 		\begin{figure}
@@ -1889,6 +1900,13 @@ these are part of the same evolutionary tree!}
 		\end{figure}
 	\end{minipage}
 	\vfill\hfill\hyperlink{aphylo-ergm-example}{\beamergotobutton{return}}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{References}
+	% \bibliographystyle{apacite}
+	% \bibliography{bibliography.bib}
+	\printbibliography
 \end{frame}
 
 \end{document}
