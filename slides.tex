@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169,9pt,handout]{beamer}
+\documentclass[aspectratio=169,9pt]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
@@ -152,7 +152,7 @@
 \frame{\frametitle{Contents}
 	\tableofcontents
 	\vfill
-	You can download the slides from\large{} {\color{usccardinal}\url{https://github.com/gvegayon/faculty-talk}}\normalsize
+	You can download the slides from\large{} {\color{usccardinal}\href{https://ggv.cl/slides/uai-fic}{ggv.cl/slides/uai-fic}}\normalsize
 }
 
 %\begin{frame}
@@ -284,7 +284,7 @@
 		}
 	
 		\uncover<3->{
-			\Large This model is implemented in the \textbf{aphylo} R package
+			\Large I implemented this model in the \textbf{aphylo} R package
 		}
 	
 		\vfill
@@ -314,7 +314,7 @@
 		\small
 		\shadowbox{Baseline features}
 		\begin{itemize}
-			\item<2-> Parsimony: Independence across functions/siblings.
+			\item<2-> Parsimony: Conditional independence across functions/siblings.
 			\item<3-> Post-order Tree traversal: Linear complexity $O(|\mbox{tree}|)$.
 		\end{itemize}
 		\uncover<4->{\shadowbox{Additional features}}
@@ -457,7 +457,9 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 		\item Most (all) applications use \textbf{approximations}...\pause{} yet, for sufficiently small graphs we ``can be exact.''
 	\end{itemize}\pause
 
-	\Large ... I implemented ``exact calculations'' in the \textbf{ergmito} package (ERGM\textit{ito})\normalsize
+\bigskip
+
+	\hfill\Large ... I implemented this in the \textbf{ergm\color{usccardinal}{ito}} R package\normalsize
 	
 	\vfill\hfill\hyperlink{discrete-exponential-theory}{\beamergotobutton{more theory}} %
 	\hyperlink{ergm-terms}{\beamergotobutton{more terms}}
@@ -475,15 +477,15 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 		\uncover<3->{\shadowbox{Extra features}}
 		\begin{itemize}
 			\item<4-> \textit{Iso-support} structures (model) recycled
-			\item<5-> Core algorithm written in C++
-			\item<6-> Parallel computing using \textbf{OpenMP}
+			\item<5-> Core algorithm written in C++ (with \textbf{OpenMP})
 		\end{itemize}
 	\end{minipage}\hfill
 	\begin{minipage}[m]{.59\linewidth}
 		\centering
-		\uncover<4->{\includegraphics[width=1\linewidth]{ergm-computing.pdf}}
+		\uncover<4->{\includegraphics[width=.95\linewidth]{ergm-computing.pdf}}
 	\end{minipage}
-	\uncover<8->{Simple ERGMito with 80,000 nodes $\sim$ 4s}
+\vfill
+	\uncover<6->{Fitting a pooled-data ERGMito with 80K nodes in 20K small nets $\sim$ 4s}
 \end{frame}
 
 
@@ -505,7 +507,8 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 \begin{frame}[c]
 	\usebeamertemplate{section intro}{}{}
 	\textcolor{uscgold}{
-		\Large \textbf{ergmito}: Featured Example
+		\Large \textbf{ergmito} featured example: Advice seeking networks in small teams\\
+		({\small de la Haye et al, 2020})
 	}
 \end{frame}
 
@@ -584,7 +587,7 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 	\uncover<4->{\begin{minipage}[t]{.24\linewidth}\centering
 			\shadowbox{The right tool}\\\small
 			For ego networks, families, small teams, etc.\\
-			(\includegraphics[width=2cm]{cran-downloads-ergmito.pdf} others think so)
+			(\includegraphics[width=1.5cm]{cran-downloads-ergmito.pdf}  think so)
 	\end{minipage}}
 \vfill\hfill\hyperlink{ergmito-simulations}{\beamergotobutton{more}}
 \end{frame}
