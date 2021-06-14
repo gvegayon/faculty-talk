@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169,9pt,handout]{beamer}
+\documentclass[aspectratio=169,9pt]{beamer}
 
 %\transdissolve[duration=0.2] % Only works with Adobe Acrobat
 
@@ -195,7 +195,7 @@
 \frame{\frametitle{Contents}
 	\tableofcontents
 	\vfill
-	You can download the slides from\large{} {\color{usccardinal}\href{https://ggv.cl/slides/uai-fic}{ggv.cl/slides/uai-fic}}\normalsize
+	You can download the slides from\large{} {\color{usccardinal}\href{https://ggv.cl/slides/utah-epi}{ggv.cl/slides/utah-epi}}\normalsize
 }
 
 %\begin{frame}
@@ -891,7 +891,7 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 
 \uncover<2->{\byside{.33}{Sociology}{Using ERGMitos to model political discussion networks in Romania}}\hfill
 \uncover<3->{\byside{.33}{Criminology}{The role of social networks on police use of force}}\hfill
-\uncover<4->{\byside{.33}{Statistical Computing}{Leverage computing power to advance theory and application in studying complex systems...}}
+\uncover<4->{\byside{.33}{Statistical Computing}{Leverage computing power to advance theory and application for studying complex systems...}}
 
 \uncover<2->{\begin{minipage}[m]{.33\linewidth}
 			\centering
@@ -1016,9 +1016,10 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 \begin{frame}[c]
 	\centering
 	\usebeamertemplate{section intro}{}{}
+	\vspace{-1cm}
 	\textbf{%
 		\color{uscgold}
-		\Large Statistical and Computational Methods for Complex Systems\large %
+		\Large Applications of Statistical Computing in\\Complex Social and Biological Systems Modeling\large %
 	}
 
 	\textbf{
@@ -1943,66 +1944,66 @@ these are part of the same evolutionary tree!}
 \vfill\hfill\hyperlink{ergmito-applied}{\beamerreturnbutton{go back}}
 \end{frame}
 
-% ------------------------------------------------------------------------------
-\begin{frame}[label=aphylo-current]
-	\frametitle{Phylogenetics Modeling Strategies}
-	
-	\begin{minipage}[m]{.3\linewidth}
-		
-		\begin{figure}
-			\includegraphics[width=.9\linewidth]{phylo-model-overview-legend.pdf}
-		\end{figure}
-	\end{minipage}\hfill
-	\begin{minipage}[m]{.69\linewidth}
-		\mode<beamer>{
-			\begin{figure}
-				\phantom{\includegraphics<1>[width=.9\linewidth]{phylo-model-overview-1.pdf}}%
-				\includegraphics<2>[width=.9\linewidth]{phylo-model-overview-1.pdf}%
-				\includegraphics<3>[width=.9\linewidth]{phylo-model-overview-2.pdf}%
-				\includegraphics<4>[width=.9\linewidth]{phylo-model-overview.pdf}
-			\end{figure}
-		}
-		
-		\mode<handout>{
-			\begin{figure}
-				\includegraphics[width=.9\linewidth]{phylo-model-overview.pdf}
-			\end{figure}
-		}
-	\end{minipage}
-	
-	\vfill\hfill\hyperlink{current-research}{\beamerreturnbutton{go back}}
-	
-\end{frame}
+%% ------------------------------------------------------------------------------
+%\begin{frame}[label=aphylo-current]
+%	\frametitle{Phylogenetics Modeling Strategies}
+%	
+%	\begin{minipage}[m]{.3\linewidth}
+%		
+%		\begin{figure}
+%			\includegraphics[width=.9\linewidth]{phylo-model-overview-legend.pdf}
+%		\end{figure}
+%	\end{minipage}\hfill
+%	\begin{minipage}[m]{.69\linewidth}
+%		\mode<beamer>{
+%			\begin{figure}
+%				\phantom{\includegraphics<1>[width=.9\linewidth]{phylo-model-overview-1.pdf}}%
+%				\includegraphics<2>[width=.9\linewidth]{phylo-model-overview-1.pdf}%
+%				\includegraphics<3>[width=.9\linewidth]{phylo-model-overview-2.pdf}%
+%				\includegraphics<4>[width=.9\linewidth]{phylo-model-overview.pdf}
+%			\end{figure}
+%		}
+%		
+%		\mode<handout>{
+%			\begin{figure}
+%				\includegraphics[width=.9\linewidth]{phylo-model-overview.pdf}
+%			\end{figure}
+%		}
+%	\end{minipage}
+%	
+%	\vfill\hfill\hyperlink{current-research}{\beamerreturnbutton{go back}}
+%	
+%\end{frame}
 
-% ------------------------------------------------------------------------------
-\begin{frame}[c,label=aphylo-ergm-example]
-	
-	\Large If we wanted to build a model with 3 functions, we would need to estimate...\large
-	\\\bigskip
-	
-	\begin{minipage}[t]{.40\linewidth}
-		\centering
-		\shadowbox{Full Markov Transition Matrix}\\\bigskip
-		\uncover<2->{\includegraphics[width=.8\linewidth]{aphylo-ergm-eq1.png} \\
-			\vfill 512 parameters
-		}
-	\end{minipage}\hfill
-	\begin{minipage}[t]{.19\linewidth}
-		\centering 
-		\uncover<4->{
-			\includegraphics[width=.8\linewidth]{aphylo-ergm-eq2.png}\\
-			Easier to fit \\
-			Easier to interpret}	
-	\end{minipage}\hfill
-	\begin{minipage}[t]{.40\linewidth}		
-		\centering
-		\shadowbox{Sufficient statistics}\\\bigskip
-		\uncover<3->{\includegraphics[width=.8\linewidth]{aphylo-ergm-eq2.png} \\
-			\vfill 5 parameters}
-	\end{minipage}
-	\uncover<4->{\vfill\hfill\hyperlink{current-research}{\beamerreturnbutton{numeric example}}}
-	
-\end{frame}
+%% ------------------------------------------------------------------------------
+%\begin{frame}[c,label=aphylo-ergm-example]
+%	
+%	\Large If we wanted to build a model with 3 functions, we would need to estimate...\large
+%	\\\bigskip
+%	
+%	\begin{minipage}[t]{.40\linewidth}
+%		\centering
+%		\shadowbox{Full Markov Transition Matrix}\\\bigskip
+%		\uncover<2->{\includegraphics[width=.8\linewidth]{aphylo-ergm-eq1.png} \\
+%			\vfill 512 parameters
+%		}
+%	\end{minipage}\hfill
+%	\begin{minipage}[t]{.19\linewidth}
+%		\centering 
+%		\uncover<4->{
+%			\includegraphics[width=.8\linewidth]{aphylo-ergm-eq2.png}\\
+%			Easier to fit \\
+%			Easier to interpret}	
+%	\end{minipage}\hfill
+%	\begin{minipage}[t]{.40\linewidth}		
+%		\centering
+%		\shadowbox{Sufficient statistics}\\\bigskip
+%		\uncover<3->{\includegraphics[width=.8\linewidth]{aphylo-ergm-eq2.png} \\
+%			\vfill 5 parameters}
+%	\end{minipage}
+%	\uncover<4->{\vfill\hfill\hyperlink{current-research}{\beamerreturnbutton{numeric example}}}
+%	
+%\end{frame}
 
 
 %-------------------------------------------------------------------------------
