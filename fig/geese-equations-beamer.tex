@@ -1,0 +1,31 @@
+\documentclass[9pt]{beamer}
+
+\input{../notation-thesis.tex}
+\begin{document}
+	\frame{
+		\frametitle{Likelihood}
+		\begin{equation}
+			\Prcond{\aphyloObs_n}{x_n} = %
+			\sum_{\mathbf{x}^n}\Prcond{\mathbf{x}^n}{x_n}%
+			\prod_{i \in \offspring{n}}\Prcond{\aphyloObs_i}{x_i};\label{eq:prob-recursive}
+		\end{equation}
+	
+	\begin{equation}
+		\label{eq:transition-probability}\Prcond{\mathbf{x}^n=\mathbf{x}}{\ann{n}} = \frac{\exp{\t{\theta} s(\mathbf{x},\ann{n})}}{\sum_{\mathbf{x}^n}\exp{\t{\theta} s(\mathbf{x}^n, \ann{n})}}
+	\end{equation}
+	where $\mathbf{x}^n \equiv \{x_i^n\}_{i\in\offspring{n}}$ is an array of size $P$ (functions) $\times$ $|\offspring{n}|$ (offspring) representing the state of node $n$'s offspring, $\ann{n}$ is a binary vector representing the state of node $n$, $\theta$ is a column vector of parameters, and $s(\cdot)$ is a column vector of sufficient statistics which may include terms such as: the total number of functional gains, the number of subfunctionalization or neofunctionalization events, etc
+	
+	}
+	\frame{
+		\frametitle{Prediction}
+		\begin{equation}
+			\notag\Prcond{\mathbf{x}^p = \mathbf{x}}{\aphyloObs}  = %
+			 \underbrace{\left\{\prod_{m\in\offspring{p}}\Prcond{\aphyloObs_m}{x_m}\right\}}_{\mbox{Everything below }\mathbf{x}^p} %
+			\underbrace{\sum_{x_p}\Prcond{x_p}{\aphyloObs}\frac{%
+					\Prcond{\mathbf{x}^p = \mathbf{x}}{x_p}%
+				}{%
+					\Prcond{\aphyloObs_p}{x_p}
+			}}_{\mbox{Everything above }\mathbf{x}^p}
+		\end{equation}
+	}
+\end{document}

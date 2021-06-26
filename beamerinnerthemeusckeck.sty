@@ -99,6 +99,20 @@
   
 }
 
+\defbeamertemplate*{section intro black}{usckeck}[2][]
+{
+	% \setbeamercolor{background canvas}{bg=usccardinal}
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[at=(current page.center),fill=black, minimum width=\paperwidth, minimum height=\paperheight] {};
+	\end{tikzpicture}
+	\vbox{}
+	% \usebeamerfont{title}
+	{\Large \bf \textcolor{uscgold}{#1}} \vskip0.25em
+	{\bf \large \textcolor{uscgold}{#2}}
+	
+	
+}
+
 % Part page: default
 
 \defbeamertemplate*{part page}{usckeck}[1][]

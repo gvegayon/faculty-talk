@@ -20,7 +20,7 @@
 \newcommand{\expo}{E}
 \newcommand{\Expo}{\mathbf{\expo{}}}
 \newcommand{\expod}[1]{\expo_{#1}^D}
-\newcommand{\expoc}[1]{\expo_{#1}^C}
+\newcommand{\expoc}[1]{\expo_{#1}^C} 
 \newcommand{\expoi}[1]{\expo_{#1}^I}
 
 \newcommand{\covar}{\mathbf{x}}
@@ -212,9 +212,194 @@
 %\end{frame}
 
 
+\section{Part 2: Exponential Random Graph Models for Small Networks}
+% \frame{\frametitle{Contents}\tableofcontents}
+
+\begin{frame}[t]
+	\usebeamertemplate{section intro}{}{}
+	\textcolor{uscgold}{
+		\Large {\bf Part 2: Exponential Random Graph Models for Small Networks} \vskip0.25em
+		\large \textit{Joint with}: Andrew Slaughter and Kayla de la Haye \\
+		({\small published in the journal \textit{Social Networks}})
+	}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+\begin{frame}[c]
+	\frametitle{Social Networks}
+	
+	\begin{minipage}[m]{.3\linewidth}
+		\begin{itemize}
+			\item<2-> If COVID-19 has taught us something it is that networks matter.
+			\item<3-> And especially small networks: Families, teams, friends, etc. \uncover<4->{The cornerstone of larger social systems.}
+			\item<5-> We can study networks using ERGMs.
+		\end{itemize}
+		\vfill
+		\uncover<1->{\tiny \textbf{Data:} Friendship network of a UK university faculty from \textbf{igraphdata}. \textbf{Viz:} R package \textbf{netplot} (yours truly, \href{https://github.com/usccana/netplot}{github.com/usccana/netplot})\normalsize}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.69\linewidth}
+		\begin{figure}
+			\centering
+			\includegraphics<1->[height=.85\textheight]{ukfaculty-igraph.pdf}
+		\end{figure}
+		
+	\end{minipage}
+	
+	
+\end{frame}
+
+%-------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{What are Exponential Random Graph Models}
+	
+	Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
+	
+	\begin{itemize}
+		\item Statistical models of (social) networks.\pause
+		\item Not about individual ties, but about local structures (sufficient statistics).\pause
+		\begin{figure}
+			\includegraphics[width=.6\linewidth]{friendly-terms.pdf}
+		\end{figure}
+		%\item Used to test hypotheses 
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}[t,label=discrete-exponential]
+	
+	\frametitle{Discrete Exponential-Family Models}
+	
+	\begin{figure}
+		\includegraphics[width=.7\linewidth]{parts-of-ergm.pdf}
+	\end{figure}\pause
+	
+	\vfill
+	
+	\begin{itemize}
+		%\item<2-> Focused on sufficient statistics $\s{\graph,x}$ \uncover<3->{\textbf{e.g.}\\Two Bernoulli, a.k.a. Erd\H{o}s-R\'enyi, random graphs}.
+		\item For any directed graph of size $n$, there are $2^{n(n - 1)}$ possible realizations.\pause
+		\item A directed graph of size 5 has 1,048,576 possible configurations!\pause
+		\item Most (all) applications use \textbf{approximations}...\pause{} yet, for sufficiently small graphs we ``can be exact.''
+	\end{itemize}\pause
+	
+	\bigskip
+	
+	\hfill\Large ... I implemented this in the \textbf{ergm\color{usccardinal}{ito}} R package\normalsize
+	
+	\vfill\hfill\hyperlink{discrete-exponential-theory}{\beamergotobutton{more theory}} %
+	\hyperlink{ergm-terms}{\beamergotobutton{more terms}}
+	
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Computational Complexity: ergmito}
+	\begin{minipage}[m]{.4\linewidth}
+		\shadowbox{Premise}
+		\begin{itemize}
+			\item<2-> Full enumeration $\neq$ All networks with $k$ ties
+		\end{itemize}
+		\uncover<3->{\shadowbox{Extra features}}
+		\begin{itemize}
+			\item<4-> \textit{Iso-support} structures (model) recycled
+			\item<5-> Core algorithm written in C++ (with \textbf{OpenMP})
+		\end{itemize}
+	\end{minipage}\hfill
+	\begin{minipage}[m]{.59\linewidth}
+		\centering
+		\uncover<4->{\includegraphics[width=.95\linewidth]{ergm-computing.pdf}}
+	\end{minipage}
+	\vfill
+	\uncover<6->{Fitting a pooled-data ERGMito with 80K nodes in 20K small nets $\sim$ 4s}
+\end{frame}
+
+
+% % ------------------------------------------------------------------------------
+% \begin{frame}
+% \frametitle{ERGMs for Small Networks}
+% 
+% From the methodological point of view, current methods are great, but:\pause
+% 
+% \begin{itemize}
+% \item Possible accuracy issues (error rates)\pause
+% \item Prone to degeneracy problems (sampling and existence of MLE)\pause
+% \item It is not MLE...
+% \end{itemize}
+% 
+% \end{frame}
+
+
+\begin{frame}[c]
+	\usebeamertemplate{section intro}{}{}
+	\textcolor{uscgold}{
+		\Large \textbf{ergmito} featured example: Advice seeking networks in small teams\\
+		({\small de la Haye et al, 2020})
+	}
+\end{frame}
+
+
+%-------------------------------------------------------------------------------
+\begin{frame}[t, label=ergmito-applied]
+	\centering
+	\mode<beamer>{
+		\includegraphics<1-2>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide.pdf}%
+		\includegraphics<3>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-edges.pdf}%
+		\includegraphics<4>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-transitivity.pdf}%
+		\includegraphics<5>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide.pdf}%
+		\includegraphics<6>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-sender.pdf}%
+		\includegraphics<7->[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-all.pdf}
+	}%
+	\mode<handout>{
+		\includegraphics[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-all.pdf}
+	}
+	
+	\vspace{-.75cm}\hfill\hyperlink{ergmito-teams-data}{\beamergotobutton{experiment}} \\ \vspace{.75cm}
+	
+	\small\pause
+	\begin{minipage}[t]{.38\linewidth}
+		\begin{center}
+			\shadowbox{Key findings}\pause
+		\end{center}
+		\begin{itemize}
+			\item Low density.\pause
+			\item High balance (transitive triads).\pause
+			\item No evidence of gender homophily.\pause
+			\item Females are more likely to ask for advice.\pause
+		\end{itemize}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{.58\linewidth}
+		\begin{center}
+			\shadowbox{What's different \tiny(from regular ERGMs)\normalsize?}
+		\end{center}\pause
+		
+		\begin{itemize}
+			\item Interaction effects: $\text{edges} \times \isone{n = 5}$.\pause
+			\item Constrained support: $\text{edge} > 4$.\pause
+			\item Transformed variables: $(\text{Homophily})^{1/2}$.\pause
+			\item Bootstrapping: 1,000 replicates in less than 1.5 minutes...\pause \\
+			... if you are lucky, using ``regular'' ERGMs would take you about 5 hours.
+		\end{itemize}
+	\end{minipage}\hfill
+	\vfill\hfill%
+	\only<1->{%
+		\hyperlink{ergmito-table}{\beamergotobutton{details}} %
+		\hyperlink{ergmito-gof}{\beamergotobutton{gof}} %
+		\hyperlink{example-data-ergm}{\beamergotobutton{data}}%
+	}
+\end{frame}
+
+
+
 
 % ------------------------------------------------------------------------------
-\section{Part I: A general framework for modeling functional evolution}
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
+
+
+% ------------------------------------------------------------------------------
+\section{Part II: A general framework for modeling functional evolution}
 
 \begin{frame}[t]
 	\usebeamertemplate{section intro}{}{}
@@ -517,10 +702,10 @@
 		\hfill %
 		\begin{minipage}[m]{.49\linewidth}
 			\mode<beamer>{%
-				\includegraphics<3->[width=.95\linewidth]{geese-equation-prediction.pdf}
+				\includegraphics<3->[width=1\linewidth]{geese-equation-prediction.pdf}
 			}%
 			\mode<handout>{%
-				\includegraphics[width=.95\linewidth]{geese-equation-prediction.pdf}
+				\includegraphics[width=1\linewidth]{geese-equation-prediction.pdf}
 			}
 		\end{minipage}
 		
@@ -693,189 +878,6 @@
 \end{frame}
 
 % ------------------------------------------------------------------------------
-\section{Part 2: Exponential Random Graph Models for Small Networks}
-% \frame{\frametitle{Contents}\tableofcontents}
-
-\begin{frame}[t]
-\usebeamertemplate{section intro}{}{}
-\textcolor{uscgold}{
-\Large {\bf Part 2: Exponential Random Graph Models for Small Networks} \vskip0.25em
-\large \textit{Joint with}: Andrew Slaughter and Kayla de la Haye \\
-({\small published in the journal \textit{Social Networks}})
-}
-\end{frame}
-
-%-------------------------------------------------------------------------------
-\begin{frame}[c]
-\frametitle{Social Networks}
-
-\begin{minipage}[m]{.3\linewidth}
-	\begin{itemize}
-		\item<2-> If COVID-19 has taught us something it is that networks matter.
-		\item<3-> And especially small networks: Families, teams, friends, etc. \uncover<4->{The cornerstone of larger social systems.}
-		\item<5-> We can study networks using ERGMs.
-	\end{itemize}
-\vfill
-\uncover<1->{\tiny \textbf{Data:} Friendship network of a UK university faculty from \textbf{igraphdata}. \textbf{Viz:} R package \textbf{netplot} (yours truly, \href{https://github.com/usccana/netplot}{github.com/usccana/netplot})\normalsize}
-\end{minipage}\hfill
-\begin{minipage}[m]{.69\linewidth}
-\begin{figure}
-	\centering
-	\includegraphics<1->[height=.85\textheight]{ukfaculty-igraph.pdf}
-\end{figure}
-
-\end{minipage}
-
-
-\end{frame}
-
-%-------------------------------------------------------------------------------
-\begin{frame}
-\frametitle{What are Exponential Random Graph Models}
-
-Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
-
-\begin{itemize}
-\item Statistical models of (social) networks.\pause
-\item Not about individual ties, but about local structures (sufficient statistics).\pause
-\begin{figure}
-\includegraphics[width=.6\linewidth]{friendly-terms.pdf}
-\end{figure}
-%\item Used to test hypotheses 
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[t,label=discrete-exponential]
-	
-	\frametitle{Discrete Exponential-Family Models}
-	
-	\begin{figure}
-		\includegraphics[width=.7\linewidth]{parts-of-ergm.pdf}
-	\end{figure}\pause
-	
-	\vfill
-		
-	\begin{itemize}
-		%\item<2-> Focused on sufficient statistics $\s{\graph,x}$ \uncover<3->{\textbf{e.g.}\\Two Bernoulli, a.k.a. Erd\H{o}s-R\'enyi, random graphs}.
-		\item For any directed graph of size $n$, there are $2^{n(n - 1)}$ possible realizations.\pause
-		\item A directed graph of size 5 has 1,048,576 possible configurations!\pause
-		\item Most (all) applications use \textbf{approximations}...\pause{} yet, for sufficiently small graphs we ``can be exact.''
-	\end{itemize}\pause
-
-\bigskip
-
-	\hfill\Large ... I implemented this in the \textbf{ergm\color{usccardinal}{ito}} R package\normalsize
-	
-	\vfill\hfill\hyperlink{discrete-exponential-theory}{\beamergotobutton{more theory}} %
-	\hyperlink{ergm-terms}{\beamergotobutton{more terms}}
-
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Computational Complexity: ergmito}
-	\begin{minipage}[m]{.4\linewidth}
-		\shadowbox{Premise}
-		\begin{itemize}
-			\item<2-> Full enumeration $\neq$ All networks with $k$ ties
-		\end{itemize}
-		\uncover<3->{\shadowbox{Extra features}}
-		\begin{itemize}
-			\item<4-> \textit{Iso-support} structures (model) recycled
-			\item<5-> Core algorithm written in C++ (with \textbf{OpenMP})
-		\end{itemize}
-	\end{minipage}\hfill
-	\begin{minipage}[m]{.59\linewidth}
-		\centering
-		\uncover<4->{\includegraphics[width=.95\linewidth]{ergm-computing.pdf}}
-	\end{minipage}
-\vfill
-	\uncover<6->{Fitting a pooled-data ERGMito with 80K nodes in 20K small nets $\sim$ 4s}
-\end{frame}
-
-
-% % ------------------------------------------------------------------------------
-% \begin{frame}
-% \frametitle{ERGMs for Small Networks}
-% 
-% From the methodological point of view, current methods are great, but:\pause
-% 
-% \begin{itemize}
-% \item Possible accuracy issues (error rates)\pause
-% \item Prone to degeneracy problems (sampling and existence of MLE)\pause
-% \item It is not MLE...
-% \end{itemize}
-% 
-% \end{frame}
-
-
-\begin{frame}[c]
-	\usebeamertemplate{section intro}{}{}
-	\textcolor{uscgold}{
-		\Large \textbf{ergmito} featured example: Advice seeking networks in small teams\\
-		({\small de la Haye et al, 2020})
-	}
-\end{frame}
-
-
-%-------------------------------------------------------------------------------
-\begin{frame}[t, label=ergmito-applied]
-	\centering
-	\mode<beamer>{
-		\includegraphics<1-2>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide.pdf}%
-		\includegraphics<3>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-edges.pdf}%
-		\includegraphics<4>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-transitivity.pdf}%
-		\includegraphics<5>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide.pdf}%
-		\includegraphics<6>[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-sender.pdf}%
-		\includegraphics<7->[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-all.pdf}
-	}%
-	\mode<handout>{
-		\includegraphics[width=.95\linewidth]{fig/ci-ergm-all-nets-wide-all.pdf}
-	}
-
-	\vspace{-.75cm}\hfill\hyperlink{ergmito-teams-data}{\beamergotobutton{experiment}} \\ \vspace{.75cm}
-
-	\small\pause
-	\begin{minipage}[t]{.38\linewidth}
-	\begin{center}
-		\shadowbox{Key findings}\pause
-	\end{center}
-	\begin{itemize}
-		\item Low density.\pause
-		\item High balance (transitive triads).\pause
-		\item No evidence of gender homophily.\pause
-		\item Females are more likely to ask for advice.\pause
-	\end{itemize}
-	\end{minipage}\hfill
-	\begin{minipage}[t]{.58\linewidth}
-	\begin{center}
-	\shadowbox{What's different \tiny(from regular ERGMs)\normalsize?}
-	\end{center}\pause
-		
-	\begin{itemize}
-		\item Interaction effects: $\text{edges} \times \isone{n = 5}$.\pause
-		\item Constrained support: $\text{edge} > 4$.\pause
-		\item Transformed variables: $(\text{Homophily})^{1/2}$.\pause
-		\item Bootstrapping: 1,000 replicates in less than 1.5 minutes...\pause \\
-		... if you are lucky, using ``regular'' ERGMs would take you about 5 hours.
-	\end{itemize}
-	\end{minipage}\hfill
-	\vfill\hfill%
-	\only<1->{%
-		\hyperlink{ergmito-table}{\beamergotobutton{details}} %
-		\hyperlink{ergmito-gof}{\beamergotobutton{gof}} %
-		\hyperlink{example-data-ergm}{\beamergotobutton{data}}%
-	}
-\end{frame}
-
-
-
-
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
 \section{Part 3: Other Projects and Future Research}
 
 %-------------------------------------------------------------------------------
@@ -910,11 +912,18 @@ Exponential Family Random Graph Models, aka \alert{ERGMs} are:\pause
 \end{frame}
 
 \begin{frame}
-%	\frametitle{The future}
+	
 	\Large Continue developing scientific software... \normalsize
 	\begin{figure}
-		\includegraphics[width=.85\linewidth]{fig-packages/hexlogos.png}
+		\includegraphics[width=1\linewidth]{fig-packages/hexlogos.png}
 	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\usebeamertemplate{section intro black}
+	\centering
+	\vspace{-1cm}
+	\includegraphics[width=1\linewidth]{networks2021-copresenters.png}	
 \end{frame}
 
 \begin{frame}
