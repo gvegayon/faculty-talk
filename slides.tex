@@ -65,7 +65,7 @@
 }
 \author[GGVY -- \href{vegayon@usc.edu}{vegayon@usc.edu}]{George G Vega Yon, Ph.D.}
 \institute[USC-PREVMED]{University of Southern California, Department of Preventive Medicine}
-\date{The University of Utah\\{\footnotesize(virtual)}\\June 14, 2021}
+\date{The University of Utah\\{\footnotesize(virtual)}\\June 28, 2021}
 
 % Some definitions
 \def\cursection{\frame{\frametitle{Contents}\tableofcontents[current]}}
@@ -212,13 +212,13 @@
 %\end{frame}
 
 
-\section{Part 2: Exponential Random Graph Models for Small Networks}
+\section{Part I: Exponential Random Graph Models for Small Networks}
 % \frame{\frametitle{Contents}\tableofcontents}
 
 \begin{frame}[t]
 	\usebeamertemplate{section intro}{}{}
 	\textcolor{uscgold}{
-		\Large {\bf Part 2: Exponential Random Graph Models for Small Networks} \vskip0.25em
+		\Large {\bf Part I: Exponential Random Graph Models for Small Networks} \vskip0.25em
 		\large \textit{Joint with}: Andrew Slaughter and Kayla de la Haye \\
 		({\small published in the journal \textit{Social Networks}})
 	}
@@ -404,8 +404,8 @@
 \begin{frame}[t]
 	\usebeamertemplate{section intro}{}{}
 	\textcolor{uscgold}{
-		\Large {\bf A general framework for modeling functional evolution} \vskip0.25em
-		\large \textit{Joint with}: Paul D Thomas, Paul Marjoram, Huaiyu Mi, Duncan Thomas, and John Morrison
+		\Large {\bf Part II: A general framework for modeling functional evolution} \vskip0.25em
+%		\large \textit{Joint with}: Paul D Thomas, Paul Marjoram, Huaiyu Mi, Duncan Thomas, and John Morrison
 	}
 \end{frame}
 
@@ -689,30 +689,31 @@
 %-------------------------------------------------------------------------------
 \begin{frame}[c]
 	\frametitle{Tree likelihoods: Felsenstein's Pruning algorithm}
+	Also known as \textit{dynamic programming} or \textit{postorder tree traversal} 
 	\begin{center}
-		\begin{minipage}[m]{.49\linewidth}
-			\mode<beamer>{%
-				\includegraphics<1>[width=.95\linewidth]{geese-equation-likelihood-1.pdf}%
-				\includegraphics<2->[width=.95\linewidth]{geese-equation-likelihood.pdf}
-			}%
-			\mode<handout>{%
-				\includegraphics[width=.95\linewidth]{geese-equation-likelihood.pdf}
-			}
-		\end{minipage}%
-		\hfill %
-		\begin{minipage}[m]{.49\linewidth}
-			\mode<beamer>{%
-				\includegraphics<3->[width=1\linewidth]{geese-equation-prediction.pdf}
-			}%
-			\mode<handout>{%
-				\includegraphics[width=1\linewidth]{geese-equation-prediction.pdf}
-			}
-		\end{minipage}
-		
+	\mode<beamer>{%
+		\includegraphics<1>[width=.6\linewidth]{geese-equation-likelihood-1.pdf}%
+		\includegraphics<2->[width=.6\linewidth]{geese-equation-likelihood.pdf}
+	}%
+	\mode<handout>{%
+		\includegraphics[width=.6\linewidth]{geese-equation-likelihood.pdf}
+	}			
 	\end{center}
-	\vfill\hfill\uncover<4->{... I implemented this (and more) on \textbf{geese}}
 \end{frame}
 
+%-------------------------------------------------------------------------------
+\begin{frame}[c]
+	\frametitle{Predicting}
+	\begin{center}
+	\mode<beamer>{%
+		\includegraphics<1->[width=.7\linewidth]{geese-equation-prediction.pdf}
+	}%
+	\mode<handout>{%
+		\includegraphics[width=.7\linewidth]{geese-equation-prediction.pdf}
+	}	
+	\end{center}
+	\vfill\hfill\uncover<2->{... I implemented this (and more) on \textbf{geese}}
+\end{frame}
 
 %-------------------------------------------------------------------------------
 \begin{frame}[c]
@@ -878,13 +879,13 @@
 \end{frame}
 
 % ------------------------------------------------------------------------------
-\section{Part 3: Other Projects and Future Research}
+\section{Part II: Other Projects and Future Research}
 
 %-------------------------------------------------------------------------------
 \begin{frame}[t]
 	\usebeamertemplate{section intro}{}{}
 	\textcolor{uscgold}{
-		\Large {\bf Part 3: Other Projects and Future Research}
+		\Large {\bf Part II: Other Projects and Future Research}
 	}
 \end{frame}
 
@@ -911,19 +912,18 @@
 
 \end{frame}
 
-\begin{frame}
-	
-	\Large Continue developing scientific software... \normalsize
-	\begin{figure}
-		\includegraphics[width=1\linewidth]{fig-packages/hexlogos.png}
-	\end{figure}
-\end{frame}
-
-\begin{frame}
+\begin{frame}[t]
 	\usebeamertemplate{section intro black}
-	\centering
+%	\centering
+	\Large \color{uscgold}{\bfseries Continue developing scientific software...} \normalsize
 	\vspace{-1cm}
-	\includegraphics[width=1\linewidth]{networks2021-copresenters.png}	
+	\includegraphics[width=1.1\linewidth]{networks2021-copresenters.png}	
+	\vspace{-15cm}
+
+	\begin{figure}
+		\includegraphics[width=.9\linewidth]{fig-packages/hexlogos.png}
+	\end{figure}
+
 \end{frame}
 
 \begin{frame}
